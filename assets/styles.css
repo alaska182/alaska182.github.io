@@ -21,7 +21,7 @@ a:hover{text-decoration:underline}
 /* HERO a tutta pagina con gradiente dal brand */
 .hero{
   position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
-  background: url('./hero.JPG') center 40% / cover no-repeat fixed;
+  background: url('assets/hero.JPG') center 40% / cover no-repeat fixed;
 }
 .hero::before{
   content:""; position:absolute; inset:0;
