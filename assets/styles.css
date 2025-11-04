@@ -21,7 +21,7 @@ a:hover{text-decoration:underline}
 /* HERO a tutta pagina con gradiente dal brand */
 .hero{
   position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
-  background: url('assets/hero.JPG') center 40% / cover no-repeat fixed;
+  background: url('assets/hero.jpg') center 40% / cover no-repeat fixed;
 }
 .hero::before{
   content:""; position:absolute; inset:0;
@@ -55,4 +55,3 @@ a:hover{text-decoration:underline}
 
 /* utilità */
 .btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700}
-
