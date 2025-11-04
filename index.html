@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Associazione teatrale</title>
+  <meta name="description" content="Produzioni, laboratori, rassegne.">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="icon" href="logo.png">
 </head>
@@ -11,25 +12,64 @@
   <header class="header">
     <a class="brand" href="/">
       <img src="logo.png" alt="Logo">
-      <span>Associazione teatrale</span>
+      <!-- tolto il testo accanto al logo piccolo -->
     </a>
     <nav class="nav">
       <a href="/">Home</a>
-      <a href="#">Chi siamo</a>
-      <a href="#">Spettacoli</a>
-      <a href="#">Contatti</a>
+      <a href="about.html">Chi siamo</a>
+      <a href="shows.html">Spettacoli</a>
+      <a href="sostienici.html">Sostienici</a>
+      <a href="parlano-di-noi.html">Parlano di noi</a>
+      <!-- contatti rimosso dal menu -->
     </nav>
   </header>
 
+  <!-- HERO full screen: immagine + logo esteso nella metà alta -->
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="logo-extended" src="logo-esteso.png" alt="Logo esteso">
+    </div>
+  </section>
+
+  <!-- tre blocchi semplici (opzionali) -->
   <main class="container">
-    <img src="logo-esteso.png" alt="Logo esteso" style="display:block;margin:40px auto;max-width:700px;width:90%;">
-    <h1 class="h1">Ciao, questo è il nuovo sito</h1>
-    <p class="muted">Base pronta. Da qui aggiungerai contenuti: descrizione, calendario, contatti.</p>
+    <section class="grid section">
+      <article class="card">
+        <h2>Missione</h2>
+        <p class="muted">Teatro, comunità, formazione. Progetti nel territorio.</p>
+      </article>
+      <article class="card">
+        <h2>Prossimi appuntamenti</h2>
+        <p class="muted">Inserisci 2–3 date chiave o link al calendario.</p>
+      </article>
+      <article class="card">
+        <h2>Diventa socio</h2>
+        <p class="muted">Quote, donazioni, partnership.</p>
+        <p><a class="btn" href="sostienici.html">Sostienici</a></p>
+      </article>
+    </section>
   </main>
 
+  <!-- footer con partner + contatti -->
   <footer class="footer">
-    <div class="container">© <span id="y"></span> Associazione teatrale</div>
+    <div class="container footer-grid">
+      <section>
+        <h3>Partner</h3>
+        <div class="partners">
+          <div class="partner">Logo 1</div>
+          <div class="partner">Logo 2</div>
+          <div class="partner">Logo 3</div>
+        </div>
+      </section>
+      <section>
+        <h3>Contatti</h3>
+        <p class="muted">
+          Email: <a href="mailto:info@x.it">info@x.it</a><br>
+          Instagram / Facebook: @nomeassociazione<br>
+          Sede: Via ..., CAP Città (RM)
+        </p>
+      </section>
+    </div>
   </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
