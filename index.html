@@ -2,11 +2,33 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Associazione teatrale</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="logo.png">
 </head>
 <body>
-  <h1>Ciao, questo è il nuovo sito!</h1>
-  <p>Se vedi questa pagina, GitHub Pages funziona.</p>
-  <img src="logo.png" alt="logo" width="150">
+  <header class="header">
+    <a class="brand" href="/">
+      <img src="logo.png" alt="Logo">
+      <span>Associazione teatrale</span>
+    </a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="#">Chi siamo</a>
+      <a href="#">Spettacoli</a>
+      <a href="#">Contatti</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="h1">Ciao, questo è il nuovo sito</h1>
+    <p class="muted">Base pronta. Da qui aggiungerai contenuti: descrizione, calendario, contatti.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <span id="y"></span> Associazione teatrale</div>
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
