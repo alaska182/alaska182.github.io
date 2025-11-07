@@ -26,8 +26,9 @@ a:hover{text-decoration:underline}
 .hero::before{
   content:""; position:absolute; inset:0;
   background:
-    linear-gradient(180deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.15) 60%, rgba(0,0,0,.0) 100%),
-    radial-gradient(120% 60% at 50% 0%, rgba(122,30,44,.55), transparent 60%);
+    linear-gradient(180deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.15) 60%, rgba(0,0,0,0) 100%),
+    /* usa la tua --brand con trasparenza via color-mix */
+    radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--brand) 55%, transparent), transparent 60%);
   z-index:0;
 }
 .hero-inner{
