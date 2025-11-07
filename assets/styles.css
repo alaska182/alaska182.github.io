@@ -1,5 +1,5 @@
 :root{
-  /* Colore brand (più chiaro del precedente) — se vuoi lo perfezioniamo con il tuo esatto HEX */
+  /* Colore brand */
   --brand:#9E2B3A;
   --ink:#111; --bg:#fff; --muted:#666; --line:#e5e7eb;
   --max:1000px; --r:14px;
@@ -44,29 +44,25 @@ a:hover{text-decoration:underline}
 /* NAV: link semplici, colore brand, MAIUSCOLO, underline con respiro */
 .nav{
   display:flex;
-  gap:clamp(18px, 2.4vw, 32px);     /* maggiore distanza orizzontale */
+  gap:clamp(18px, 2.4vw, 32px);
   flex-wrap:wrap;
   align-items:center;
-  justify-content:center;            /* centrato meglio in orizzontale */
+  justify-content:center;
 }
-
 .nav a{
   color:var(--brand);
   text-transform:uppercase;
   font-family:"Square", sans-serif;
   font-weight:700;
-  font-size:clamp(14px, 1.6vw + .25rem, 20px); /* aumenta dimensione dinamica */
-  letter-spacing:0.08em;             /* lettere più distanziate */
-  line-height:1.4;                   /* più respiro verticale */
+  font-size:clamp(14px, 1.6vw + .25rem, 20px);
+  letter-spacing:0.08em;
+  line-height:1.4;
   text-decoration:none;
-  text-underline-offset:6px;         /* sposta l’underline più in basso */
+  text-underline-offset:6px;
   text-decoration-thickness:2px;
   transition:color .2s ease, text-decoration .2s ease;
 }
-
-.nav a:hover{
-  text-decoration:underline;
-}
+.nav a:hover{ text-decoration:underline; }
 
 /* layout generico (pagine interne) */
 .container{max-width:var(--max); margin:0 auto; padding:20px 16px}
@@ -75,7 +71,7 @@ a:hover{text-decoration:underline}
 .footer{border-top:1px solid var(--line); padding:24px 16px; color:var(--muted); font-size:14px}
 
 /* --- HOME overrides --- */
-body.home{ height:100vh; overflow:hidden }     /* niente scroll in home */
+body.home{ height:100vh; overflow:hidden }
 .home .header{
   position:fixed; top:0; left:0; right:0; z-index:30;
   background:transparent; border-bottom:0;
@@ -88,7 +84,7 @@ body.home{ height:100vh; overflow:hidden }     /* niente scroll in home */
   position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
   background: url('/assets/hero.jpg') center 40% / cover no-repeat fixed;
 }
-.hero::before{ content:none !important } /* disattiva overlay/gradiente */
+.hero::before{ content:none !important }
 
 .hero-inner{
   position:relative; z-index:1;
@@ -134,17 +130,15 @@ body.home{ height:100vh; overflow:hidden }     /* niente scroll in home */
 
 /* Ottimizzazione per schermi larghi */
 @media (min-width: 1200px) {
-  .nav {
-    gap: 40px; /* più spazio tra le voci */
-  }
+  .nav { gap: 40px; }
   .nav a {
-    font-size: 22px;        /* ingrandisci il testo */
-    letter-spacing: 0.1em;  /* più apertura tra lettere */
+    font-size: 22px;
+    letter-spacing: 0.1em;
     text-underline-offset: 7px;
   }
 }
 
-/* ====== HAMBURGER + DRAWER MOBILE (versione migliorata) ====== */
+/* ====== HAMBURGER + DRAWER MOBILE ====== */
 .hamburger{
   display:none;
   position:fixed;
@@ -158,40 +152,51 @@ body.home{ height:100vh; overflow:hidden }     /* niente scroll in home */
 }
 .hamburger span{
   display:block;
-  height:4px;                    /* linee più spesse */
-  width:100%;                    /* linee lunghe, non “a torre” */
+  height:4px;           /* linee “cicciotte” */
+  width:100%;
   margin:6px 0;
-  background:var(--brand);        /* colore del logo */
+  background:var(--brand);
   border-radius:2px;
   transition:transform .25s ease, opacity .25s ease;
 }
+.hamburger:focus-visible{
+  outline:2px solid var(--brand);
+  outline-offset:4px;
+  border-radius:6px;
+}
 
 /* Animazione X quando aperto */
-.menu-open .hamburger span:nth-child(1){
-  transform:translateY(10px) rotate(45deg);
-}
-.menu-open .hamburger span:nth-child(2){
-  opacity:0;
-}
-.menu-open .hamburger span:nth-child(3){
-  transform:translateY(-10px) rotate(-45deg);
-}
+.menu-open .hamburger span:nth-child(1){ transform:translateY(10px) rotate(45deg); }
+.menu-open .hamburger span:nth-child(2){ opacity:0; }
+.menu-open .hamburger span:nth-child(3){ transform:translateY(-10px) rotate(-45deg); }
 
-/* Drawer mobile invariato */
+/* Drawer mobile: sinistro, larghezza contenuta + overlay pagina */
 @media (max-width: 800px){
   .hamburger{ display:block; }
 
   .nav{
-    position:fixed; inset:0 0 0 30%;
+    position:fixed;
+    top:0; left:0;
+    height:100dvh;
+    width:min(78vw, 320px);
     background:#000;
     display:flex; flex-direction:column; align-items:flex-start;
     padding:80px 24px 24px;
     gap:18px;
-    transform:translateX(100%);
+    transform:translateX(-100%);
     transition:transform .28s ease;
     z-index:35;
+    box-shadow:8px 0 24px rgba(0,0,0,.4);
   }
   .menu-open .nav{ transform:translateX(0); }
+
+  /* overlay scuro senza HTML extra */
+  body.menu-open::before{
+    content:"";
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.5);
+    z-index:30;
+  }
 
   .nav a{
     color:#fff;
