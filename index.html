@@ -38,23 +38,36 @@
       const nav = document.getElementById('nav');
       const body = document.body;
 
+      function openMenu() {
+        body.classList.add('menu-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      function closeMenu() {
+        body.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
       function toggleMenu() {
         const open = body.classList.toggle('menu-open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       }
 
       btn.addEventListener('click', toggleMenu);
+
       // chiusura con ESC
       window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && body.classList.contains('menu-open')) toggleMenu();
+        if (e.key === 'Escape' && body.classList.contains('menu-open')) closeMenu();
       });
+
       // chiusura quando si clicca un link
       nav.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-          body.classList.remove('menu-open');
-          btn.setAttribute('aria-expanded', 'false');
-        }
+        if (e.target.tagName === 'A') closeMenu();
       });
+
+      // chiusura quando si clicca fuori dal drawer e dal bottone
+      document.addEventListener('click', (e) => {
+        const outside = !nav.contains(e.target) && e.target !== btn;
+        if (outside && body.classList.contains('menu-open')) closeMenu();
+      }, true);
     })();
   </script>
 </body>
