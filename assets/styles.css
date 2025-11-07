@@ -214,3 +214,18 @@ body.home{ height:100vh; overflow:hidden }
 
   .menu-open{ overflow:hidden; }
 }
+
+/* Logo fisso in basso a destra (solo pagine interne) */
+.fixed-logo{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:140px;
+  opacity:0.9;
+  z-index:100;
+}
+.fixed-logo img{
+  width:100%;
+  height:auto;
+  display:block;
+}
