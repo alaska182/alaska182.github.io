@@ -143,3 +143,76 @@ body.home{ height:100vh; overflow:hidden }     /* niente scroll in home */
     text-underline-offset: 7px;
   }
 }
+
+/* ====== HAMBURGER + DRAWER MOBILE ====== */
+.hamburger{
+  display:none;
+  position:fixed; top:12px; right:16px; z-index:40;
+  width:42px; height:42px; border:1px solid rgba(255,255,255,.9);
+  background:transparent; border-radius:10px; cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.hamburger span{
+  display:block; height:2px; margin:8px 10px;
+  background:#fff; transition:transform .25s ease, opacity .25s ease;
+}
+
+/* stato aperto: animazione icona */
+.menu-open .hamburger span:nth-child(1){ transform: translateY(10px) rotate(45deg); }
+.menu-open .hamburger span:nth-child(2){ opacity:0; }
+.menu-open .hamburger span:nth-child(3){ transform: translateY(-10px) rotate(-45deg); }
+
+/* Drawer: riuso .nav come pannello */
+@media (max-width: 800px){
+  .home .header{
+    /* header trasparente come prima */
+    position:fixed; top:0; left:0; right:0; z-index:30;
+    background:transparent; border-bottom:0;
+    justify-content:center;
+  }
+
+  .hamburger{ display:block; }
+
+  /* Drawer chiuso: fuori schermo a destra */
+  .nav{
+    position:fixed; inset:0 0 0 30%;
+    background:#000;
+    display:flex; flex-direction:column; align-items:flex-start;
+    padding:80px 24px 24px;
+    gap:18px;
+    transform:translateX(100%);
+    transition:transform .28s ease;
+    z-index:35;
+  }
+  /* Drawer aperto */
+  .menu-open .nav{ transform:translateX(0); }
+
+  /* Link nel drawer */
+  .nav a{
+    color:#fff;
+    font-family:"Square", sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    font-size:clamp(18px, 2.6vw + .4rem, 24px);
+    letter-spacing:.08em;
+    line-height:1.5;
+    text-decoration:none;
+    text-underline-offset:6px;
+    text-decoration-thickness:2px;
+  }
+  .nav a:hover{ text-decoration:underline; }
+
+  /* blocca lo scroll della pagina quando il menu è aperto */
+  .menu-open{ overflow:hidden; }
+}
+
+/* Desktop: hamburger nascosto, nav inline (già definito sopra) */
+@media (min-width: 801px){
+  .hamburger{ display:none; }
+  .nav{
+    position:static; transform:none; background:transparent;
+    display:flex; flex-direction:row; align-items:center;
+    padding:0; gap:clamp(18px, 2.4vw, 32px);
+  }
+}
+
