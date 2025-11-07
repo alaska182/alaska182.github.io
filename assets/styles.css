@@ -1,5 +1,6 @@
 :root{
-  --brand:#7A1E2C;      /* rosso del logo */
+  /* Colore brand (più chiaro del precedente) — se vuoi lo perfezioniamo con il tuo esatto HEX */
+  --brand:#9E2B3A;
   --ink:#111; --bg:#fff; --muted:#666; --line:#e5e7eb;
   --max:1000px; --r:14px;
 }
@@ -21,67 +22,73 @@
   font-weight:700; font-style:normal; font-display:swap;
 }
 
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  font:16px/1.5 "Square", system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;
-  color:var(--ink);
-  background:var(--bg);
-}
-a{color:var(--ink);text-decoration:none}
-a:hover{text-decoration:underline}
-
 /* base */
 *{box-sizing:border-box}
-html,body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;color:var(--ink);background:var(--bg)}
-a{color:var(--ink);text-decoration:none}
+html,body{
+  margin:0; height:100%;
+  font:16px/1.5 "Square", system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;
+  color:var(--ink); background:var(--bg);
+}
+a{color:var(--ink); text-decoration:none}
 a:hover{text-decoration:underline}
 
-/* header + brand (per pagine interne) */
+/* header (pagine interne: sticky bianco) */
 .header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 16px;border-bottom:1px solid var(--line);
-  background:#fff;position:sticky;top:0;z-index:20;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; border-bottom:1px solid var(--line);
+  background:#fff; position:sticky; top:0; z-index:20;
 }
-.brand{display:flex;align-items:center;gap:10px;font-weight:700}
-.brand img{width:36px;height:36px;border-radius:8px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700}
+.brand img{width:36px; height:36px; border-radius:8px}
 
-/* NAV: link semplici (no bottoni), colore brand, MAIUSCOLO, underline on hover */
-.nav{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+/* NAV: link semplici, colore brand, MAIUSCOLO, underline con respiro */
+.nav{
+  display:flex; gap:clamp(10px, 1.8vw, 20px);
+  flex-wrap:wrap; align-items:center;
+}
 .nav a{
   color:var(--brand);
   text-transform:uppercase;
   letter-spacing:.04em;
   font-weight:700;
+  font-family:"Square", sans-serif;        /* forziamo il tuo font */
+  font-size: clamp(12px, 1.1vw + .2rem, 16px);
+  line-height: 1.2;
+  text-decoration:none;
+  text-underline-offset: 4px;              /* più respiro */
+  text-decoration-thickness: 2px;          /* più spesso */
 }
-.nav a:hover{ text-decoration:underline }
+.nav a:hover{
+  text-decoration:underline;
+}
 
-/* layout generico */
-.container{max-width:var(--max);margin:0 auto;padding:20px 16px}
-.h1{font-size:34px;margin:12px 0}
+/* layout generico (pagine interne) */
+.container{max-width:var(--max); margin:0 auto; padding:20px 16px}
+.h1{font-size:clamp(26px, 3vw, 34px); margin:12px 0}
 .muted{color:var(--muted)}
-.footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);font-size:14px}
+.footer{border-top:1px solid var(--line); padding:24px 16px; color:var(--muted); font-size:14px}
 
 /* --- HOME overrides --- */
-html, body { height:100%; }
-body.home{ height:100vh; overflow:hidden; } /* niente scroll in home */
-
+body.home{ height:100vh; overflow:hidden }     /* niente scroll in home */
 .home .header{
   position:fixed; top:0; left:0; right:0; z-index:30;
   background:transparent; border-bottom:0;
-  justify-content:center; gap:16px;
+  justify-content:center; gap:clamp(8px, 1.2vw, 16px);
+  padding-inline: clamp(10px, 3vw, 24px);
 }
 
-/* HERO pieno schermo, immagine pulita (niente sfumatura visibile) */
+/* HERO pieno schermo, immagine pulita (niente sfumatura) */
 .hero{
   position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
   background: url('/assets/hero.jpg') center 40% / cover no-repeat fixed;
 }
-.hero::before{ content:none !important; } /* disattiva il gradiente */
+.hero::before{ content:none !important } /* disattiva overlay/gradiente */
 
 .hero-inner{
-  position:relative; z-index:1; display:flex; flex-direction:column; align-items:center;
-  justify-content:flex-start; padding-top:8vh; gap:28px;
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:flex-start; gap:clamp(18px, 3vh, 28px);
+  padding-top:clamp(6vh, 8vh, 10vh);
 }
 .hero .logo-extended{
   width:min(78%, 760px); height:auto; display:block; margin:0 auto;
@@ -89,18 +96,32 @@ body.home{ height:100vh; overflow:hidden; } /* niente scroll in home */
 }
 
 /* sezioni semplici (pagine interne) */
-.section{padding:48px 0;border-top:1px solid var(--line)}
-.grid{display:grid;gap:18px}
-@media(min-width:800px){ .grid{grid-template-columns:repeat(3,1fr)} }
+.section{padding:48px 0; border-top:1px solid var(--line)}
+.grid{display:grid; gap:18px}
+@media (min-width:800px){ .grid{grid-template-columns:repeat(3,1fr)} }
 
-.card{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:#fff}
-.card h2{margin:.2em 0 .4em;font-size:22px}
+.card{border:1px solid var(--line); border-radius:var(--r); padding:18px; background:#fff}
+.card h2{margin:.2em 0 .4em; font-size:22px}
 
 /* footer blocchi (pagine interne) */
-.footer-grid{display:grid;gap:16px}
-@media(min-width:800px){ .footer-grid{grid-template-columns:2fr 1fr} }
-.partners{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.partner{width:96px;height:48px;border:1px dashed var(--line);border-radius:10px;background:#fafafa;display:flex;align-items:center;justify-content:center;font-size:12px;color:#999}
+.footer-grid{display:grid; gap:16px}
+@media (min-width:800px){ .footer-grid{grid-template-columns:2fr 1fr} }
+.partners{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.partner{
+  width:96px; height:48px; border:1px dashed var(--line); border-radius:10px;
+  background:#fafafa; display:flex; align-items:center; justify-content:center;
+  font-size:12px; color:#999
+}
 
 /* utilità */
-.btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700}
+.btn{
+  display:inline-block; background:var(--brand); color:#fff;
+  padding:10px 14px; border-radius:10px; font-weight:700
+}
+
+/* piccole rifiniture responsive */
+@media (max-width: 720px){
+  .nav{ justify-content:center }
+  .home .header{ padding-top:8px; padding-bottom:8px }
+  .hero .logo-extended{ width:min(88%, 560px) }
+}
