@@ -43,21 +43,27 @@ a:hover{text-decoration:underline}
 
 /* NAV: link semplici, colore brand, MAIUSCOLO, underline con respiro */
 .nav{
-  display:flex; gap:clamp(10px, 1.8vw, 20px);
-  flex-wrap:wrap; align-items:center;
+  display:flex;
+  gap:clamp(18px, 2.4vw, 32px);     /* maggiore distanza orizzontale */
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;            /* centrato meglio in orizzontale */
 }
+
 .nav a{
   color:var(--brand);
   text-transform:uppercase;
-  letter-spacing:.04em;
+  font-family:"Square", sans-serif;
   font-weight:700;
-  font-family:"Square", sans-serif;        /* forziamo il tuo font */
-  font-size: clamp(12px, 1.1vw + .2rem, 16px);
-  line-height: 1.2;
+  font-size:clamp(14px, 1.6vw + .25rem, 20px); /* aumenta dimensione dinamica */
+  letter-spacing:0.08em;             /* lettere più distanziate */
+  line-height:1.4;                   /* più respiro verticale */
   text-decoration:none;
-  text-underline-offset: 4px;              /* più respiro */
-  text-decoration-thickness: 2px;          /* più spesso */
+  text-underline-offset:6px;         /* sposta l’underline più in basso */
+  text-decoration-thickness:2px;
+  transition:color .2s ease, text-decoration .2s ease;
 }
+
 .nav a:hover{
   text-decoration:underline;
 }
