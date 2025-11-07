@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="icon" href="favicon.png">
 
-  <!-- Font Square (assicurati di aver caricato i file in /assets/fonts/) -->
+  <!-- Font Square (opzionale: se li hai caricati in /assets/fonts/) -->
   <style>
     @font-face{
       font-family: "Square";
@@ -28,43 +28,56 @@
     html, body { font-family: "Square", system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif; }
 
     /* Home non scrollabile */
-    html, body { height: 100%; }
+    html, body { height: 100%; margin: 0; }
     body.home { height: 100vh; overflow: hidden; }
 
-    /* Header sopra l’immagine, senza stacco grafico */
+    /* Header sopra l’immagine, senza logo piccolo e senza stacco grafico */
     .home .header{
       position: fixed; top: 0; left: 0; right: 0; z-index: 30;
       background: transparent; border-bottom: 0;
       padding: 12px 16px;
+      display: flex; justify-content: center; align-items: center; gap: 16px;
     }
 
-    /* Bottoni del menu (orizzontali) */
-    .home .nav{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    /* NAV: link semplici (no bottoni), colore brand, MAIUSCOLO, underline on hover */
+    .home .nav{ display:flex; gap:18px; flex-wrap:wrap; align-items:center; }
     .home .nav a{
-      display:inline-block; padding:8px 14px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.92);
-      color:#fff; text-decoration:none; font-weight:700; letter-spacing:.2px;
-      backdrop-filter: blur(2px);
+      display:inline-block; padding:6px 0;
+      color: var(--brand, #7A1E2C);
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
     }
-    .home .nav a:hover{ background: rgba(255,255,255,.12); text-decoration:none; }
+    .home .nav a:hover{
+      text-decoration: underline;
+    }
 
     /* Hero pieno schermo, senza sfumatura */
     .hero{ min-height: 100vh; }
     .hero::before{ content: none !important; }
+
+    /* Logo esteso centrato nella metà alta (usa già le tue classi esistenti) */
+    .hero-inner{
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: flex-start; padding-top: 8vh; gap: 28px;
+    }
+    .logo-extended{
+      width: min(78%, 760px); height: auto; display: block; margin: 0 auto;
+      /* nessun invert: lascio il file così com’è */
+    }
   </style>
 </head>
 <body class="home">
   <header class="header">
-    <a class="brand" href="/">
-      <img src="logo.png" alt="Logo">
-      <!-- tolto il testo accanto al logo piccolo -->
-    </a>
+    <!-- Logo piccolo rimosso dalla home come richiesto -->
     <nav class="nav">
-      <a href="chi-siamo.html">CHI SIAMO</a>
-      <a href="spettacoli.html">SPETTACOLI</a>
+      <a href="about.html">CHI SIAMO</a>
+      <a href="shows.html">SPETTACOLI</a>
       <a href="progetti.html">PROGETTI</a>
-      <a href="parlano-di-noi.html">PARLANO DI NOI</a>
       <a href="sostienici.html">SOSTIENICI</a>
+      <a href="parlano-di-noi.html">PARLANO DI NOI</a>
       <a href="trasparenza.html">TRASPARENZA</a>
     </nav>
   </header>
