@@ -131,3 +131,15 @@ body.home{ height:100vh; overflow:hidden }     /* niente scroll in home */
   .home .header{ padding-top:8px; padding-bottom:8px }
   .hero .logo-extended{ width:min(88%, 560px) }
 }
+
+/* Ottimizzazione per schermi larghi */
+@media (min-width: 1200px) {
+  .nav {
+    gap: 40px; /* più spazio tra le voci */
+  }
+  .nav a {
+    font-size: 22px;        /* ingrandisci il testo */
+    letter-spacing: 0.1em;  /* più apertura tra lettere */
+    text-underline-offset: 7px;
+  }
+}
