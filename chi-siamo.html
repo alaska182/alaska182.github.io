@@ -7,9 +7,52 @@
   <meta name="description" content="Produzioni, laboratori, rassegne.">
   <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="assets/styles.css">
+
+  <style>
+    /* HEADER sovrapposto all’immagine, link nel colore brand */
+    .header.header--dark {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 30;
+      background: transparent;
+      border-bottom: 0;
+      justify-content: center;
+      padding: 12px 16px;
+    }
+    .header--dark .nav a {
+      color: var(--brand) !important;
+    }
+
+    /* HERO a schermo intero, immagine corretta */
+    .hero--internal {
+      position: relative;
+      min-height: 100vh;
+      background: url('assets/chi-hero.jpg') center 40% / cover no-repeat fixed;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .hero--internal .hero-inner {
+      height: 100vh;
+    }
+
+    /* TESTO nero su sfondo bianco */
+    body {
+      background: #fff;
+      color: #111;
+    }
+
+    /* Footer chiaro come da schema */
+    .footer.footer--light {
+      background: #fff;
+      color: #111;
+    }
+    .footer.footer--light .muted {
+      color: #111;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header sovrapposto alla foto, link sempre colore brand -->
+  <!-- Header sovrapposto alla foto -->
   <header class="header header--dark header--overlay">
     <nav class="nav" aria-label="Navigazione principale">
       <a href="chi-siamo.html">CHI SIAMO</a>
@@ -21,12 +64,12 @@
     </nav>
   </header>
 
-  <!-- HERO a schermo intero; carica l’immagine in assets/chi-hero.jpg -->
+  <!-- HERO a schermo intero -->
   <section class="hero hero--internal">
     <div class="hero-inner"></div>
   </section>
 
-  <!-- Contenuto scorrevole con impaginazione leggibile -->
+  <!-- Contenuto visibile e scorrevole -->
   <main>
     <section class="container section">
       <h1 class="h1">Associazione nontantoprecisi ETS</h1>
@@ -54,12 +97,12 @@
             Registrazione audio-sonora di dischi;
           
           Negli anni l’associazione nontantoprecisi ha incontrato centinaia di persone e ad oggi partecipano quotidianamente alle sue attività circa 50 persone delle più varie condizioni economiche, sociali, cliniche ed esistenziali.
-</p>
+        </p>
       </div>
     </section>
   </main>
 
-  <!-- Footer bianco: Partner | logo centrale | Contatti -->
+  <!-- Footer bianco -->
   <footer class="footer footer--light">
     <div class="container footer-grid footer-grid--three">
       <section>
