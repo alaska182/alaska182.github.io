@@ -8,52 +8,63 @@
   <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="assets/styles.css">
   <style>
-    /* Override locali SOLO per questa pagina */
-    footer.footer {
-      background:#fff; color:var(--ink);
-      padding-top:40px; padding-bottom:40px;
+    /* ======= OVERRIDE LOCALI PER HERO A TUTTO SCHERMO ======= */
+
+    /* Header sovrapposto all'immagine come in home */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+    }
+    .header--dark .nav a{
+      color:#fff !important;
+      text-underline-offset:6px; text-decoration-thickness:2px;
+      /* miglior contrasto su foto */
+      text-shadow:0 1px 2px rgba(0,0,0,.25), 0 6px 22px rgba(0,0,0,.35);
+    }
+    @media (max-width:800px){
+      .header.header--dark{ padding-top:8px; padding-bottom:8px }
     }
 
-    /* Layout footer: tre blocchi allineati orizzontalmente */
-    .footer-grid {
+    /* Hero interno a tutta altezza con immagine di copertina */
+    .hero--internal{
+      position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
+      background: url('assets/chi-hero.jpg') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal::before{ content:none; }
+    .hero--internal .hero-inner{
+      position:relative; z-index:1;
+      display:flex; align-items:center; justify-content:center; flex-direction:column;
+      gap:16px; padding-top:12vh; padding-inline:16px;
+      min-height:100vh;
+    }
+
+    /* Contenuto scorrevole dopo il full-screen */
+    footer.footer { background:#fff; color:var(--ink); padding-top:40px; padding-bottom:40px; }
+
+    /* Griglia footer: partner | logo centrale | contatti */
+    .footer-grid{
       display:flex; align-items:flex-start; justify-content:space-between;
       flex-wrap:wrap; gap:20px;
     }
+    .footer section{ flex:1 1 280px; }
 
-    .footer section {
-      flex:1 1 280px;
-    }
+    .footer .partners{ justify-content:flex-start; }
+    .footer .partners img{ display:block; height:clamp(52px,6vw,90px); width:auto; margin-top:12px; }
 
-    /* Partner: titolo + logo allineato a sinistra */
-    .footer .partners {
-      justify-content:flex-start;
-    }
-    .footer .partners img {
-      display:block; height:clamp(52px,6vw,90px); width:auto; margin-top:12px;
-    }
+    .footer .footer-brand{ flex:0 0 auto; text-align:center; margin-top:4px; }
+    .footer .footer-brand img{ display:block; margin:0 auto; width:clamp(100px,14vw,140px); height:auto; opacity:.95; }
 
-    /* Logo footer centrato, dimensione ridotta e bilanciata */
-    .footer .footer-brand {
-      flex:0 0 auto;
-      text-align:center;
-      margin-top:4px;
-    }
-    .footer .footer-brand img {
-      display:block; margin:0 auto;
-      width:clamp(100px,14vw,140px); height:auto; opacity:0.95;
-    }
+    /* Contatti a destra per simmetria con partner */
+    .footer section:last-of-type{ text-align:right; }
 
-    /* Contatti allineati a destra per simmetria */
-    .footer section:last-of-type {
-      text-align:right;
-    }
-
-    /* Forza il brand nei link header (pagine interne) */
-    .header--dark .nav a { color: var(--brand) !important; }
+    /* Primo blocco contenuti senza bordo superiore */
+    main .section:first-of-type{ border-top:0; }
   </style>
 </head>
 <body>
-  <!-- Header pagine interne -->
+  <!-- Header sovrapposto all'immagine -->
   <header class="header header--dark">
     <nav class="nav" aria-label="Navigazione principale">
       <a href="chi-siamo.html">CHI SIAMO</a>
@@ -65,9 +76,34 @@
     </nav>
   </header>
 
-  <main class="container section">
-    <h1 class="h1">chi siamo</h1>
-    <p class="muted">Testo della pagina…</p>
+  <!-- HERO a schermo intero con foto -->
+  <section class="hero hero--internal">
+    <div class="hero-inner">
+      <!-- Facoltativo: titolo o payoff sopra l’immagine
+      <h1 class="h1" style="color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.25), 0 6px 22px rgba(0,0,0,.35); margin:0;">
+        chi siamo
+      </h1>
+      -->
+    </div>
+  </section>
+
+  <!-- Contenuto che si legge scrollando -->
+  <main>
+    <section class="container section">
+      <h1 class="h1">Associazione nontantoprecisi ETS</h1>
+      <p class="muted"> L’idea che porta alla costituzione del gruppo teatrale nontantoprecisi nasce nel 2006, quando alcune persone, attraverso percorsi differenti, si sono incontrate in un Centro Diurno dell’ex Ospedale psichiatrico di Roma “S. Maria della Pietà”. I nontantoprecisi hanno intrapreso, così, un cammino di ricerca artistica e teatrale che ha permesso, tra l’altro, la critica in atto dei luoghi dell’istituzione psichiatrica.
+Dal 2016 nontantoprecisi ha collaborato con la Cooperativa Sociale Integrata Passepartout nella gestione dei laboratori socio-riabilitativi dell’ASL RM 1 e RM 2. Ad oggi, i nontantoprecisi abitano e mobilitano a Roma, nel quartiere di Casal Bertone, il “centro culturale postO”, un luogo poliedrico che unisce la sperimentazione artistica, la cura della persona, la formazione e la creazione di possibilità lavorative. 
+Nel 2020, i nontantoprecisi si costituiscono in Associazione per segnare la propria autonomia dal contesto clinico e affermare al contempo il proprio insieme di pratiche che guardano al teatro, alla cultura, all’arte e alla comunità come un luogo-spazio per lavorare alla trasformazione delle soggettività e del mondo. 
+A partire da gennaio 2023, all’interno del postO, l’associazione nontantoprecisi in collaborazione con Passepartout Cooperativa ha dato vita alla prima biblioteca aperta al pubblico del quartiere: la Biblioteca Straub-Huillet.
+All’interno di postO sono state svolte numerose attività:
+Laboratori di teatro, di visione cinematografica, di ricerca sonora e di esplorazione urbana
+Programmazione culturale in ambito teatrale, musicale e cinematografico
+Organizzazione di seminari, convegni e conferenze 
+Presentazione di libri
+Registrazione audio-sonora di dischi 
+Negli anni l’associazione nontantoprecisi ha incontrato centinaia di persone e ad oggi partecipano quotidianamente alle sue attività circa 50 persone delle più varie condizioni economiche, sociali, cliniche ed esistenziali.
+</p>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -82,7 +118,6 @@
         </div>
       </section>
 
-      <!-- Logo NTP rovesciata centrato tra Partner e Contatti -->
       <div class="footer-brand">
         <a href="index.html" aria-label="Torna alla home">
           <img src="logo.png" alt="Nontantoprecisi">
