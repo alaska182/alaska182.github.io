@@ -7,17 +7,39 @@
   <meta name="description" content="Produzioni, laboratori, rassegne.">
   <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    /* Override locali SOLO per questa pagina */
+    footer.footer {
+      background:#fff; color:var(--ink);
+      padding-top:40px; padding-bottom:40px;
+    }
+    /* Partner: sotto al titolo, non centrato */
+    .footer .partners { justify-content:flex-start; }
+    .footer .partners img {
+      display:block; height: clamp(64px, 8vw, 120px); width:auto; margin-top:10px;
+    }
+    /* Logo footer centrato e più grande del partner */
+    .footer .footer-brand {
+      margin-top:36px; text-align:center;
+    }
+    .footer .footer-brand img {
+      display:block; margin:0 auto;
+      width: clamp(160px, 22vw, 220px); height:auto;
+    }
+    /* Forza il brand nei link header (pagine interne) */
+    .header--dark .nav a { color: var(--brand) !important; }
+  </style>
 </head>
 <body>
   <!-- Header pagine interne -->
   <header class="header header--dark">
     <nav class="nav" aria-label="Navigazione principale">
-      <a href="chi-siamo.html" style="color:var(--brand)">CHI SIAMO</a>
-      <a href="spettacoli.html" style="color:var(--brand)">SPETTACOLI</a>
-      <a href="progetti.html" style="color:var(--brand)">PROGETTI</a>
-      <a href="sostienici.html" style="color:var(--brand)">SOSTIENICI</a>
-      <a href="parlano-di-noi.html" style="color:var(--brand)">PARLANO DI NOI</a>
-      <a href="trasparenza.html" style="color:var(--brand)">TRASPARENZA</a>
+      <a href="chi-siamo.html">CHI SIAMO</a>
+      <a href="spettacoli.html">SPETTACOLI</a>
+      <a href="progetti.html">PROGETTI</a>
+      <a href="sostienici.html">SOSTIENICI</a>
+      <a href="parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="trasparenza.html">TRASPARENZA</a>
     </nav>
   </header>
 
@@ -26,17 +48,16 @@
     <p class="muted">Testo della pagina…</p>
   </main>
 
-  <!-- Footer con sfondo bianco -->
-  <footer class="footer" style="background:#fff; color:var(--ink); text-align:center; padding-top:40px; padding-bottom:40px;">
-    <div class="container footer-grid" style="align-items:center;">
-      
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid" style="align-items:flex-start;">
       <section>
         <h3>PARTNER</h3>
-        <!-- logo partner allineato sotto titolo -->
-        <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
-          <img src="logopartner.png" alt="Partner Shelter City Rome"
-               style="height:60px; width:auto; margin-top:10px;">
-        </a>
+        <div class="partners">
+          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
+            <img src="logopartner.png" alt="Partner Shelter City Rome">
+          </a>
+        </div>
       </section>
 
       <section>
@@ -49,11 +70,10 @@
       </section>
     </div>
 
-    <!-- logo NTP rovesciata centrato nel footer -->
-    <div style="margin-top:36px;">
-      <a href="index.html" aria-label="Torna alla home" style="display:inline-block;">
-        <img src="logo.png" alt="Nontantoprecisi"
-             style="max-width:160px; width:25vw; height:auto; display:block; margin:0 auto;">
+    <!-- Logo NTP rovesciata centrato -->
+    <div class="footer-brand">
+      <a href="index.html" aria-label="Torna alla home">
+        <img src="logo.png" alt="Nontantoprecisi">
       </a>
     </div>
   </footer>
