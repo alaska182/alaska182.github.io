@@ -14,32 +14,38 @@
       padding-top:40px; padding-bottom:40px;
     }
 
-    /* Partner e Contatti affiancati con logo centrale */
+    /* Layout footer: tre blocchi allineati orizzontalmente */
     .footer-grid {
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex; align-items:flex-start; justify-content:space-between;
       flex-wrap:wrap; gap:20px;
     }
 
     .footer section {
-      flex:1 1 300px;
+      flex:1 1 280px;
     }
 
-    /* Partner: sotto al titolo */
+    /* Partner: titolo + logo allineato a sinistra */
     .footer .partners {
       justify-content:flex-start;
     }
     .footer .partners img {
-      display:block; height:clamp(64px,8vw,120px); width:auto; margin-top:10px;
+      display:block; height:clamp(52px,6vw,90px); width:auto; margin-top:12px;
     }
 
-    /* Logo footer centrato tra le due sezioni */
+    /* Logo footer centrato, dimensione ridotta e bilanciata */
     .footer .footer-brand {
       flex:0 0 auto;
       text-align:center;
+      margin-top:4px;
     }
     .footer .footer-brand img {
       display:block; margin:0 auto;
-      width:clamp(160px,22vw,220px); height:auto;
+      width:clamp(100px,14vw,140px); height:auto; opacity:0.95;
+    }
+
+    /* Contatti allineati a destra per simmetria */
+    .footer section:last-of-type {
+      text-align:right;
     }
 
     /* Forza il brand nei link header (pagine interne) */
