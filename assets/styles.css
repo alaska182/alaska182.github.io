@@ -218,3 +218,21 @@ body:not(.home){ background:#000; color:#fff; }
   .footer-grid--three{ gap:24px; }
   .footer-contacts{ text-align:left; }
 }
+
+/* =====================
+   FONT BASE GENEVA
+   ===================== */
+
+/* Corpo testo, paragrafi, link, liste → Geneva */
+body, p, a, li, span, div {
+  font-family: Geneva, system-ui, sans-serif;
+}
+
+/* Titoli, header, bottoni e navigazione → Square */
+h1, h2, h3, h4, h5, h6,
+.nav a,
+.brand,
+.btn {
+  font-family: "Square", system-ui, sans-serif;
+}
+
