@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <!-- Header pagine interne: menu centrato -->
+  <!-- Header pagine interne -->
   <header class="header header--dark">
     <nav class="nav" aria-label="Navigazione principale">
       <a href="chi-siamo.html" style="color:var(--brand)">CHI SIAMO</a>
@@ -26,17 +26,17 @@
     <p class="muted">Testo della pagina…</p>
   </main>
 
-  <!-- Footer con sfondo bianco e testi scuri -->
-  <footer class="footer" style="background:#fff; color:var(--ink);">
-    <div class="container footer-grid">
+  <!-- Footer con sfondo bianco -->
+  <footer class="footer" style="background:#fff; color:var(--ink); text-align:center; padding-top:40px; padding-bottom:40px;">
+    <div class="container footer-grid" style="align-items:center;">
+      
       <section>
         <h3>PARTNER</h3>
-        <div class="partners" style="justify-content:center;">
-          <!-- unico logo partner con link -->
-          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
-            <img src="logopartner.png" alt="Partner Shelter City Rome" style="height:70px; width:auto; display:block;">
-          </a>
-        </div>
+        <!-- logo partner allineato sotto titolo -->
+        <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
+          <img src="logopartner.png" alt="Partner Shelter City Rome"
+               style="height:60px; width:auto; margin-top:10px;">
+        </a>
       </section>
 
       <section>
@@ -49,10 +49,11 @@
       </section>
     </div>
 
-    <!-- logo NTP rovesciata centrato e bilanciato -->
-    <div style="text-align:center; margin-top:32px;">
+    <!-- logo NTP rovesciata centrato nel footer -->
+    <div style="margin-top:36px;">
       <a href="index.html" aria-label="Torna alla home" style="display:inline-block;">
-        <img src="logo.png" alt="Nontantoprecisi" style="max-width:180px; width:28vw; height:auto; display:block; margin:0 auto; opacity:0.9;">
+        <img src="logo.png" alt="Nontantoprecisi"
+             style="max-width:160px; width:25vw; height:auto; display:block; margin:0 auto;">
       </a>
     </div>
   </footer>
