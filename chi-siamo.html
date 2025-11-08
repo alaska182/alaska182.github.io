@@ -9,48 +9,51 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <!-- Header pagine interne: menu centrato su sfondo nero -->
+  <!-- Header pagine interne: menu centrato -->
   <header class="header header--dark">
-  <nav class="nav" aria-label="Navigazione principale">
-    <a href="chi-siamo.html">CHI SIAMO</a>
-    <a href="spettacoli.html">SPETTACOLI</a>
-    <a href="progetti.html">PROGETTI</a>
-    <a href="sostienici.html">SOSTIENICI</a>
-    <a href="parlano-di-noi.html">PARLANO DI NOI</a>
-    <a href="trasparenza.html">TRASPARENZA</a>
-  </nav>
-</header>
+    <nav class="nav" aria-label="Navigazione principale">
+      <!-- colore link uniformato al brand della home via inline-style -->
+      <a href="chi-siamo.html" style="color:var(--brand)">CHI SIAMO</a>
+      <a href="spettacoli.html" style="color:var(--brand)">SPETTACOLI</a>
+      <a href="progetti.html" style="color:var(--brand)">PROGETTI</a>
+      <a href="sostienici.html" style="color:var(--brand)">SOSTIENICI</a>
+      <a href="parlano-di-noi.html" style="color:var(--brand)">PARLANO DI NOI</a>
+      <a href="trasparenza.html" style="color:var(--brand)">TRASPARENZA</a>
+    </nav>
+  </header>
 
   <main class="container section">
     <h1 class="h1">chi siamo</h1>
     <p class="muted">Testo della pagina…</p>
   </main>
 
-  <footer class="footer">
+  <!-- Footer con sfondo bianco e testi scuri -->
+  <footer class="footer" style="background:#fff; color:var(--ink);">
     <div class="container footer-grid">
       <section>
         <h3>Partner</h3>
         <div class="partners">
-          <div class="partner">Logo 1</div>
-          <div class="partner">Logo 2</div>
-          <div class="partner">Logo 3</div>
+          <!-- unico logo partner -->
+          <img src="logopartner.png" alt="Partner" style="height:48px; width:auto; display:block;">
         </div>
       </section>
+
       <section>
         <h3>Contatti</h3>
-        <p class="muted">
-          Email: <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
-          Instagram / Facebook: @nontantoprecisi<br>
+        <p class="muted" style="color:var(--ink);">
+          Email: <a href="mailto:nontantoprecisi@gmail.com" style="color:var(--ink);">nontantoprecisi@gmail.com</a><br>
+          Instagram / Facebook: <a href="https://instagram.com/nontantoprecisi" style="color:var(--ink);">@nontantoprecisi</a><br>
           Sede: Via Castelguidone 4, 00159 Roma (RM)
         </p>
       </section>
     </div>
+
+    <!-- logo NTP rovesciata centrato, link alla home -->
+    <div style="text-align:center; margin-top:24px;">
+      <a href="index.html" aria-label="Torna alla home" style="display:inline-block;">
+        <img src="logo.png" alt="Nontantoprecisi" style="max-width:260px; width:40vw; height:auto; display:block; margin:0 auto;">
+      </a>
+    </div>
   </footer>
-
-  <!-- Logo fisso in basso a destra, clic per tornare alla home -->
-  <a href="index.html" class="fixed-logo" aria-label="Torna alla home">
-  <img src="assets/logo-ntp.png" alt="">
-</a>
-
 </body>
 </html>
