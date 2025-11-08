@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/styles.css">
 
   <style>
-    /* HEADER sovrapposto all’immagine, link nel colore brand */
+    /* Header sovrapposto all’immagine; link nel colore brand */
     .header.header--dark {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -19,36 +19,26 @@
       justify-content: center;
       padding: 12px 16px;
     }
-    .header--dark .nav a {
-      color: var(--brand) !important;
-    }
+    .header--dark .nav a { color: var(--brand) !important; }
 
-    /* HERO a schermo intero, immagine corretta */
-    .hero--internal {
+    /* Hero a schermo intero (assicurarsi che esista assets/chi-hero.jpg) */
+    .hero--internal{
       position: relative;
       min-height: 100vh;
       background: url('assets/chi-hero.jpg') center 40% / cover no-repeat fixed;
       isolation: isolate;
       overflow: hidden;
     }
-    .hero--internal .hero-inner {
-      height: 100vh;
-    }
+    .hero--internal .hero-inner{ height: 100vh; }
 
-    /* TESTO nero su sfondo bianco */
-    body {
-      background: #fff;
-      color: #111;
-    }
+    /* Testo NERO su pagine interne (override della regola globale body:not(.home)) */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
 
-    /* Footer chiaro come da schema */
-    .footer.footer--light {
-      background: #fff;
-      color: #111;
-    }
-    .footer.footer--light .muted {
-      color: #111;
-    }
+    /* Footer chiaro coerente */
+    .footer.footer--light{ background:#fff; color:#111; }
+    .footer.footer--light .muted{ color:#111 !important; }
   </style>
 </head>
 <body>
@@ -69,7 +59,7 @@
     <div class="hero-inner"></div>
   </section>
 
-  <!-- Contenuto visibile e scorrevole -->
+  <!-- Contenuto scorrevole con testo nero -->
   <main>
     <section class="container section">
       <h1 class="h1">Associazione nontantoprecisi ETS</h1>
@@ -102,7 +92,7 @@
     </section>
   </main>
 
-  <!-- Footer bianco -->
+  <!-- Footer bianco: Partner | logo centrale | Contatti -->
   <footer class="footer footer--light">
     <div class="container footer-grid footer-grid--three">
       <section>
