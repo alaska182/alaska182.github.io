@@ -12,7 +12,6 @@
   <!-- Header pagine interne: menu centrato -->
   <header class="header header--dark">
     <nav class="nav" aria-label="Navigazione principale">
-      <!-- colore link uniformato al brand della home via inline-style -->
       <a href="chi-siamo.html" style="color:var(--brand)">CHI SIAMO</a>
       <a href="spettacoli.html" style="color:var(--brand)">SPETTACOLI</a>
       <a href="progetti.html" style="color:var(--brand)">PROGETTI</a>
@@ -32,26 +31,28 @@
     <div class="container footer-grid">
       <section>
         <h3>PARTNER</h3>
-        <div class="partners">
-          <!-- unico logo partner -->
-          <img src="logopartner.png" alt="Partner" style="height:48px; width:auto; display:block;">
+        <div class="partners" style="justify-content:center;">
+          <!-- unico logo partner con link -->
+          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
+            <img src="logopartner.png" alt="Partner Shelter City Rome" style="height:70px; width:auto; display:block;">
+          </a>
         </div>
       </section>
 
       <section>
         <h3>CONTATTI</h3>
         <p class="muted" style="color:var(--ink);">
-          Email: <a href="mailto:nontantoprecisi@gmail.com" style="color:var(--ink);">nontantoprecisi@gmail.com</a><br>
-          Instagram / Facebook: <a href="https://instagram.com/nontantoprecisi" style="color:var(--ink);">@nontantoprecisi</a><br>
-          Sede: Via Castelguidone 4, 00159 Roma (RM)
+          Email : <a href="mailto:nontantoprecisi@gmail.com" style="color:var(--ink);">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi" style="color:var(--ink);">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
         </p>
       </section>
     </div>
 
-    <!-- logo NTP rovesciata centrato, link alla home -->
-    <div style="text-align:center; margin-top:24px;">
+    <!-- logo NTP rovesciata centrato e bilanciato -->
+    <div style="text-align:center; margin-top:32px;">
       <a href="index.html" aria-label="Torna alla home" style="display:inline-block;">
-        <img src="logo.png" alt="Nontantoprecisi" style="max-width:260px; width:40vw; height:auto; display:block; margin:0 auto;">
+        <img src="logo.png" alt="Nontantoprecisi" style="max-width:180px; width:28vw; height:auto; display:block; margin:0 auto; opacity:0.9;">
       </a>
     </div>
   </footer>
