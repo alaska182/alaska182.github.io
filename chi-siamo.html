@@ -13,19 +13,35 @@
       background:#fff; color:var(--ink);
       padding-top:40px; padding-bottom:40px;
     }
-    /* Partner: sotto al titolo, non centrato */
-    .footer .partners { justify-content:flex-start; }
-    .footer .partners img {
-      display:block; height: clamp(64px, 8vw, 120px); width:auto; margin-top:10px;
+
+    /* Partner e Contatti affiancati con logo centrale */
+    .footer-grid {
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:20px;
     }
-    /* Logo footer centrato e più grande del partner */
+
+    .footer section {
+      flex:1 1 300px;
+    }
+
+    /* Partner: sotto al titolo */
+    .footer .partners {
+      justify-content:flex-start;
+    }
+    .footer .partners img {
+      display:block; height:clamp(64px,8vw,120px); width:auto; margin-top:10px;
+    }
+
+    /* Logo footer centrato tra le due sezioni */
     .footer .footer-brand {
-      margin-top:36px; text-align:center;
+      flex:0 0 auto;
+      text-align:center;
     }
     .footer .footer-brand img {
       display:block; margin:0 auto;
-      width: clamp(160px, 22vw, 220px); height:auto;
+      width:clamp(160px,22vw,220px); height:auto;
     }
+
     /* Forza il brand nei link header (pagine interne) */
     .header--dark .nav a { color: var(--brand) !important; }
   </style>
@@ -50,7 +66,7 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container footer-grid" style="align-items:flex-start;">
+    <div class="container footer-grid">
       <section>
         <h3>PARTNER</h3>
         <div class="partners">
@@ -60,6 +76,13 @@
         </div>
       </section>
 
+      <!-- Logo NTP rovesciata centrato tra Partner e Contatti -->
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Torna alla home">
+          <img src="logo.png" alt="Nontantoprecisi">
+        </a>
+      </div>
+
       <section>
         <h3>CONTATTI</h3>
         <p class="muted" style="color:var(--ink);">
@@ -68,13 +91,6 @@
           Sede : Via Castelguidone 4, 00159 Roma (RM)
         </p>
       </section>
-    </div>
-
-    <!-- Logo NTP rovesciata centrato -->
-    <div class="footer-brand">
-      <a href="index.html" aria-label="Torna alla home">
-        <img src="logo.png" alt="Nontantoprecisi">
-      </a>
     </div>
   </footer>
 </body>
