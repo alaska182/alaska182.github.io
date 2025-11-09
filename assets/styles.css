@@ -1,380 +1,243 @@
-:root{
-  /* Colore brand */
-  --brand:#9E2B3A;
-  --ink:#111; --bg:#fff; --muted:#666; --line:#e5e7eb;
-  --max:1000px; --r:14px;
+:root {
+  --brand: #9E2B3A;
+  --ink: #111;
+  --bg: #fff;
+  --muted: #666;
+  --line: #e5e7eb;
+  --max: 1000px;
+  --r: 14px;
 }
 
-/* === FONT SQUARE === */
-@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-Light.otf") format("opentype"); font-weight:300; font-style:normal; font-display:swap; }
-@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-Regular.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
-@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-Bold.otf") format("opentype"); font-weight:700; font-style:normal; font-display:swap; }
-
-/* base */
-*{box-sizing:border-box}
-html,body{ margin:0; height:100%; font:16px/1.5 "Square",system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif; color:var(--ink); background:var(--bg); }
-a{color:var(--ink); text-decoration:none}
-a:hover{text-decoration:underline}
-
-/* header (pagine interne: sticky bianco) */
-.header{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 16px; border-bottom:1px solid var(--line);
-  background:#fff; position:sticky; top:0; z-index:20;
+/* BASE */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  height: 100%;
+  font: 16px/1.5 "Square", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
 }
-.brand{display:flex; align-items:center; gap:10px; font-weight:700}
-.brand img{width:36px; height:36px; border-radius:8px}
+a { color: var(--ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
 
 /* NAV */
-.nav{
-  display:flex; gap:clamp(18px, 2.4vw, 32px); flex-wrap:wrap; align-items:center; justify-content:center;
+.nav {
+  display: flex;
+  gap: clamp(18px, 2.4vw, 32px);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
-.nav a{
-  color:var(--brand);
-  text-transform:uppercase;
-  font-family:"Square", sans-serif;
-  font-weight:700;
-  font-size:clamp(14px, 1.6vw + .25rem, 20px);
-  letter-spacing:0.08em;
-  line-height:1.4;
-  text-decoration:none;
-  text-underline-offset:6px;
-  text-decoration-thickness:2px;
-  transition:color .2s ease, text-decoration .2s ease;
-  /* --- per animazione sottolineatura --- */
-  position:relative;
-  display:inline-block;
-  padding-bottom:2px;
+.nav a {
+  color: var(--brand);
+  text-transform: uppercase;
+  font-family: "Square", sans-serif;
+  font-weight: 700;
+  font-size: clamp(14px, 1.6vw + .25rem, 20px);
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
 }
-/* Sottolineatura animata: cresce da sinistra con hover/focus */
-.nav a::after{
-  content:"";
-  position:absolute;
-  left:0; right:0;
-  bottom:-4px;
-  height:2px;
-  width:100%;
-  background:currentColor;
-  transform:scaleX(0);
-  transform-origin:left center;
-  transition:transform .28s ease;
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: transparent;
+  transition: background .2s ease, transform .2s ease;
+  transform: scaleX(0);
 }
-.nav a:hover::after,
-.nav a:focus-visible::after{
-  transform:scaleX(1);
-}
-.nav a:hover{ text-decoration:none; } /* evita doppia sottolineatura */
-
-/* layout generico (pagine interne) */
-.container{max-width:var(--max); margin:0 auto; padding:20px 16px}
-.h1{font-size:clamp(26px, 3vw, 34px); margin:12px 0}
-.muted{color:var(--muted)}
-.footer{border-top:1px solid var(--line); padding:24px 16px; color:var(--muted); font-size:14px}
-
-/* --- HOME overrides --- */
-body.home{ height:100vh; overflow:hidden }
-.home .header{
-  position:fixed; top:0; left:0; right:0; z-index:30;
-  background:transparent; border-bottom:0;
-  justify-content:center; gap:clamp(8px, 1.2vw, 16px);
-  padding-inline: clamp(10px, 3vw, 24px);
+.nav a:hover::after {
+  background: #fff;
+  transform: scaleX(1);
 }
 
-/* HERO home */
-.hero{
-  position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
+/* HOME HEADER OVERLAY */
+.home .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: transparent;
+  border-bottom: 0;
+  justify-content: center;
+  gap: clamp(8px, 1.2vw, 16px);
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  overflow: hidden;
   background: url('/assets/hero.jpg') center 40% / cover no-repeat fixed;
 }
-.hero::before{ content:none !important }
-.hero-inner{
-  position:relative; z-index:1;
-  display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:clamp(18px, 3vh, 28px);
-  padding-top:clamp(6vh, 8vh, 10vh);
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(18px, 3vh, 28px);
+  padding-top: clamp(6vh, 8vh, 10vh);
 }
-.hero .logo-extended{
-  width:min(78%, 760px); height:auto; display:block; margin:0 auto;
+.hero .logo-extended {
+  width: min(78%, 760px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
   filter: drop-shadow(0 10px 40px rgba(0,0,0,.55));
 }
 
-/* sezioni semplici (pagine interne) */
-.section{padding:48px 0; border-top:1px solid var(--line)}
-.grid{display:grid; gap:18px}
-@media (min-width:800px){ .grid{grid-template-columns:repeat(3,1fr)} }
+/* GRID SECTIONS */
+.section { padding: 48px 0; border-top: 1px solid var(--line); }
+.grid { display: grid; gap: 18px; }
+@media (min-width:800px) {
+  .grid { grid-template-columns: repeat(3,1fr); }
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 18px;
+  background: #fff;
+}
+.card h2 { margin: .2em 0 .4em; font-size: 22px; }
 
-.card{border:1px solid var(--line); border-radius:var(--r); padding:18px; background:#fff}
-.card h2{margin:.2em 0 .4em; font-size:22px}
-
-/* footer blocchi (pagine interne) */
-.footer-grid{display:grid; gap:16px}
-@media (min-width:800px){ .footer-grid{grid-template-columns:2fr 1fr} }
-.partners{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
-.partner{
-  width:96px; height:48px; border:1px dashed var(--line); border-radius:10px;
-  background:#fafafa; display:flex; align-items:center; justify-content:center;
-  font-size:12px; color:#999
+/* === HAMBURGER MENU === */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  z-index: 40;
+  width: 38px;
+  height: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: var(--brand);
+  margin: 6px 0;
+  border-radius: 2px;
+  transition: transform .25s ease, opacity .25s ease;
+}
+.menu-open .hamburger span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+.menu-open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.menu-open .hamburger span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
 }
 
-/* utilità */
-.btn{ display:inline-block; background:var(--brand); color:#fff; padding:10px 14px; border-radius:10px; font-weight:700 }
-
-/* responsive rifiniture */
-@media (max-width: 720px){
-  .nav{ justify-content:center }
-  .home .header{ padding-top:8px; padding-bottom:8px }
-  .hero .logo-extended{ width:min(88%, 560px) }
-}
-
-/* schermi larghi */
-@media (min-width: 1200px) {
-  .nav { gap: 40px; }
-  .nav a { font-size: 22px; letter-spacing: 0.1em; text-underline-offset: 7px; }
-}
-
-/* ====== HAMBURGER + DRAWER MOBILE ====== */
-.hamburger{
-  display:none; position:fixed; top:16px; right:20px; z-index:40; width:38px; height:28px;
-  background:none; border:none; cursor:pointer; -webkit-tap-highlight-color: transparent;
-}
-.hamburger span{ display:block; height:4px; width:100%; margin:6px 0; background:var(--brand); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
-.hamburger:focus-visible{ outline:2px solid var(--brand); outline-offset:4px; border-radius:6px; }
-.menu-open .hamburger span:nth-child(1){ transform:translateY(10px) rotate(45deg); }
-.menu-open .hamburger span:nth-child(2){ opacity:0; }
-.menu-open .hamburger span:nth-child(3){ transform:translateY(-10px) rotate(-45deg); }
-
-/* Drawer mobile */
-@media (max-width: 800px){
-  .hamburger{ display:block; }
-  .nav{
-    position:fixed; top:0; left:0; height:100dvh; width:min(78vw, 320px);
-    background:#000; display:flex; flex-direction:column; align-items:flex-start;
-    padding:80px 24px 24px; gap:18px; transform:translateX(-100%); transition:transform .28s ease; z-index:35;
-    box-shadow:8px 0 24px rgba(0,0,0,.4);
+/* === NAV MOBILE === */
+@media (max-width: 800px) {
+  .hamburger { display: block; }
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: min(78vw, 320px);
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 24px 24px;
+    gap: 18px;
+    transform: translateX(-100%);
+    transition: transform .28s ease;
+    z-index: 35;
+    box-shadow: 8px 0 24px rgba(0,0,0,.4);
   }
-  .menu-open .nav{ transform:translateX(0); }
-  body.menu-open::before{ content:""; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:30; }
-  .nav a{
-    color:#fff; font-family:"Square", sans-serif; font-weight:700; text-transform:uppercase;
-    font-size:clamp(18px, 2.6vw + .4rem, 24px); letter-spacing:.08em; line-height:1.5; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px;
+  .menu-open .nav { transform: translateX(0); }
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 30;
   }
-  .nav a:hover{ text-decoration:none; }
-  /* sottolineatura coerente nel drawer nero */
-  .nav a::after{ bottom:-6px; background:#fff; }
-  .menu-open{ overflow:hidden; }
+  .nav a {
+    color: var(--brand);
+    font-family: "Square", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(18px, 2.6vw + .4rem, 24px);
+    letter-spacing: 0.1em;
+  }
+  .nav a::after {
+    background: #fff;
+  }
+  .nav a:hover { text-decoration: none; }
+  .menu-open { overflow: hidden; }
 }
 
-/* === OVERRIDE SCHEDE INTERNE (non si applica alla home) === */
-body:not(.home){ background:#000; color:#fff; }
-
-/* Header nero con menu centrato e spaziato */
-.header--dark{
-  position:sticky; top:0; z-index:20; background:#000; border-bottom:1px solid #1a1a1a;
-  display:flex; align-items:center; justify-content:center; padding:12px 16px;
-}
-.header--dark .nav{ display:flex; align-items:center; justify-content:center; gap:clamp(18px, 2.4vw, 32px); flex-wrap:wrap; }
-.header--dark .nav a{ color:#fff; text-transform:uppercase; font-weight:700; letter-spacing:.08em; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px; }
-.header--dark .nav a:hover{ text-decoration:none; }
-
-/* Logo fisso in basso a destra, clic per home */
-.fixed-logo{ position:fixed; right:20px; bottom:20px; width:min(28vw, 150px); opacity:.9; z-index:100; }
-.fixed-logo img{ width:100%; height:auto; display:block; }
-
-/* Leggibilità su sfondo nero */
-.section{ border-top:1px solid #1a1a1a; }
-.footer{ border-top:1px solid #1a1a1a; }
-.muted{ color:#c9c9c9; }
-.partner{ background:#0b0b0b; border-color:#2a2a2a; color:#a3a3a3; }
-@media (max-width:800px){
-  .header--dark .nav{ gap:18px; }
-  .fixed-logo{ right:14px; bottom:14px; width:min(36vw, 140px); }
-}
-
-/* ===================== AGGIUNTE ===================== */
-
-/* 1) Header scuro sovrapposto alla foto e link sempre brand */
-.header--overlay{
-  position:fixed; top:0; left:0; right:0; z-index:30;
-  background:transparent; border-bottom:0;
-}
-.header--overlay .nav a{ color:var(--brand) !important; }
-
-/* 2) HERO interno a pieno schermo (pagina chi-siamo) */
-.hero--internal{
-  position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
-  background: url('assets/chi-hero.jpg') center 40% / cover no-repeat fixed;
-}
-.hero--internal::before{ content:none; }
-.hero--internal .hero-inner{
-  position:relative; z-index:1; display:flex; align-items:center; justify-content:center; flex-direction:column;
-  gap:16px; padding-top:12vh; padding-inline:16px; min-height:100vh;
-}
-
-/* 3) Tipografia leggibile per testi lunghi */
-.prose{
-  max-width:68ch; margin:0 auto;
-  font-size:clamp(17px, 1.2vw + .2rem, 19px);
-  line-height:1.75; letter-spacing:.005em;
-}
-.prose p{ margin:0 0 1em; }
-.prose p + p{ margin-top:.4em; }
-.prose h2{ font-size:clamp(22px, 2vw, 26px); margin:1.6em 0 .6em; }
-.prose h3{ font-size:clamp(19px, 1.6vw, 22px); margin:1.2em 0 .4em; }
-.prose ul,.prose ol{ margin:.8em 0 .8em 1.2em; }
-.prose strong{ font-weight:700; }
-.prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
-@media (min-width:1100px){
-  .prose.two-col{ column-count:2; column-gap:3rem; }
-  .prose.two-col h2,.prose.two-col h3{ break-inside:avoid; }
-}
-
-/* 4) Footer bianco con tre blocchi e proporzioni dei loghi */
-.footer--light{ background:#fff; color:var(--ink); }
-.footer--light .muted{ color:var(--ink); }
-.footer-grid--three{
-  display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:20px;
-}
-.footer-grid--three > section{ flex:1 1 280px; }
-.footer-contacts{ text-align:right; }
-.footer .partners{ justify-content:flex-start; }
-.footer .partners img{ display:block; height:clamp(52px,6vw,90px); width:auto; margin-top:12px; }
-.footer .footer-brand{ flex:0 0 auto; text-align:center; margin-top:4px; }
-.footer .footer-brand img{ display:block; margin:0 auto; width:clamp(100px,14vw,140px); height:auto; opacity:.95; }
-
-/* Mobile: spaziatura footer */
-@media (max-width:800px){
-  .footer-grid--three{ gap:24px; }
-  .footer-contacts{ text-align:left; }
-}
-
-/* =====================
-   FONT BASE GENEVA
-   ===================== */
-
-/* Corpo testo, paragrafi, link, liste → Geneva */
-body, p, a, li, span, div {
-  font-family: Geneva, system-ui, sans-serif;
-}
-
-/* Titoli, header, bottoni e navigazione → Square */
-h1, h2, h3, h4, h5, h6,
-.nav a,
-.brand,
-.btn {
-  font-family: "Square", system-ui, sans-serif;
-}
-
-/* ===== Lista spettacoli (senza grassetto, senza sottolineatura) ===== */
-.show-list{
-  list-style:none;
-  margin:1.6rem 0 0;
-  padding:0;
-  font-size:clamp(17px, 1.1vw + .2rem, 19px);
-  line-height:1.75;
-}
-.show-list li{
-  display:grid;
-  grid-template-columns: clamp(7ch, 12ch, 14ch) 1fr;
-  gap:18px;
-  align-items:baseline;
-  padding-block:.8rem;
-}
-.show-list .year{
-  color:inherit;
-  text-align:right;
-  white-space:nowrap;
-  letter-spacing:.01em;
-}
-.show-list .show-link{
-  color:var(--brand);
-  text-decoration:none;
-  font-weight:400;
-  transition:opacity .2s ease;
-}
-.show-list .show-link:hover,
-.show-list .show-link:focus-visible{
-  opacity:.7;
-}
-.show-list .show-link,
-.show-list .show-link:visited,
-.show-list .show-link:active {
+/* SHOW-LIST / PROGETTI */
+.show-list .show-link {
+  font-weight: 400 !important;
+  cursor: pointer;
   text-decoration: none !important;
 }
-@media (max-width:560px){
-  .show-list li{
-    grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr;
-    gap:14px;
-  }
-}
-
-
-/* --- HEADER INTERNE: overlay di default sull'hero --- */
-.header.header--dark{
-  position:fixed; top:0; left:0; right:0; z-index:30;
-  background:transparent; border-bottom:0;
-  display:flex; align-items:center; justify-content:center;
-  padding:12px 16px;
-  transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
-}
-
-/* Link sempre brand quando overlay */
-.header--dark .nav a{ color:var(--brand) !important; }
-
-/* Stato desktop scrolled: header bianco con titoli visibili */
-@media (min-width: 801px){
-  .header.header--dark.scrolled{
-    background:#fff; border-bottom:1px solid var(--line);
-    box-shadow:0 2px 6px rgba(0,0,0,.08);
-  }
-  .header.header--dark.scrolled .nav a{ color:var(--brand) !important; }
-}
-
-/* MOBILE: niente “barra” header; solo hamburger flottante trasparente */
-@media (max-width: 800px){
-  /* azzera l’impatto visivo della barra */
-  .header.header--dark{
-    background:transparent !important;
-    border:0 !important;
-    box-shadow:none !important;
-    height:0; padding:0; /* la nav è fixed: non dipende dall’altezza dell’header */
-  }
-
-  /* hamburger già fixed e trasparente per definizione */
-  .hamburger{ display:block; }
-
-  /* drawer già definito; nessuna barra bianca in scroll */
-  body.is-mobile .header.header--dark.scrolled{
-    background:transparent !important;
-    box-shadow:none !important;
-    border:0 !important;
-  }
-}
-
-/* Assicura che l’hero interno resti a pieno schermo */
-.hero--internal{
-  position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
-  background:url('assets/chi-hero.jpg') center 40% / cover no-repeat fixed;
-}
-.hero--internal .hero-inner{ min-height:100vh; }
-
-/* (facoltativo ma consigliato) evita spinta layout su iOS quando apre il drawer */
-@supports (height: 100dvh){
-  @media (max-width: 800px){
-    .nav{ height:100dvh; }
-  }
-}
-
-/* Effetto hover sui titoli spettacoli */
-.show-list .show-link {
-  color: var(--brand);
-  text-decoration: none;
-  font-weight: 400;
-  transition: font-weight .2s ease, opacity .2s ease, color .2s ease;
-}
-
 .show-list .show-link:hover,
-.show-list .show-link:focus-visible {
-  font-weight: 700;
-  color: inherit;
-  opacity: 1;
-  text-decoration: none;
+.show-list .show-link:focus {
+  opacity: 1 !important;
+  text-decoration: none !important;
 }
 
+/* FOOTER */
+.footer {
+  padding: 40px 20px;
+  background: #fff;
+  color: var(--ink);
+}
+.footer-grid--three {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-grid--three > section { flex: 1 1 280px; }
+.footer-contacts { text-align: right; }
+.footer .footer-brand img {
+  width: clamp(100px, 14vw, 140px);
+  height: auto;
+  opacity: .95;
+}
+@media (max-width:800px) {
+  .footer-grid--three { gap: 24px; }
+  .footer-contacts { text-align: left; }
+}
+
+/* HERO LIFT ANIMATION */
+.hero--lift {
+  animation: heroLift .9s ease forwards;
+}
+@keyframes heroLift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-12vh); }
+}
