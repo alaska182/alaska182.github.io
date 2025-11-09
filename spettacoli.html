@@ -24,8 +24,6 @@
       color: var(--brand) !important;
       transition: color 0.3s ease;
     }
-
-    /* Quando si scorre oltre l’hero */
     .header.scrolled {
       background: #fff;
       box-shadow: 0 2px 6px rgba(0,0,0,.1);
@@ -42,15 +40,10 @@
       isolation: isolate;
       overflow: hidden;
     }
-    .hero--internal .hero-inner {
-      height: 100vh;
-    }
+    .hero--internal .hero-inner { height: 100vh; }
 
     /* Testo nero su sfondo bianco */
-    body:not(.home) {
-      background: #fff !important;
-      color: #111 !important;
-    }
+    body:not(.home) { background: #fff !important; color: #111 !important; }
     .muted { color: #111 !important; }
     .prose a {
       color: var(--brand);
@@ -59,11 +52,48 @@
     }
 
     /* Footer chiaro */
-    .footer.footer--light {
-      background: #fff;
-      color: #111;
-    }
+    .footer.footer--light { background: #fff; color: #111; }
     .footer.footer--light .muted { color: #111 !important; }
+
+    /* ===== Lista spettacoli ===== */
+    .show-list{
+      list-style: none;
+      margin: 1.2rem 0 0;
+      padding: 0;
+      font-size: clamp(17px, 1.1vw + .2rem, 19px);
+      line-height: 1.75;
+    }
+    .show-list li{
+      display: grid;
+      grid-template-columns: clamp(7ch, 12ch, 14ch) 1fr;
+      gap: 12px;
+      align-items: baseline;
+      padding: .25rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .show-list li:last-child{ border-bottom: 0; }
+    .show-list .year{
+      color: inherit;
+      white-space: nowrap;
+      letter-spacing: .01em;
+    }
+    .show-list .show-link{
+      color: var(--brand);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+      font-weight: 700;
+    }
+    .show-list .show-link:hover,
+    .show-list .show-link:focus-visible{
+      text-decoration-thickness: 3px;
+    }
+    @media (max-width: 560px){
+      .show-list li{
+        grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -71,7 +101,7 @@
   <header class="header header--dark" id="page-header">
     <nav class="nav" aria-label="Navigazione principale">
       <a href="chi-siamo.html">CHI SIAMO</a>
-      <a href="spettacoli.html">SPETTACOLI</a>
+      <a href="spettacoli.html" aria-current="page">SPETTACOLI</a>
       <a href="progetti.html">PROGETTI</a>
       <a href="sostienici.html">SOSTIENICI</a>
       <a href="parlano-di-noi.html">PARLANO DI NOI</a>
@@ -84,23 +114,29 @@
     <div class="hero-inner"></div>
   </section>
 
-  <!-- Contenuto scorrevole -->
+  <!-- Contenuto -->
   <main>
     <section class="container section">
-      <h1 class="h1">spettacoli</h1>
+      <h1 class="h1">SPETTACOLI</h1>
+
       <div class="prose">
-        <p>L’idea che porta alla costituzione del gruppo teatrale nontantoprecisi nasce nel 2006, quando alcune persone, attraverso percorsi differenti, si sono incontrate in un Centro Diurno dell’ex Ospedale psichiatrico di Roma “S. Maria della Pietà”.</p> 
-          
-        <p>I nontantoprecisi hanno intrapreso, così, un cammino di ricerca artistica e teatrale che ha permesso, tra l’altro, la critica in atto dei luoghi dell’istituzione psichiatrica.</p>
-          
-        <p>Dal 2016 nontantoprecisi ha collaborato con la Cooperativa Sociale Integrata Passepartout nella gestione dei laboratori socio-riabilitativi dell’ASL RM 1 e RM 2. Ad oggi, i nontantoprecisi abitano e mobilitano a Roma, nel quartiere di Casal Bertone, il “centro culturale postO”, un luogo poliedrico che unisce la sperimentazione artistica, la cura della persona, la formazione e la creazione di possibilità lavorative.</p>  
-          
-        <p>Nel 2020, i nontantoprecisi si costituiscono in Associazione per segnare la propria autonomia dal contesto clinico e affermare al contempo il proprio insieme di pratiche che guardano al teatro, alla cultura, all’arte e alla comunità come un luogo-spazio per lavorare alla trasformazione delle soggettività e del mondo.</p>
-          
-        <p>A partire da gennaio 2023, all’interno del postO, l’associazione nontantoprecisi in collaborazione con Passepartout Cooperativa ha dato vita alla prima biblioteca aperta al pubblico del quartiere: la Biblioteca Straub-Huillet.</p>
-          
-        <p>Negli anni l’associazione nontantoprecisi ha incontrato centinaia di persone e ad oggi partecipano quotidianamente alle sue attività circa 50 persone delle più varie condizioni economiche, sociali, cliniche ed esistenziali.
-        </p>
+        <ul class="show-list" aria-label="Elenco degli spettacoli">
+          <li><span class="year">2025</span><a class="show-link" href="spettacoli/2025-citta-instabile-presagio-e-prefigurazione-di-un-luogo.html">CITTÀ INSTABILE – PRESAGIO E PREFIGURAZIONE DI UN LUOGO</a></li>
+          <li><span class="year">2024</span><a class="show-link" href="spettacoli/2024-qfwfq-per-farla-finita-con-lo-spettacolo.html">QFWFQ – PER FARLA FINITA CON LO SPETTACOLO</a></li>
+          <li><span class="year">2022 / 2023</span><a class="show-link" href="spettacoli/2022-2023-eneidi.html">ENEIDI</a></li>
+          <li><span class="year">2021</span><a class="show-link" href="spettacoli/2021-movimento-per-un-canto.html">MOVIMENTO PER UN CANTO</a></li>
+          <li><span class="year">2019</span><a class="show-link" href="spettacoli/2019-l-inseparabile.html">L’INSEPARABILE</a></li>
+          <li><span class="year">2019</span><a class="show-link" href="spettacoli/2019-cammino-nessuno-e-uno.html">CAMMINO – NESSUNO È UNO</a></li>
+          <li><span class="year">2018 / 2019</span><a class="show-link" href="spettacoli/2018-2019-nonsense-stati-rivoluzionari-transitori.html">NONSENSE – STATI RIVOLUZIONARI TRANSITORI</a></li>
+          <li><span class="year">2018</span><a class="show-link" href="spettacoli/2018-percorsi-di-fuga.html">PERCORSI DI FUGA</a></li>
+          <li><span class="year">2017</span><a class="show-link" href="spettacoli/2017-massacro-teatro-senza-difese.html">MASSACRO – TEATRO SENZA DIFESE</a></li>
+          <li><span class="year">2016</span><a class="show-link" href="spettacoli/2016-l-immateriale-opera.html">L’IMMATERIALE OPERA</a></li>
+          <li><span class="year">2015</span><a class="show-link" href="spettacoli/2015-paesaggi-della-memoria.html">PAESAGGI DELLA MEMORIA</a></li>
+          <li><span class="year">2014</span><a class="show-link" href="spettacoli/2014-organon-narrazione-organica-di-citta-l-aquila.html">ORGANON – NARRAZIONE ORGANICA DI CITTÀ – L’AQUILA</a></li>
+          <li><span class="year">2013</span><a class="show-link" href="spettacoli/2013-io-sono-l-ultimo.html">IO SONO L’ULTIMO</a></li>
+          <li><span class="year">2012</span><a class="show-link" href="spettacoli/2012-carne-primo-episodio-epifania-ovvero-del-vedere.html">CARNE – PRIMO EPISODIO: EPIFANIA OVVERO DEL VEDERE</a></li>
+          <li><span class="year">2010</span><a class="show-link" href="spettacoli/2010-nella-tempesta-di-shakespeare.html">NELLA TEMPESTA DI SHAKESPEARE</a></li>
+        </ul>
       </div>
     </section>
   </main>
