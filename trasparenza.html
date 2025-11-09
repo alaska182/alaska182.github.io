@@ -9,67 +9,76 @@
   <link rel="stylesheet" href="assets/styles.css">
 
   <style>
-    /* Header inizialmente trasparente */
-    .header.header--dark {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 30;
-      background: transparent;
-      border-bottom: 0;
-      justify-content: center;
-      padding: 12px 16px;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+    /* --- HEADER INTERNE (comune a tutte le schede) --- */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
     }
-    .header--dark .nav a {
-      color: var(--brand) !important;
-      transition: color 0.3s ease;
+    .header--dark .nav a{ color:var(--brand) !important; }
+
+    /* Header bianco dopo hero (desktop) */
+    @media (min-width:801px){
+      .header.header--dark.scrolled{
+        background:#fff; border-bottom:1px solid var(--line);
+        box-shadow:0 2px 6px rgba(0,0,0,.08);
+      }
+      .header.header--dark.scrolled .nav a{ color:var(--brand) !important; }
     }
 
-    /* Quando si scorre oltre l’hero */
-    .header.scrolled {
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,.1);
-    }
-    .header.scrolled .nav a {
-      color: var(--brand) !important;
-    }
-
-    /* Hero a schermo intero */
-    .hero--internal {
-      position: relative;
-      min-height: 100vh;
-      background: url('assets/trasparenza-hero.jpg') center 40% / cover no-repeat fixed;
-      isolation: isolate;
-      overflow: hidden;
-    }
-    .hero--internal .hero-inner {
-      height: 100vh;
+    /* MOBILE: solo hamburger flottante, nessuna barra */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border:0 !important;
+        box-shadow:none !important;
+        height:0; padding:0;
+      }
+      .hamburger{ display:block; }
+      body.is-mobile .header.header--dark.scrolled{
+        background:transparent !important;
+        box-shadow:none !important;
+        border:0 !important;
+      }
     }
 
-    /* Testo nero su sfondo bianco */
-    body:not(.home) {
-      background: #fff !important;
-      color: #111 !important;
+    /* Hero interno a pieno schermo — immagine specifica della pagina */
+    .hero--internal{
+      position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
+      background:url('assets/trasparenza-hero.jpg') center 40% / cover no-repeat fixed;
     }
-    .muted { color: #111 !important; }
-    .prose a {
-      color: var(--brand);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+    .hero--internal .hero-inner{ min-height:100vh; }
+
+    /* Testo nero su sfondo bianco per le schede */
+    body:not(.home){
+      background:#fff !important;
+      color:#111 !important;
+    }
+    .muted{ color:#111 !important; }
+    .prose a{
+      color:var(--brand);
+      text-decoration:underline;
+      text-underline-offset:3px;
     }
 
     /* Footer chiaro */
-    .footer.footer--light {
-      background: #fff;
-      color: #111;
+    .footer.footer--light{
+      background:#fff;
+      color:#111;
     }
-    .footer.footer--light .muted { color: #111 !important; }
+    .footer.footer--light .muted{ color:#111 !important; }
   </style>
 </head>
+
 <body>
-  <!-- Header sovrapposto all’immagine -->
+  <!-- HEADER + HAMBURGER -->
   <header class="header header--dark" id="page-header">
-    <nav class="nav" aria-label="Navigazione principale">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
       <a href="chi-siamo.html">CHI SIAMO</a>
       <a href="spettacoli.html">SPETTACOLI</a>
       <a href="progetti.html">PROGETTI</a>
@@ -79,33 +88,27 @@
     </nav>
   </header>
 
-  <!-- HERO a schermo intero -->
+  <!-- HERO -->
   <section class="hero hero--internal">
     <div class="hero-inner"></div>
   </section>
 
-  <!-- Contenuto scorrevole -->
+  <!-- CONTENUTO -->
   <main>
     <section class="container section">
-      <h1 class="h1">trasparenza</h1>
+      <h1 class="h1">sostienici</h1>
       <div class="prose">
-        <p>L’idea che porta alla costituzione del gruppo teatrale nontantoprecisi nasce nel 2006, quando alcune persone, attraverso percorsi differenti, si sono incontrate in un Centro Diurno dell’ex Ospedale psichiatrico di Roma “S. Maria della Pietà”.</p> 
-          
+        <p>L’idea che porta alla costituzione del gruppo teatrale nontantoprecisi nasce nel 2006, quando alcune persone, attraverso percorsi differenti, si sono incontrate in un Centro Diurno dell’ex Ospedale psichiatrico di Roma “S. Maria della Pietà”.</p>
         <p>I nontantoprecisi hanno intrapreso, così, un cammino di ricerca artistica e teatrale che ha permesso, tra l’altro, la critica in atto dei luoghi dell’istituzione psichiatrica.</p>
-          
-        <p>Dal 2016 nontantoprecisi ha collaborato con la Cooperativa Sociale Integrata Passepartout nella gestione dei laboratori socio-riabilitativi dell’ASL RM 1 e RM 2. Ad oggi, i nontantoprecisi abitano e mobilitano a Roma, nel quartiere di Casal Bertone, il “centro culturale postO”, un luogo poliedrico che unisce la sperimentazione artistica, la cura della persona, la formazione e la creazione di possibilità lavorative.</p>  
-          
+        <p>Dal 2016 nontantoprecisi ha collaborato con la Cooperativa Sociale Integrata Passepartout nella gestione dei laboratori socio-riabilitativi dell’ASL RM 1 e RM 2. Ad oggi, i nontantoprecisi abitano e mobilitano a Roma, nel quartiere di Casal Bertone, il “centro culturale postO”, un luogo poliedrico che unisce la sperimentazione artistica, la cura della persona, la formazione e la creazione di possibilità lavorative.</p>
         <p>Nel 2020, i nontantoprecisi si costituiscono in Associazione per segnare la propria autonomia dal contesto clinico e affermare al contempo il proprio insieme di pratiche che guardano al teatro, alla cultura, all’arte e alla comunità come un luogo-spazio per lavorare alla trasformazione delle soggettività e del mondo.</p>
-          
         <p>A partire da gennaio 2023, all’interno del postO, l’associazione nontantoprecisi in collaborazione con Passepartout Cooperativa ha dato vita alla prima biblioteca aperta al pubblico del quartiere: la Biblioteca Straub-Huillet.</p>
-          
-        <p>Negli anni l’associazione nontantoprecisi ha incontrato centinaia di persone e ad oggi partecipano quotidianamente alle sue attività circa 50 persone delle più varie condizioni economiche, sociali, cliniche ed esistenziali.
-        </p>
+        <p>Negli anni l’associazione nontantoprecisi ha incontrato centinaia di persone e ad oggi partecipano quotidianamente alle sue attività circa 50 persone delle più varie condizioni economiche, sociali, cliniche ed esistenziali.</p>
       </div>
     </section>
   </main>
 
-  <!-- Footer bianco -->
+  <!-- FOOTER -->
   <footer class="footer footer--light">
     <div class="container footer-grid footer-grid--three">
       <section>
@@ -134,18 +137,47 @@
     </div>
   </footer>
 
-  <!-- SCRIPT: cambia header quando si scorre -->
+  <!-- SCRIPT comportamento header/hamburger -->
   <script>
+  document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('page-header');
-    const heroHeight = document.querySelector('.hero--internal').offsetHeight;
+    const hero = document.querySelector('.hero--internal');
+    const btn = document.getElementById('hamburger');
+    const nav = document.getElementById('primary-nav');
+    const BP = 800;
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > heroHeight - 60) {
-        header.classList.add('scrolled');
-      } else {
+    function isMobile(){ return window.innerWidth <= BP; }
+
+    function syncScrolled(){
+      if (!header || !hero) return;
+      const heroHeight = hero.offsetHeight || 0;
+
+      if (isMobile()){
+        document.body.classList.add('is-mobile');
         header.classList.remove('scrolled');
+        return;
       }
-    });
+
+      document.body.classList.remove('is-mobile');
+      if (window.scrollY > heroHeight - 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+
+    syncScrolled();
+    window.addEventListener('scroll', syncScrolled, {passive:true});
+    window.addEventListener('resize', syncScrolled);
+
+    if (btn){
+      function toggleMenu(force){
+        const willOpen = typeof force === 'boolean' ? force : !document.body.classList.contains('menu-open');
+        document.body.classList.toggle('menu-open', willOpen);
+        btn.setAttribute('aria-expanded', String(willOpen));
+      }
+      btn.addEventListener('click', () => toggleMenu());
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+      if (nav) nav.addEventListener('click', e => { if (e.target.tagName === 'A') toggleMenu(false); });
+    }
+  });
   </script>
 </body>
 </html>
