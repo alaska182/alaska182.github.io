@@ -293,12 +293,18 @@ h1, h2, h3, h4, h5, h6,
 .show-list .show-link:focus-visible{
   opacity:.7;
 }
+.show-list .show-link,
+.show-list .show-link:visited,
+.show-list .show-link:active {
+  text-decoration: none !important;
+}
 @media (max-width:560px){
   .show-list li{
     grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr;
     gap:14px;
   }
 }
+
 
 /* --- HEADER INTERNE: overlay di default sull'hero --- */
 .header.header--dark{
