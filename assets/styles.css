@@ -41,8 +41,29 @@ a:hover{text-decoration:underline}
   text-underline-offset:6px;
   text-decoration-thickness:2px;
   transition:color .2s ease, text-decoration .2s ease;
+  /* --- per animazione sottolineatura --- */
+  position:relative;
+  display:inline-block;
+  padding-bottom:2px;
 }
-.nav a:hover{ text-decoration:underline; }
+/* Sottolineatura animata: cresce da sinistra con hover/focus */
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  bottom:-4px;
+  height:2px;
+  width:100%;
+  background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .28s ease;
+}
+.nav a:hover::after,
+.nav a:focus-visible::after{
+  transform:scaleX(1);
+}
+.nav a:hover{ text-decoration:none; } /* evita doppia sottolineatura */
 
 /* layout generico (pagine interne) */
 .container{max-width:var(--max); margin:0 auto; padding:20px 16px}
@@ -131,8 +152,13 @@ body.home{ height:100vh; overflow:hidden }
   }
   .menu-open .nav{ transform:translateX(0); }
   body.menu-open::before{ content:""; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:30; }
-  .nav a{ color:#fff; font-family:"Square", sans-serif; font-weight:700; text-transform:uppercase; font-size:clamp(18px, 2.6vw + .4rem, 24px); letter-spacing:.08em; line-height:1.5; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px; }
-  .nav a:hover{ text-decoration:underline; }
+  .nav a{
+    color:#fff; font-family:"Square", sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(18px, 2.6vw + .4rem, 24px); letter-spacing:.08em; line-height:1.5; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px;
+  }
+  .nav a:hover{ text-decoration:none; }
+  /* sottolineatura coerente nel drawer nero */
+  .nav a::after{ bottom:-6px; background:#fff; }
   .menu-open{ overflow:hidden; }
 }
 
@@ -146,7 +172,7 @@ body:not(.home){ background:#000; color:#fff; }
 }
 .header--dark .nav{ display:flex; align-items:center; justify-content:center; gap:clamp(18px, 2.4vw, 32px); flex-wrap:wrap; }
 .header--dark .nav a{ color:#fff; text-transform:uppercase; font-weight:700; letter-spacing:.08em; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px; }
-.header--dark .nav a:hover{ text-decoration:underline; }
+.header--dark .nav a:hover{ text-decoration:none; }
 
 /* Logo fisso in basso a destra, clic per home */
 .fixed-logo{ position:fixed; right:20px; bottom:20px; width:min(28vw, 150px); opacity:.9; z-index:100; }
@@ -235,4 +261,3 @@ h1, h2, h3, h4, h5, h6,
 .btn {
   font-family: "Square", system-ui, sans-serif;
 }
-
