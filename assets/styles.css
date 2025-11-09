@@ -1,243 +1,251 @@
-:root {
-  --brand: #9E2B3A;
-  --ink: #111;
-  --bg: #fff;
-  --muted: #666;
-  --line: #e5e7eb;
-  --max: 1000px;
-  --r: 14px;
+:root{
+  /* Colore brand */
+  --brand:#9E2B3A;
+  --ink:#111; --bg:#fff; --muted:#666; --line:#e5e7eb;
+  --max:1000px; --r:14px;
 }
 
-/* BASE */
-* { box-sizing: border-box; }
-html, body {
-  margin: 0;
-  height: 100%;
-  font: 16px/1.5 "Square", system-ui, sans-serif;
-  color: var(--ink);
-  background: var(--bg);
-}
-a { color: var(--ink); text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* === FONT SQUARE === */
+@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-...type"); font-weight:300; font-style:normal; font-display:swap; }
+@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-...type"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-...type"); font-weight:700; font-style:normal; font-display:swap; }
 
-/* HEADER */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--line);
-  background: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 20;
+/* base */
+*{box-sizing:border-box}
+html,body{ margin:0; height:100%; font:16px/1.5 "Square",system-...egoe UI,Roboto,Inter,sans-serif; color:var(--ink); background:var(--bg); }
+a{color:var(--ink); text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* header (pagine interne: sticky bianco) */
+.header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; border-bottom:1px solid var(--line);
+  background:#fff; position:sticky; top:0; z-index:20;
 }
+.brand{display:flex; align-items:center; gap:10px; font-weight:700}
+.brand img{width:36px; height:36px; border-radius:8px}
 
 /* NAV */
-.nav {
-  display: flex;
-  gap: clamp(18px, 2.4vw, 32px);
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.nav{
+  display:flex; gap:clamp(18px, 2.4vw, 32px); flex-wrap:wrap; align-items:center; justify-content:center;
 }
-.nav a {
-  color: var(--brand);
-  text-transform: uppercase;
-  font-family: "Square", sans-serif;
-  font-weight: 700;
-  font-size: clamp(14px, 1.6vw + .25rem, 20px);
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 2px;
+.nav a{
+  color:var(--brand);
+  text-transform:uppercase;
+  font-family:"Square", sans-serif;
+  font-weight:700;
+  font-size:clamp(14px, 1.6vw + .25rem, 20px);
+  letter-spacing:0.08em;
+  line-height:1.4;
+  text-decoration:none;
+  text-underline-offset:6px;
+  text-decoration-thickness:2px;
+  transition:color .2s ease, text-decoration .2s ease;
+  /* --- per animazione sottolineatura --- */
+  position:relative;
+  display:inline-block;
+  padding-bottom:2px;
 }
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  bottom: -4px;
-  height: 2px;
-  background: transparent;
-  transition: background .2s ease, transform .2s ease;
-  transform: scaleX(0);
-}
-.nav a:hover::after {
-  background: #fff;
-  transform: scaleX(1);
+/* Sottolineatura animata: cresce da sinistra con hover/focus */
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  bottom:-4px;
+  height:2px;
+  /* ... resto invariato ... */
 }
 
-/* HOME HEADER OVERLAY */
-.home .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 30;
-  background: transparent;
-  border-bottom: 0;
-  justify-content: center;
-  gap: clamp(8px, 1.2vw, 16px);
+/* header home sovrapposto, link brand */
+.home .header{
+  position:fixed; top:0; left:0; right:0; z-index:30;
+  background:transparent; border-bottom:0;
+  justify-content:center; gap:clamp(8px, 1.2vw, 16px);
+  padding-inline: clamp(10px, 3vw, 24px);
 }
 
-/* HERO */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  isolation: isolate;
-  overflow: hidden;
+/* HERO home */
+.hero{
+  position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
   background: url('/assets/hero.jpg') center 40% / cover no-repeat fixed;
 }
-.hero-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: clamp(18px, 3vh, 28px);
-  padding-top: clamp(6vh, 8vh, 10vh);
+.hero::before{ content:none !important }
+.hero-inner{
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:clamp(18px, 3vh, 28px);
+  padding-top:clamp(6vh, 8vh, 10vh);
 }
-.hero .logo-extended {
-  width: min(78%, 760px);
-  height: auto;
-  display: block;
-  margin: 0 auto;
+.hero .logo-extended{
+  width:min(78%, 760px); height:auto; display:block; margin:0 auto;
   filter: drop-shadow(0 10px 40px rgba(0,0,0,.55));
 }
 
-/* GRID SECTIONS */
-.section { padding: 48px 0; border-top: 1px solid var(--line); }
-.grid { display: grid; gap: 18px; }
-@media (min-width:800px) {
-  .grid { grid-template-columns: repeat(3,1fr); }
-}
-.card {
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  padding: 18px;
-  background: #fff;
-}
-.card h2 { margin: .2em 0 .4em; font-size: 22px; }
+/* sezioni semplici (pagine interne) */
+.section{padding:48px 0; border-top:1px solid var(--line)}
+.grid{display:grid; gap:18px}
+@media (min-width:800px){ .grid{grid-template-columns:repeat(3,1fr)} }
 
-/* === HAMBURGER MENU === */
-.hamburger {
-  display: none;
-  position: fixed;
-  top: 16px;
-  right: 20px;
-  z-index: 40;
-  width: 38px;
-  height: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.hamburger span {
-  display: block;
-  height: 4px;
-  width: 100%;
-  background: var(--brand);
-  margin: 6px 0;
-  border-radius: 2px;
-  transition: transform .25s ease, opacity .25s ease;
-}
-.menu-open .hamburger span:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
-}
-.menu-open .hamburger span:nth-child(2) {
-  opacity: 0;
-}
-.menu-open .hamburger span:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
+.card{border:1px solid var(--line); border-radius:var(--r); padding:18px; background:#fff}
+.card h2{margin:.2em 0 .4em; font-size:22px}
+
+/* ... altre regole preesistenti ... */
+
+@media (min-width: 1200px) {
+  .nav { gap: 40px; }
+  .nav a { font-size: 22px; letter-spacing: 0.1em; text-underline-offset: 7px; }
 }
 
-/* === NAV MOBILE === */
-@media (max-width: 800px) {
-  .hamburger { display: block; }
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100dvh;
-    width: min(78vw, 320px);
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 80px 24px 24px;
-    gap: 18px;
-    transform: translateX(-100%);
-    transition: transform .28s ease;
-    z-index: 35;
-    box-shadow: 8px 0 24px rgba(0,0,0,.4);
+/* ====== HAMBURGER + DRAWER MOBILE ====== */
+.hamburger{
+  display:none; position:fixed; top:16px; right:20px; z-index:40; width:38px; height:28px;
+  background:none; border:none; cursor:pointer; -webkit-tap-highlight-color: transparent;
+}
+.hamburger span{ display:block; height:4px; width:100%; margin:6...radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.hamburger:focus-visible{ outline:2px solid var(--brand); outline-offset:4px; border-radius:6px; }
+.menu-open .hamburger span:nth-child(1){ transform:translateY(10px) rotate(45deg); }
+.menu-open .hamburger span:nth-child(2){ opacity:0; }
+.menu-open .hamburger span:nth-child(3){ transform:translateY(-10px) rotate(-45deg); }
+
+/* Drawer mobile */
+@media (max-width: 800px){
+  .hamburger{ display:block; }
+  .nav{
+    position:fixed; top:0; left:0; height:100dvh; width:min(78vw, 320px);
+    background:#000; display:flex; flex-direction:column; align-items:flex-start;
+    padding:80px 24px 24px; gap:18px; transform:translateX(-100%); transition:transform .28s ease; z-index:35;
+    box-shadow:8px 0 24px rgba(0,0,0,.4);
   }
-  .menu-open .nav { transform: translateX(0); }
-  body.menu-open::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.5);
-    z-index: 30;
+  .menu-open .nav{ transform:translateX(0); }
+  body.menu-open::before{ content:""; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:30; }
+  .nav a{
+    color: var(--brand); /* testo rosso brand come nelle schede */
+    font-family:"Square", sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(18px, 2.6vw + .4rem, 24px); letter-spacing:....:none; text-underline-offset:6px; text-decoration-thickness:2px;
   }
-  .nav a {
-    color: var(--brand);
-    font-family: "Square", sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(18px, 2.6vw + .4rem, 24px);
-    letter-spacing: 0.1em;
-  }
-  .nav a::after {
-    background: #fff;
-  }
-  .nav a:hover { text-decoration: none; }
-  .menu-open { overflow: hidden; }
+  .nav a:hover{ text-decoration:none; }
+  /* sottolineatura coerente nel drawer nero */
+  .nav a::after{ bottom:-6px; background:#fff; } /* linea sotto bianca */
+  .menu-open{ overflow:hidden; }
 }
 
-/* SHOW-LIST / PROGETTI */
-.show-list .show-link {
-  font-weight: 400 !important;
-  cursor: pointer;
+/* === OVERRIDE SCHEDE INTERNE (non si applica alla home) === */
+body:not(.home){ background:#000; color:#fff; }
+
+/* Header nero con menu centrato e spaziato */
+.header--dark{
+  position:sticky; top:0; z-index:20; background:#000; border-bottom:1px solid #1a1a1a;
+  display:flex; align-items:center; justify-content:center; padding:12px 16px;
+}
+.header--dark .nav{ display:flex; align-items:center; justify-content:center; gap:clamp(18px, 2.4vw, 32px); flex-wrap:wrap; }
+.header--dark .nav a{ color:#fff; text-transform:uppercase; font...one; text-underline-offset:6px; text-decoration-thickness:2px; }
+.header--dark .nav a:hover{ text-decoration:none; }
+
+/* Logo fisso in basso a destra, clic per home */
+.fixed-logo{ position:fixed; right:20px; bottom:20px; width:min(28vw, 150px); opacity:.9; z-index:100; }
+.fixed-logo img{ width:100%; height:auto; display:block; }
+
+/* ... altre regole preesistenti ... */
+
+@media (max-width: 900px){
+  .header--dark .nav{ gap:18px; }
+  .fixed-logo{ right:14px; bottom:14px; width:min(36vw, 140px); }
+}
+
+/* ===================== AGGIUNTE ===================== */
+
+/* 1) Header scuro sovrapposto alla foto e link sempre brand */
+.header--overlay{
+  position:fixed; top:0; left:0; right:0; z-index:30;
+  background:transparent; border-bottom:0;
+}
+.header--overlay .nav a{ color:var(--brand) !important; }
+
+/* 2) HERO interno a pieno schermo (pagina chi-siamo) */
+.hero--internal{
+  position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
+  background: url('assets/chi-hero.jpg') center 40% / cover no-repeat fixed;
+}
+.hero--internal::before{ content:none; }
+.hero--internal .hero-inner{
+  position:relative; z-index:1; display:flex; align-items:center; justify-content:center; flex-direction:column;
+  gap:16px; padding-top:12vh; padding-inline:16px; min-height:100vh;
+}
+
+/* 3) Tipografia leggibile per testi lunghi */
+.prose{
+  max-width:68ch; margin:0 auto;
+  font-size:clamp(17px, 1.2vw + .2rem, 19px);
+  line-height:1.75; letter-spacing:.005em;
+}
+
+/* ... altre regole preesistenti ... */
+
+@media (min-width:1100px){
+  .prose.two-col{ column-count:2; column-gap:3rem; }
+  .prose.two-col h2,.prose.two-col h3{ break-inside:avoid; }
+}
+
+/* 4) Footer bianco con tre blocchi e proporzioni dei loghi */
+.footer--light{ background:#fff; color:var(--ink); }
+.footer--light .muted{ color:var(--ink); }
+.footer-grid--three{
+  display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:20px;
+}
+.footer-grid--three > section{ flex:1 1 280px; }
+.footer-contacts{ text-align:right; }
+.footer .partners{ justify-content:flex-start; }
+.footer .partners img{ display:block; height:clamp(52px,6vw,90px); width:auto; margin-top:12px; }
+.footer .footer-brand{ flex:0 0 auto; text-align:center; margin-top:4px; }
+.footer .footer-brand img{ display:block; margin:0 auto; width:clamp(100px,14vw,140px); height:auto; opacity:.95; }
+
+/* Mobile: spaziatura footer */
+@media (max-width:800px){
+  .footer-grid--three{ gap:24px; }
+  .footer-contacts{ text-align:left; }
+}
+
+/* =====================
+   FONT BASE GENEVA
+   ===================== */
+
+/* Corpo testo, paragrafi, link, liste → Geneva */
+body, p, a, li, span, div {
+  /* ... definizioni preesistenti ... */
+}
+
+/* === LISTE SPETTACOLI/PROGETTI ecc. === */
+.show-list .show-link{ /* preesistenti */ }
+.show-list .show-link:hover{ /* preesistenti */ }
+.show-list .show-link:focus-visible{ /* preesistenti */ }
+.show-list .show-link,
+.show-list .show-link:visited,
+.show-list .show-link:active {
   text-decoration: none !important;
+}
+@media (max-width:560px){
+  .show-list li{
+    grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr;
+    gap:14px;
+  }
+}
+
+/* === OVERRIDE: elenco progetti === */
+.show-list .show-link{
+  font-weight:400 !important;
+  cursor:pointer;
+  text-decoration:none !important;
 }
 .show-list .show-link:hover,
-.show-list .show-link:focus {
-  opacity: 1 !important;
-  text-decoration: none !important;
+.show-list .show-link:focus{
+  opacity:1 !important;
+  text-decoration:none !important;
 }
 
-/* FOOTER */
-.footer {
-  padding: 40px 20px;
-  background: #fff;
-  color: var(--ink);
-}
-.footer-grid--three {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.footer-grid--three > section { flex: 1 1 280px; }
-.footer-contacts { text-align: right; }
-.footer .footer-brand img {
-  width: clamp(100px, 14vw, 140px);
-  height: auto;
-  opacity: .95;
-}
-@media (max-width:800px) {
-  .footer-grid--three { gap: 24px; }
-  .footer-contacts { text-align: left; }
-}
-
-/* HERO LIFT ANIMATION */
-.hero--lift {
+/* Parallel page hero lift animation */
+.hero--lift{
   animation: heroLift .9s ease forwards;
 }
-@keyframes heroLift {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-12vh); }
+@keyframes heroLift{
+  0%{ transform: translateY(0); }
+  100%{ transform: translateY(-12vh); }
 }
