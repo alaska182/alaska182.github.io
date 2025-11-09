@@ -29,27 +29,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // === HERO PARALLEL PAGE CONDITION ===
-  try {
-    const links = Array.from(document.querySelectorAll('#primary-nav a'));
-    links.forEach(a => {
-      a.addEventListener('click', () => {
-        sessionStorage.setItem('ntp_parallel_nav', '1');
-      });
-    });
+  // === HERO PARALLEL PAGE CONDITION (revised) ===
+try {
+  const headerLinks = document.querySelectorAll('#primary-nav a');
 
-    const shouldLift = sessionStorage.getItem('ntp_parallel_nav') === '1';
-    if (shouldLift) {
-      sessionStorage.removeItem('ntp_parallel_nav');
+  // Salva stato quando l’utente clicca un link del menu
+  headerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      sessionStorage.setItem('ntp_parallel_nav', '1');
+    });
+  });
+
+  // Se arriviamo da un click, anima l’hero
+  if (sessionStorage.getItem('ntp_parallel_nav') === '1') {
+    sessionStorage.removeItem('ntp_parallel_nav');
+
+    window.addEventListener('load', () => {
       const heroEl = document.querySelector('.hero, .hero--internal');
-      if (heroEl) {
-        const offset = heroEl.getBoundingClientRect().height || window.innerHeight;
-        setTimeout(() => {
-          window.scrollTo({ top: offset, behavior: 'smooth' });
-        }, 60);
-        heroEl.classList.add('hero--lift');
-        setTimeout(() => heroEl.classList.remove('hero--lift'), 1200);
-      }
-    }
-  } catch (_) {}
-});
+      if (!heroEl) return;
+
+      // Altezza dell’hero
+      const offset = heroEl.offsetHeight;
+      // Aggiunge classe per animazione e scrolla
+      heroEl.classList.add('hero--lift');
+      setTimeout(() => {
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+      }, 150);
+      setTimeout(() => {
+        heroEl.classList.remove('hero--lift');
+      }, 1200);
+    });
+  }
+} catch (err) {
+  console.error('Parallel page animation error:', err);
+}
