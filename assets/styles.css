@@ -1,3 +1,4 @@
+
 :root{
   /* Colore brand */
   --brand:#9E2B3A;
@@ -293,88 +294,9 @@ h1, h2, h3, h4, h5, h6,
 .show-list .show-link:focus-visible{
   opacity:.7;
 }
-.show-list .show-link,
-.show-list .show-link:visited,
-.show-list .show-link:active {
-  text-decoration: none !important;
-}
 @media (max-width:560px){
   .show-list li{
     grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr;
     gap:14px;
   }
 }
-
-
-/* --- HEADER INTERNE: overlay di default sull'hero --- */
-.header.header--dark{
-  position:fixed; top:0; left:0; right:0; z-index:30;
-  background:transparent; border-bottom:0;
-  display:flex; align-items:center; justify-content:center;
-  padding:12px 16px;
-  transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
-}
-
-/* Link sempre brand quando overlay */
-.header--dark .nav a{ color:var(--brand) !important; }
-
-/* Stato desktop scrolled: header bianco con titoli visibili */
-@media (min-width: 801px){
-  .header.header--dark.scrolled{
-    background:#fff; border-bottom:1px solid var(--line);
-    box-shadow:0 2px 6px rgba(0,0,0,.08);
-  }
-  .header.header--dark.scrolled .nav a{ color:var(--brand) !important; }
-}
-
-/* MOBILE: niente “barra” header; solo hamburger flottante trasparente */
-@media (max-width: 800px){
-  /* azzera l’impatto visivo della barra */
-  .header.header--dark{
-    background:transparent !important;
-    border:0 !important;
-    box-shadow:none !important;
-    height:0; padding:0; /* la nav è fixed: non dipende dall’altezza dell’header */
-  }
-
-  /* hamburger già fixed e trasparente per definizione */
-  .hamburger{ display:block; }
-
-  /* drawer già definito; nessuna barra bianca in scroll */
-  body.is-mobile .header.header--dark.scrolled{
-    background:transparent !important;
-    box-shadow:none !important;
-    border:0 !important;
-  }
-}
-
-/* Assicura che l’hero interno resti a pieno schermo */
-.hero--internal{
-  position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
-  background:url('assets/chi-hero.jpg') center 40% / cover no-repeat fixed;
-}
-.hero--internal .hero-inner{ min-height:100vh; }
-
-/* (facoltativo ma consigliato) evita spinta layout su iOS quando apre il drawer */
-@supports (height: 100dvh){
-  @media (max-width: 800px){
-    .nav{ height:100dvh; }
-  }
-}
-
-/* Effetto hover sui titoli spettacoli */
-.show-list .show-link {
-  color: var(--brand);
-  text-decoration: none;
-  font-weight: 400;
-  transition: font-weight .2s ease, opacity .2s ease, color .2s ease;
-}
-
-.show-list .show-link:hover,
-.show-list .show-link:focus-visible {
-  font-weight: 700;
-  color: inherit;
-  opacity: 1;
-  text-decoration: none;
-}
-
