@@ -9,13 +9,12 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body class="home">
-  <header class="header">
-    <!-- niente logo piccolo in home -->
-    <button class="hamburger" id="nav-toggle" aria-label="Apri menu" aria-controls="nav" aria-expanded="false">
+  <header id="page-header" class="header header--overlay">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 
-    <nav class="nav" id="nav" aria-label="Navigazione principale">
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
       <a href="chi-siamo.html">CHI SIAMO</a>
       <a href="spettacoli.html">SPETTACOLI</a>
       <a href="progetti.html">PROGETTI</a>
@@ -25,50 +24,45 @@
     </nav>
   </header>
 
-  <!-- HERO a pieno schermo con logo esteso nella metà alta -->
   <section class="hero">
     <div class="hero-inner">
       <img class="logo-extended" src="logo-esteso.png" alt="Logo esteso">
     </div>
   </section>
 
-  <script>
-    (function () {
-      const btn = document.getElementById('nav-toggle');
-      const nav = document.getElementById('nav');
-      const body = document.body;
+  <section class="section">
+    <div class="grid show-list">
+      <div class="card">
+        <h2><a class="show-link" href="#">Progetto 1</a></h2>
+        <p>Descrizione sintetica del progetto.</p>
+      </div>
+      <div class="card">
+        <h2><a class="show-link" href="#">Progetto 2</a></h2>
+        <p>Descrizione sintetica del progetto.</p>
+      </div>
+      <div class="card">
+        <h2><a class="show-link" href="#">Progetto 3</a></h2>
+        <p>Descrizione sintetica del progetto.</p>
+      </div>
+    </div>
+  </section>
 
-      function openMenu() {
-        body.classList.add('menu-open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-      function closeMenu() {
-        body.classList.remove('menu-open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-      function toggleMenu() {
-        const open = body.classList.toggle('menu-open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
+  <footer class="footer footer--light">
+    <div class="footer-grid--three">
+      <section>
+        <h3>Contatti</h3>
+        <p>Email: info@nontantoprecisi.it<br>Tel: +39 123 456789</p>
+      </section>
+      <section class="footer-brand">
+        <img src="logo-footer.png" alt="Logo Footer">
+      </section>
+      <section class="footer-contacts">
+        <h3>Seguici</h3>
+        <p><a href="#">Instagram</a><br><a href="#">Facebook</a></p>
+      </section>
+    </div>
+  </footer>
 
-      btn.addEventListener('click', toggleMenu);
-
-      // chiusura con ESC
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && body.classList.contains('menu-open')) closeMenu();
-      });
-
-      // chiusura quando si clicca un link
-      nav.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') closeMenu();
-      });
-
-      // chiusura quando si clicca fuori dal drawer e dal bottone
-      document.addEventListener('click', (e) => {
-        const outside = !nav.contains(e.target) && e.target !== btn;
-        if (outside && body.classList.contains('menu-open')) closeMenu();
-      }, true);
-    })();
-  </script>
+  <script src="assets/site.js"></script>
 </body>
 </html>
