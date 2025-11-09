@@ -361,3 +361,20 @@ h1, h2, h3, h4, h5, h6,
     .nav{ height:100dvh; }
   }
 }
+
+/* Effetto hover sui titoli spettacoli */
+.show-list .show-link {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 400;
+  transition: font-weight .2s ease, opacity .2s ease, color .2s ease;
+}
+
+.show-list .show-link:hover,
+.show-list .show-link:focus-visible {
+  font-weight: 700;
+  color: inherit;
+  opacity: 1;
+  text-decoration: none;
+}
+
