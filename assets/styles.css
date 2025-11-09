@@ -262,42 +262,41 @@ h1, h2, h3, h4, h5, h6,
   font-family: "Square", system-ui, sans-serif;
 }
 
-/* ===== Lista spettacoli (versione aggiornata) ===== */
+/* ===== Lista spettacoli (senza grassetto, senza sottolineatura) ===== */
 .show-list{
-  list-style: none;
-  margin: 1.6rem 0 0;
-  padding: 0;
-  font-size: clamp(17px, 1.1vw + .2rem, 19px);
-  line-height: 1.75;
+  list-style:none;
+  margin:1.6rem 0 0;
+  padding:0;
+  font-size:clamp(17px, 1.1vw + .2rem, 19px);
+  line-height:1.75;
 }
 .show-list li{
-  display: grid;
+  display:grid;
   grid-template-columns: clamp(7ch, 12ch, 14ch) 1fr;
-  gap: 18px;
-  align-items: baseline;
-  padding-block: .6rem;
+  gap:18px;
+  align-items:baseline;
+  padding-block:.8rem;
 }
 .show-list .year{
-  color: inherit;
-  text-align: right;
-  white-space: nowrap;
-  letter-spacing: .01em;
+  color:inherit;
+  text-align:right;
+  white-space:nowrap;
+  letter-spacing:.01em;
 }
 .show-list .show-link{
-  color: var(--brand);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 2px;
-  font-weight: 400;
+  color:var(--brand);
+  text-decoration:none;
+  font-weight:400;
+  transition:opacity .2s ease;
 }
 .show-list .show-link:hover,
 .show-list .show-link:focus-visible{
-  text-decoration-thickness: 3px;
+  opacity:.7;
 }
-@media (max-width: 560px){
+@media (max-width:560px){
   .show-list li{
     grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr;
-    gap: 14px;
+    gap:14px;
   }
 }
 
