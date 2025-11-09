@@ -3,21 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 1) Titolo SEMPRE: nontantoprecisi — NOME PAGINA -->
   <title>nontantoprecisi — parlano di noi</title>
-
   <meta name="description" content="Produzioni, laboratori, rassegne.">
-  <!-- 2) Favicon (l’iconcina “O” accanto al nome nella scheda) -->
   <link rel="icon" href="favicon.png">
-
   <link rel="stylesheet" href="assets/styles.css">
+
+  <style>
+    /* Header inizialmente trasparente */
+    .header.header--dark {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 30;
+      background: transparent;
+      border-bottom: 0;
+      justify-content: center;
+      padding: 12px 16px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .header--dark .nav a {
+      color: var(--brand) !important;
+      transition: color 0.3s ease;
+    }
+
+    /* Quando si scorre oltre l’hero */
+    .header.scrolled {
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    }
+    .header.scrolled .nav a {
+      color: var(--brand) !important;
+    }
+
+    /* Hero a schermo intero */
+    .hero--internal {
+      position: relative;
+      min-height: 100vh;
+      background: url('assets/parlano-di-noi-hero.jpg') center 40% / cover no-repeat fixed;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .hero--internal .hero-inner {
+      height: 100vh;
+    }
+
+    /* Testo nero su sfondo bianco */
+    body:not(.home) {
+      background: #fff !important;
+      color: #111 !important;
+    }
+    .muted { color: #111 !important; }
+    .prose a {
+      color: var(--brand);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Footer chiaro */
+    .footer.footer--light {
+      background: #fff;
+      color: #111;
+    }
+    .footer.footer--light .muted { color: #111 !important; }
+  </style>
 </head>
 <body>
-  <!-- Header pagine interne: logo piccolo cliccabile + menu -->
-  <header class="header">
-    <a class="brand" href="/" aria-label="Torna alla home">
-      <img src="logo.png" alt="nontantoprecisi">
-    </a>
+  <!-- Header sovrapposto all’immagine -->
+  <header class="header header--dark" id="page-header">
     <nav class="nav" aria-label="Navigazione principale">
       <a href="chi-siamo.html">CHI SIAMO</a>
       <a href="spettacoli.html">SPETTACOLI</a>
@@ -28,31 +79,73 @@
     </nav>
   </header>
 
-  <main class="container section">
-    <h1 class="h1">parlano di noi</h1>
-    <p class="muted">Testo della pagina…</p>
+  <!-- HERO a schermo intero -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- Contenuto scorrevole -->
+  <main>
+    <section class="container section">
+      <h1 class="h1">parlano di noi</h1>
+      <div class="prose">
+        <p>L’idea che porta alla costituzione del gruppo teatrale nontantoprecisi nasce nel 2006, quando alcune persone, attraverso percorsi differenti, si sono incontrate in un Centro Diurno dell’ex Ospedale psichiatrico di Roma “S. Maria della Pietà”.</p> 
+          
+        <p>I nontantoprecisi hanno intrapreso, così, un cammino di ricerca artistica e teatrale che ha permesso, tra l’altro, la critica in atto dei luoghi dell’istituzione psichiatrica.</p>
+          
+        <p>Dal 2016 nontantoprecisi ha collaborato con la Cooperativa Sociale Integrata Passepartout nella gestione dei laboratori socio-riabilitativi dell’ASL RM 1 e RM 2. Ad oggi, i nontantoprecisi abitano e mobilitano a Roma, nel quartiere di Casal Bertone, il “centro culturale postO”, un luogo poliedrico che unisce la sperimentazione artistica, la cura della persona, la formazione e la creazione di possibilità lavorative.</p>  
+          
+        <p>Nel 2020, i nontantoprecisi si costituiscono in Associazione per segnare la propria autonomia dal contesto clinico e affermare al contempo il proprio insieme di pratiche che guardano al teatro, alla cultura, all’arte e alla comunità come un luogo-spazio per lavorare alla trasformazione delle soggettività e del mondo.</p>
+          
+        <p>A partire da gennaio 2023, all’interno del postO, l’associazione nontantoprecisi in collaborazione con Passepartout Cooperativa ha dato vita alla prima biblioteca aperta al pubblico del quartiere: la Biblioteca Straub-Huillet.</p>
+          
+        <p>Negli anni l’associazione nontantoprecisi ha incontrato centinaia di persone e ad oggi partecipano quotidianamente alle sue attività circa 50 persone delle più varie condizioni economiche, sociali, cliniche ed esistenziali.
+        </p>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer solo nelle pagine interne -->
-  <footer class="footer">
-    <div class="container footer-grid">
+  <!-- Footer bianco -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
       <section>
-        <h3>Partner</h3>
+        <h3>PARTNER</h3>
         <div class="partners">
-          <div class="partner">Logo 1</div>
-          <div class="partner">Logo 2</div>
-          <div class="partner">Logo 3</div>
+          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
+            <img src="logopartner.png" alt="Partner Shelter City Rome">
+          </a>
         </div>
       </section>
-      <section>
-        <h3>Contatti</h3>
+
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Torna alla home">
+          <img src="logo.png" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
         <p class="muted">
-          Email: <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
-          Instagram / Facebook: @nontantoprecisi<br>
-          Sede: Via Castelguidone 4, 00159 Roma (RM)
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
         </p>
       </section>
     </div>
   </footer>
+
+  <!-- SCRIPT: cambia header quando si scorre -->
+  <script>
+    const header = document.getElementById('page-header');
+    const heroHeight = document.querySelector('.hero--internal').offsetHeight;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > heroHeight - 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 </html>
