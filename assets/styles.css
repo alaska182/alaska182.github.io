@@ -6,13 +6,13 @@
 }
 
 /* === FONT SQUARE === */
-@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-...type"); font-weight:300; font-style:normal; font-display:swap; }
-@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-...type"); font-weight:400; font-style:normal; font-display:swap; }
-@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-...type"); font-weight:700; font-style:normal; font-display:swap; }
+@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-Light.otf") format("opentype"); font-weight:300; font-style:normal; font-display:swap; }
+@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-Regular.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face{ font-family:"Square"; src:url("/assets/fonts/Square-Bold.otf") format("opentype"); font-weight:700; font-style:normal; font-display:swap; }
 
 /* base */
 *{box-sizing:border-box}
-html,body{ margin:0; height:100%; font:16px/1.5 "Square",system-...egoe UI,Roboto,Inter,sans-serif; color:var(--ink); background:var(--bg); }
+html,body{ margin:0; height:100%; font:16px/1.5 "Square",system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif; color:var(--ink); background:var(--bg); }
 a{color:var(--ink); text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -53,10 +53,26 @@ a:hover{text-decoration:underline}
   left:0; right:0;
   bottom:-4px;
   height:2px;
-  /* ... resto invariato ... */
+  width:100%;
+  background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .28s ease;
 }
+.nav a:hover::after,
+.nav a:focus-visible::after{
+  transform:scaleX(1);
+}
+.nav a:hover{ text-decoration:none; } /* evita doppia sottolineatura */
 
-/* header home sovrapposto, link brand */
+/* layout generico (pagine interne) */
+.container{max-width:var(--max); margin:0 auto; padding:20px 16px}
+.h1{font-size:clamp(26px, 3vw, 34px); margin:12px 0}
+.muted{color:var(--muted)}
+.footer{border-top:1px solid var(--line); padding:24px 16px; color:var(--muted); font-size:14px}
+
+/* --- HOME overrides --- */
+body.home{ height:100vh; overflow:hidden }
 .home .header{
   position:fixed; top:0; left:0; right:0; z-index:30;
   background:transparent; border-bottom:0;
@@ -88,8 +104,27 @@ a:hover{text-decoration:underline}
 .card{border:1px solid var(--line); border-radius:var(--r); padding:18px; background:#fff}
 .card h2{margin:.2em 0 .4em; font-size:22px}
 
-/* ... altre regole preesistenti ... */
+/* footer blocchi (pagine interne) */
+.footer-grid{display:grid; gap:16px}
+@media (min-width:800px){ .footer-grid{grid-template-columns:2fr 1fr} }
+.partners{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.partner{
+  width:96px; height:48px; border:1px dashed var(--line); border-radius:10px;
+  background:#fafafa; display:flex; align-items:center; justify-content:center;
+  font-size:12px; color:#999
+}
 
+/* utilità */
+.btn{ display:inline-block; background:var(--brand); color:#fff; padding:10px 14px; border-radius:10px; font-weight:700 }
+
+/* responsive rifiniture */
+@media (max-width: 720px){
+  .nav{ justify-content:center }
+  .home .header{ padding-top:8px; padding-bottom:8px }
+  .hero .logo-extended{ width:min(88%, 560px) }
+}
+
+/* schermi larghi */
 @media (min-width: 1200px) {
   .nav { gap: 40px; }
   .nav a { font-size: 22px; letter-spacing: 0.1em; text-underline-offset: 7px; }
@@ -100,7 +135,7 @@ a:hover{text-decoration:underline}
   display:none; position:fixed; top:16px; right:20px; z-index:40; width:38px; height:28px;
   background:none; border:none; cursor:pointer; -webkit-tap-highlight-color: transparent;
 }
-.hamburger span{ display:block; height:4px; width:100%; margin:6...radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.hamburger span{ display:block; height:4px; width:100%; margin:6px 0; background:var(--brand); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
 .hamburger:focus-visible{ outline:2px solid var(--brand); outline-offset:4px; border-radius:6px; }
 .menu-open .hamburger span:nth-child(1){ transform:translateY(10px) rotate(45deg); }
 .menu-open .hamburger span:nth-child(2){ opacity:0; }
@@ -118,13 +153,12 @@ a:hover{text-decoration:underline}
   .menu-open .nav{ transform:translateX(0); }
   body.menu-open::before{ content:""; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:30; }
   .nav a{
-    color: var(--brand); /* testo rosso brand come nelle schede */
-    font-family:"Square", sans-serif; font-weight:700; text-transform:uppercase;
-    font-size:clamp(18px, 2.6vw + .4rem, 24px); letter-spacing:....:none; text-underline-offset:6px; text-decoration-thickness:2px;
+    color:#fff; font-family:"Square", sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(18px, 2.6vw + .4rem, 24px); letter-spacing:.08em; line-height:1.5; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px;
   }
   .nav a:hover{ text-decoration:none; }
   /* sottolineatura coerente nel drawer nero */
-  .nav a::after{ bottom:-6px; background:#fff; } /* linea sotto bianca */
+  .nav a::after{ bottom:-6px; background:#fff; }
   .menu-open{ overflow:hidden; }
 }
 
@@ -137,16 +171,19 @@ body:not(.home){ background:#000; color:#fff; }
   display:flex; align-items:center; justify-content:center; padding:12px 16px;
 }
 .header--dark .nav{ display:flex; align-items:center; justify-content:center; gap:clamp(18px, 2.4vw, 32px); flex-wrap:wrap; }
-.header--dark .nav a{ color:#fff; text-transform:uppercase; font...one; text-underline-offset:6px; text-decoration-thickness:2px; }
+.header--dark .nav a{ color:#fff; text-transform:uppercase; font-weight:700; letter-spacing:.08em; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px; }
 .header--dark .nav a:hover{ text-decoration:none; }
 
 /* Logo fisso in basso a destra, clic per home */
 .fixed-logo{ position:fixed; right:20px; bottom:20px; width:min(28vw, 150px); opacity:.9; z-index:100; }
 .fixed-logo img{ width:100%; height:auto; display:block; }
 
-/* ... altre regole preesistenti ... */
-
-@media (max-width: 900px){
+/* Leggibilità su sfondo nero */
+.section{ border-top:1px solid #1a1a1a; }
+.footer{ border-top:1px solid #1a1a1a; }
+.muted{ color:#c9c9c9; }
+.partner{ background:#0b0b0b; border-color:#2a2a2a; color:#a3a3a3; }
+@media (max-width:800px){
   .header--dark .nav{ gap:18px; }
   .fixed-logo{ right:14px; bottom:14px; width:min(36vw, 140px); }
 }
@@ -177,9 +214,13 @@ body:not(.home){ background:#000; color:#fff; }
   font-size:clamp(17px, 1.2vw + .2rem, 19px);
   line-height:1.75; letter-spacing:.005em;
 }
-
-/* ... altre regole preesistenti ... */
-
+.prose p{ margin:0 0 1em; }
+.prose p + p{ margin-top:.4em; }
+.prose h2{ font-size:clamp(22px, 2vw, 26px); margin:1.6em 0 .6em; }
+.prose h3{ font-size:clamp(19px, 1.6vw, 22px); margin:1.2em 0 .4em; }
+.prose ul,.prose ol{ margin:.8em 0 .8em 1.2em; }
+.prose strong{ font-weight:700; }
+.prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
 @media (min-width:1100px){
   .prose.two-col{ column-count:2; column-gap:3rem; }
   .prose.two-col h2,.prose.two-col h3{ break-inside:avoid; }
@@ -210,13 +251,48 @@ body:not(.home){ background:#000; color:#fff; }
 
 /* Corpo testo, paragrafi, link, liste → Geneva */
 body, p, a, li, span, div {
-  /* ... definizioni preesistenti ... */
+  font-family: Geneva, system-ui, sans-serif;
 }
 
-/* === LISTE SPETTACOLI/PROGETTI ecc. === */
-.show-list .show-link{ /* preesistenti */ }
-.show-list .show-link:hover{ /* preesistenti */ }
-.show-list .show-link:focus-visible{ /* preesistenti */ }
+/* Titoli, header, bottoni e navigazione → Square */
+h1, h2, h3, h4, h5, h6,
+.nav a,
+.brand,
+.btn {
+  font-family: "Square", system-ui, sans-serif;
+}
+
+/* ===== Lista spettacoli (senza grassetto, senza sottolineatura) ===== */
+.show-list{
+  list-style:none;
+  margin:1.6rem 0 0;
+  padding:0;
+  font-size:clamp(17px, 1.1vw + .2rem, 19px);
+  line-height:1.75;
+}
+.show-list li{
+  display:grid;
+  grid-template-columns: clamp(7ch, 12ch, 14ch) 1fr;
+  gap:18px;
+  align-items:baseline;
+  padding-block:.8rem;
+}
+.show-list .year{
+  color:inherit;
+  text-align:right;
+  white-space:nowrap;
+  letter-spacing:.01em;
+}
+.show-list .show-link{
+  color:var(--brand);
+  text-decoration:none;
+  font-weight:400;
+  transition:opacity .2s ease;
+}
+.show-list .show-link:hover,
+.show-list .show-link:focus-visible{
+  opacity:.7;
+}
 .show-list .show-link,
 .show-list .show-link:visited,
 .show-list .show-link:active {
@@ -229,23 +305,76 @@ body, p, a, li, span, div {
   }
 }
 
-/* === OVERRIDE: elenco progetti === */
-.show-list .show-link{
-  font-weight:400 !important;
-  cursor:pointer;
-  text-decoration:none !important;
-}
-.show-list .show-link:hover,
-.show-list .show-link:focus{
-  opacity:1 !important;
-  text-decoration:none !important;
+
+/* --- HEADER INTERNE: overlay di default sull'hero --- */
+.header.header--dark{
+  position:fixed; top:0; left:0; right:0; z-index:30;
+  background:transparent; border-bottom:0;
+  display:flex; align-items:center; justify-content:center;
+  padding:12px 16px;
+  transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
 }
 
-/* Parallel page hero lift animation */
-.hero--lift{
-  animation: heroLift .9s ease forwards;
+/* Link sempre brand quando overlay */
+.header--dark .nav a{ color:var(--brand) !important; }
+
+/* Stato desktop scrolled: header bianco con titoli visibili */
+@media (min-width: 801px){
+  .header.header--dark.scrolled{
+    background:#fff; border-bottom:1px solid var(--line);
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+  }
+  .header.header--dark.scrolled .nav a{ color:var(--brand) !important; }
 }
-@keyframes heroLift{
-  0%{ transform: translateY(0); }
-  100%{ transform: translateY(-12vh); }
+
+/* MOBILE: niente “barra” header; solo hamburger flottante trasparente */
+@media (max-width: 800px){
+  /* azzera l’impatto visivo della barra */
+  .header.header--dark{
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    height:0; padding:0; /* la nav è fixed: non dipende dall’altezza dell’header */
+  }
+
+  /* hamburger già fixed e trasparente per definizione */
+  .hamburger{ display:block; }
+
+  /* drawer già definito; nessuna barra bianca in scroll */
+  body.is-mobile .header.header--dark.scrolled{
+    background:transparent !important;
+    box-shadow:none !important;
+    border:0 !important;
+  }
 }
+
+/* Assicura che l’hero interno resti a pieno schermo */
+.hero--internal{
+  position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
+  background:url('assets/chi-hero.jpg') center 40% / cover no-repeat fixed;
+}
+.hero--internal .hero-inner{ min-height:100vh; }
+
+/* (facoltativo ma consigliato) evita spinta layout su iOS quando apre il drawer */
+@supports (height: 100dvh){
+  @media (max-width: 800px){
+    .nav{ height:100dvh; }
+  }
+}
+
+/* Effetto hover sui titoli spettacoli */
+.show-list .show-link {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 400;
+  transition: font-weight .2s ease, opacity .2s ease, color .2s ease;
+}
+
+.show-list .show-link:hover,
+.show-list .show-link:focus-visible {
+  font-weight: 700;
+  color: inherit;
+  opacity: 1;
+  text-decoration: none;
+}
+
