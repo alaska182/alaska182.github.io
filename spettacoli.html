@@ -40,7 +40,7 @@
     .footer.footer--light{ background:#fff; color:#111; }
     .footer.footer--light .muted{ color:#111 !important; }
 
-    /* ===== Lista spettacoli (no grassetto, più aria, anni a destra) ===== */
+    /* ===== Lista spettacoli (titoli senza sottolineatura) ===== */
     .show-list{
       list-style:none; margin:1.6rem 0 0; padding:0;
       font-size:clamp(17px, 1.1vw + .2rem, 19px); line-height:1.75;
@@ -53,13 +53,30 @@
       color:inherit; text-align:right; white-space:nowrap; letter-spacing:.01em;
     }
     .show-list .show-link{
-      color:var(--brand); text-decoration:underline; text-underline-offset:3px;
-      text-decoration-thickness:2px; font-weight:400;
+      color:var(--brand);
+      text-decoration:none;           /* rimozione sottolineatura */
+      font-weight:400;
+      transition:opacity .2s ease;
     }
     .show-list .show-link:hover,
-    .show-list .show-link:focus-visible{ text-decoration-thickness:3px; }
+    .show-list .show-link:focus-visible{ opacity:.8; }
     @media (max-width:560px){
       .show-list li{ grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr; gap:14px; }
+    }
+
+    /* ===== Mobile: niente header visibile, solo hamburger ===== */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0;
+        height:0;                 /* elimina la banda in alto */
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important;
+        box-shadow:none !important;
+      }
     }
   </style>
 </head>
@@ -90,7 +107,7 @@
       <h1 class="h1">spettacoli</h1>
 
       <div class="prose">
-          <ul class="show-list" aria-label="Elenco degli spettacoli">
+        <ul class="show-list" aria-label="Elenco degli spettacoli">
           <li><span class="year">2025</span><a class="show-link" href="spettacoli/2025-citta-instabile-presagio-e-prefigurazione-di-un-luogo.html">CITTÀ INSTABILE – PRESAGIO E PREFIGURAZIONE DI UN LUOGO</a></li>
           <li><span class="year">2024</span><a class="show-link" href="spettacoli/2024-qfwfq-per-farla-finita-con-lo-spettacolo.html">QFWFQ – PER FARLA FINITA CON LO SPETTACOLO</a></li>
           <li><span class="year">2022 / 2023</span><a class="show-link" href="spettacoli/2022-2023-eneidi.html">ENEIDI</a></li>
@@ -148,12 +165,12 @@
     const nav = document.getElementById('primary-nav');
 
     function syncScrolled(){
-      const heroHeight = hero.offsetHeight;
+      const heroHeight = hero.offsetHeight || 0;
       if (window.scrollY > heroHeight - 60) header.classList.add('scrolled');
       else header.classList.remove('scrolled');
     }
     syncScrolled();
-    window.addEventListener('scroll', syncScrolled);
+    window.addEventListener('scroll', syncScrolled, { passive: true });
     window.addEventListener('resize', syncScrolled);
 
     function toggleMenu(force){
