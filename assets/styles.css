@@ -264,6 +264,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* ===== Lista spettacoli (senza grassetto, senza sottolineatura) ===== */
 .show-list{
+  --year-col-width: clamp(7ch, 12ch, 14ch);
   list-style:none;
   margin:1.6rem 0 0;
   padding:0;
@@ -274,16 +275,20 @@ h1, h2, h3, h4, h5, h6,
   display:grid;
   grid-template-columns: clamp(7ch, 12ch, 14ch) 1fr;
   gap:18px;
+  display:flex;
   align-items:baseline;
+  gap:18px;
   padding-block:.8rem;
 }
 .show-list .year{
   color:inherit;
+  flex:0 0 var(--year-col-width);
   text-align:right;
   white-space:nowrap;
   letter-spacing:.01em;
 }
 .show-list .show-link{
+  min-width:0;
   color:var(--brand);
   text-decoration:none;
   font-weight:400;
@@ -294,6 +299,9 @@ h1, h2, h3, h4, h5, h6,
   opacity:.7;
 }
 @media (max-width:560px){
+  .show-list{
+    --year-col-width: clamp(6ch, 9ch, 10ch);
+  }
   .show-list li{
     grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr;
     gap:14px;
