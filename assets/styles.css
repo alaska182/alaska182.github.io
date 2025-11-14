@@ -307,3 +307,99 @@ h1, h2, h3, h4, h5, h6,
     gap:14px;
   }
 }
+
+/* Poster affiancata al titolo nelle schede spettacolo */
+.show-header{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:16px;
+  align-items:start;
+  margin-bottom:12px;
+}
+.poster{ width:100%; max-width:480px; margin:0 auto; }
+.poster img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:8px;
+  border:1px solid var(--line);
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+/* Desktop: mostra la locandina a sinistra del titolo */
+@media (min-width:760px){
+  .show-header{ grid-template-columns: 220px 1fr; gap:24px; }
+  .poster{ margin:0; }
+  .show-meta .h1{ margin-top:0; }
+}
+
+/* LIGHTBOX / MODAL per consultare le immagini alla dimensione originale */
+.lb-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:120;
+  padding:20px;
+}
+.lb-overlay.is-open{ display:flex; }
+
+.lb-panel{
+  position:relative;
+  max-width:90vw;
+  max-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+.lb-image{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  border-radius:8px;
+  box-shadow:0 18px 60px rgba(0,0,0,0.6);
+  background:#000;
+}
+.lb-caption{
+  color:#fff;
+  margin-top:10px;
+  text-align:center;
+  font-size:14px;
+  max-width:90vw;
+  word-break:break-word;
+}
+
+/* Controli avanti/indietro/chiudi */
+.lb-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#fff;
+  width:44px; height:44px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+.lb-btn:focus{ outline:2px solid #fff; outline-offset:3px; }
+.lb-prev{ left:12px; }
+.lb-next{ right:12px; }
+.lb-close{
+  position:absolute; right:12px; top:12px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#fff; width:36px; height:36px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+
+/* Mobile: bottoni più vicini e ridimensionati */
+@media (max-width:560px){
+  .lb-btn{ width:40px; height:40px; }
+  .lb-close{ width:36px; height:36px; }
+  .lb-caption{ font-size:13px; padding-inline:6px; }
+}
