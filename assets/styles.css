@@ -329,7 +329,7 @@ h1, h2, h3, h4, h5, h6,
 /* Desktop: mostra la locandina a sinistra del titolo */
 @media (min-width:760px){
   .show-header{ grid-template-columns: 220px 1fr; gap:24px; }
-  .poster{ margin:0; }
+  .poster{ margin:0; max-width:none; }
   .show-meta .h1{ margin-top:0; }
 }
 
