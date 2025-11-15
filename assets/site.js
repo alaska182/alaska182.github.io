@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* LIGHTBOX: apri le immagini della .gallery alla dimensione originale */
 (function(){
-  let overlay, imgEl, captionEl, prevBtn, nextBtn, closeBtn;
+  let overlay, imgEl, /* captionEl, */ prevBtn, nextBtn, closeBtn;
   let currentGallery = null;
   let images = [];
   let currentIndex = -1;
@@ -42,11 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="lb-btn lb-next" aria-label="Immagine successiva">&#x203A;</button>
         <button class="lb-close" aria-label="Chiudi">×</button>
       </div>
-      <div class="lb-caption" aria-live="polite"></div>
     `;
     document.body.appendChild(overlay);
     imgEl = overlay.querySelector('.lb-image');
-    captionEl = overlay.querySelector('.lb-caption');
+    // captionEl = overlay.querySelector('.lb-caption'); // caption removed
     prevBtn = overlay.querySelector('.lb-prev');
     nextBtn = overlay.querySelector('.lb-next');
     closeBtn = overlay.querySelector('.lb-close');
@@ -74,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const alt = images[idx].alt || '';
     imgEl.src = src;
     imgEl.alt = alt;
-    captionEl.textContent = alt;
+    // captionEl.textContent = alt; // caption suppressed
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden','false');
     document.body.classList.add('no-scroll');
@@ -100,17 +99,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function attachGalleryListeners(){
+    // listener per gallerie esistenti
     document.querySelectorAll('.gallery').forEach(g => {
       const thumbs = Array.from(g.querySelectorAll('img'));
       thumbs.forEach((img, i) => {
         img.style.cursor = 'zoom-in';
-        img.setAttribute('tabindex', '0');
+        if (!img.hasAttribute('tabindex')) img.setAttribute('tabindex', '0');
         img.addEventListener('click', (e) => {
           openLightbox(thumbs, i);
         });
         img.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(thumbs, i); }
         });
+      });
+    });
+
+    // listener per locandina: quando cliccata apre la galleria combinata
+    const posterImgs = Array.from(document.querySelectorAll('.poster img'));
+    posterImgs.forEach(p => {
+      p.style.cursor = 'zoom-in';
+      if (!p.hasAttribute('tabindex')) p.setAttribute('tabindex','0');
+      p.addEventListener('click', (e) => {
+        // costruisci lista combinata: locandina prima, poi tutte le immagini della gallery escludendo eventuale duplicato
+        const galleryThumbs = Array.from(document.querySelectorAll('.gallery img'));
+        const combined = [p, ...galleryThumbs.filter(img => img !== p)];
+        openLightbox(combined, 0);
+      });
+      p.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); const galleryThumbs = Array.from(document.querySelectorAll('.gallery img')); const combined = [p, ...galleryThumbs.filter(img => img !== p)]; openLightbox(combined, 0); }
       });
     });
   }
