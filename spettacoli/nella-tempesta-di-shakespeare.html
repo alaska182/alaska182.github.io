@@ -21,10 +21,10 @@
 
     /* Hero interno dedicato allo spettacolo */
     .hero--internal{
-      position:relative; min-height:100dvh; isolation:isolate; overflow:hidden;
+      position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
       background:url('../assets/spettacoli/tempesta-hero.JPG') center 40% / cover no-repeat fixed;
     }
-    .hero--internal .hero-inner{ min-height:100dvh; }
+    .hero--internal .hero-inner{ min-height: calc(var(--vh, 1vh) * 100); }
 
     /* Mobile: evita background-attachment:fixed */
     @media (max-width: 1024px){
@@ -65,8 +65,11 @@
 
     /* Locandina spettacolo */
     .show-header{
-      display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start;
-      margin:0 0 32px; padding:0;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+      align-items:start;
+      margin-bottom:12px;
     }
     .poster{
       grid-column:1 / 2;
