@@ -417,3 +417,37 @@ h1, h2, h3, h4, h5, h6,
   .lb-close{ width:36px; height:36px; }
   .lb-caption{ font-size:13px; padding-inline:6px; }
 }
+
+/* Galleria / thumbnails: mostra tutte le immagini (es. "tempesta") */
+.poster-gallery,
+.gallery {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap:12px;
+  align-items:center;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+/* singola poster (miniatura) */
+.poster-gallery img,
+.gallery img {
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid var(--line);
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  cursor:pointer; /* rende cliccabile la miniatura */
+  transition:transform .18s ease, opacity .18s ease;
+}
+.poster-gallery img:hover,
+.gallery img:hover{ transform:translateY(-4px); opacity:.95; }
+
+/* Su schermi molto piccoli mostra una sola colonna effettiva (immagine sopra sinossi già gestita) */
+@media (max-width: 420px) {
+  .poster-gallery,
+  .gallery { grid-template-columns: 1fr; }
+}
