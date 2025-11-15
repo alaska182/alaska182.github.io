@@ -638,3 +638,104 @@ h1, h2, h3, h4, h5, h6,
   .poster-gallery,
   .gallery { grid-template-columns: 1fr; }
 }
+
+/* === FOOTER AESTHETIC OVERRIDES === */
+/* Soften background, add subtle elevation and more generous spacing */
+.footer{
+  /* mantiene compatibilità ma rende il footer più arioso e moderno */
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf9 100%);
+  border-top: 1px solid rgba(158,43,58,0.06);
+  box-shadow: 0 -8px 30px rgba(14, 14, 14, 0.03);
+  padding: 64px 16px 40px;
+  margin-top: 28px;
+  color: #666;
+}
+
+/* Centro grafico e max-width: manteniamo il contenuto centrato e allineato */
+.footer-grid--three{
+  max-width: var(--max);
+  margin: 0 auto;
+  gap: 36px;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  padding: 0 6px;
+}
+
+/* Titoli più netti ma sobri */
+.footer-grid--three h3{
+  font-size:12px;
+  letter-spacing:0.08em;
+  color: #333;
+  margin-bottom:8px;
+}
+
+/* Contenuti: maggiore leggibilità */
+.footer-contacts p,
+.footer .partners,
+.footer .footer-brand {
+  color: #444;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* Link: sottolineatura sottile e colore brand */
+.footer-contacts a{
+  color:var(--brand);
+  text-decoration:none;
+  border-bottom:1px solid rgba(158,43,58,0.14);
+  padding-bottom:2px;
+}
+.footer-contacts a:hover{
+  border-color:var(--brand);
+  opacity:0.95;
+}
+
+/* Partner logos: desaturati di default, a colori al passaggio */
+.footer .partners img{
+  height: clamp(48px, 6vw, 78px);
+  width: auto;
+  object-fit:contain;
+  filter: grayscale(70%) contrast(0.95);
+  transition: filter .22s ease, transform .16s ease, opacity .16s ease;
+  opacity:0.92;
+}
+.footer .partners a:hover img,
+.footer .partners a:focus img{
+  filter: none;
+  transform: translateY(-4px);
+  opacity:1;
+}
+
+/* Brand centrale: più prominente e bilanciato */
+.footer .footer-brand img{
+  width: clamp(100px, 12vw, 140px);
+  height:auto;
+  opacity:0.98;
+  transition: transform .18s ease, opacity .18s ease;
+}
+.footer .footer-brand a:hover img{ transform: translateY(-4px); opacity:1; }
+
+/* Divider visivo sotto il footer per separare contenuti */
+.footer::before{
+  content: "";
+  display:block;
+  height:1px;
+  width:100%;
+  background: linear-gradient(90deg, rgba(158,43,58,0) 0%, rgba(158,43,58,0.06) 50%, rgba(158,43,58,0) 100%);
+  margin-bottom:18px;
+}
+
+/* Mobile adjustments: compact spacing and single column */
+@media (max-width:800px){
+  .footer{
+    padding: 40px 16px 32px;
+  }
+  .footer-grid--three{
+    grid-template-columns: 1fr;
+    gap:24px;
+    padding: 0;
+  }
+  .footer-contacts { text-align:left; }
+  .footer .partners { justify-content:flex-start; }
+  .footer .footer-brand { order:-1; text-align:center; }
+}
