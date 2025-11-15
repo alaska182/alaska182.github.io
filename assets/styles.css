@@ -333,6 +333,20 @@ h1, h2, h3, h4, h5, h6,
   .show-meta .h1{ margin-top:0; }
 }
 
+/* Ensure poster appears above synopsis on small screens */
+@media (max-width: 759px) {
+  .show-header {
+    grid-template-columns: 1fr;
+  }
+  .poster {
+    /* Make poster render first visually (above the synopsis) */
+    order: -1;
+    margin-bottom: 12px;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
 /* LIGHTBOX / MODAL per consultare le immagini alla dimensione originale */
 .lb-overlay{
   position:fixed;
