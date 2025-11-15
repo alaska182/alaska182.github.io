@@ -163,9 +163,11 @@ Ci siamo rivolti alla Tempesta di Shakespeare trovando in essa un intreccio di t
 
         <h2>Galleria</h2>
         <div class="gallery" aria-label="Galleria fotografica">
-          <img src="../assets/spettacoli/tempesta-01.JPG" alt="Nella tempesta di Shakespeare — foto 1">
-          <img src="../assets/spettacoli/tempesta-02.JPG" alt="Nella tempesta di Shakespeare — foto 2">
-          <img src="../assets/spettacoli/tempesta-03.JPG" alt="Nella tempesta di Shakespeare — foto 3">
+          <img src="../assets/spettacoli/tempesta-01.JPG" data-full="../assets/spettacoli/tempesta-01.JPG" alt="Nella tempesta di Shakespeare — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/tempesta-02.JPG" data-full="../assets/spettacoli/tempesta-02.JPG" alt="Nella tempesta di Shakespeare — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/tempesta-03.JPG" data-full="../assets/spettacoli/tempesta-03.JPG" alt="Nella tempesta di Shakespeare — foto 3" tabindex="0">
+          <img src="../assets/spettacoli/tempesta-04.JPG" data-full="../assets/spettacoli/tempesta-04.JPG" alt="Nella tempesta di Shakespeare — foto 4" tabindex="0">
+          <img src="../assets/spettacoli/tempesta-05.JPG" data-full="../assets/spettacoli/tempesta-05.JPG" alt="Nella tempesta di Shakespeare — foto 5" tabindex="0">
         </div>
 
         <a class="back-link" href="../spettacoli.html" aria-label="Torna all'elenco spettacoli">← Torna a “SPETTACOLI”</a>
@@ -228,6 +230,84 @@ Ci siamo rivolti alla Tempesta di Shakespeare trovando in essa un intreccio di t
 
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
     if (nav) nav.addEventListener('click', (e) => { if (e.target.tagName === 'A') toggleMenu(false); });
+  </script>
+
+  <!-- Lightbox per galleria: apre immagine in dimensione reale e permette navigazione -->
+  <script>
+    (function(){
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+      else init();
+
+      function init(){
+        const thumbs = Array.from(document.querySelectorAll('.gallery img'));
+        if (!thumbs.length) return;
+
+        // crea overlay se non esiste
+        let overlay = document.querySelector('.lb-overlay');
+        if (!overlay) {
+          overlay = document.createElement('div');
+          overlay.className = 'lb-overlay';
+          overlay.innerHTML = `
+            <div class="lb-panel" role="dialog" aria-modal="true">
+              <button class="lb-btn lb-prev" aria-label="Immagine precedente">&#9664;</button>
+              <img class="lb-image" alt="">
+              <button class="lb-btn lb-next" aria-label="Immagine successiva">&#9654;</button>
+              <button class="lb-close" aria-label="Chiudi">✕</button>
+              <div class="lb-caption" aria-hidden="false"></div>
+            </div>`;
+          document.body.appendChild(overlay);
+        }
+
+        const imgEl = overlay.querySelector('.lb-image');
+        const captionEl = overlay.querySelector('.lb-caption');
+        const btnPrev = overlay.querySelector('.lb-prev');
+        const btnNext = overlay.querySelector('.lb-next');
+        const btnClose = overlay.querySelector('.lb-close');
+
+        const items = thumbs.map(t => ({ el: t, src: t.getAttribute('data-full') || t.src, alt: t.alt || '' }));
+        let current = 0;
+
+        thumbs.forEach((thumb, i) => {
+          thumb.style.cursor = 'pointer';
+          thumb.addEventListener('click', e => { e.preventDefault(); open(i); });
+          thumb.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); } });
+        });
+
+        function open(index){
+          current = index;
+          show(current);
+          overlay.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+          btnClose.focus();
+          window.addEventListener('keydown', onKey);
+        }
+        function close(){
+          overlay.classList.remove('is-open');
+          document.body.style.overflow = '';
+          window.removeEventListener('keydown', onKey);
+        }
+        function show(i){
+          const it = items[i];
+          imgEl.src = it.src;
+          imgEl.alt = it.alt;
+          captionEl.textContent = it.alt || '';
+          btnPrev.style.display = items.length > 1 ? '' : 'none';
+          btnNext.style.display = items.length > 1 ? '' : 'none';
+        }
+
+        btnPrev.addEventListener('click', () => { current = (current - 1 + items.length) % items.length; show(current); });
+        btnNext.addEventListener('click', () => { current = (current + 1) % items.length; show(current); });
+        btnClose.addEventListener('click', close);
+
+        overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+
+        function onKey(e){
+          if (e.key === 'Escape') close();
+          if (e.key === 'ArrowLeft') btnPrev.click();
+          if (e.key === 'ArrowRight') btnNext.click();
+        }
+      }
+    })();
   </script>
 </body>
 </html>

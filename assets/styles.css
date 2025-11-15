@@ -347,6 +347,26 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
+/* Mobile: poster sopra sinossi — override coerente e semplice */
+@media (max-width: 800px) {
+  .show-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+  }
+  .show-header .poster {
+    order: -1;            /* rende la locandina visivamente prima */
+    width: 100%;
+    max-width: 480px;
+    margin: 0 0 12px;
+  }
+  .show-header .show-meta {
+    order: 0;
+  }
+}
+
 /* LIGHTBOX / MODAL per consultare le immagini alla dimensione originale */
 .lb-overlay{
   position:fixed;
