@@ -112,5 +112,21 @@
       if (e.key === 'ArrowRight') btnNext.click();
     }
 
+    // Initialize gallery
+    document.addEventListener('DOMContentLoaded', () => {
+      const galleryImages = document.querySelectorAll('.gallery img');
+      
+      galleryImages.forEach(image => {
+        image.addEventListener('click', () => {
+          // Open image in lightbox
+          openLightbox(image.src);
+        });
+      });
+    });
+
+    // Function to open lightbox
+    function openLightbox(src) {
+      // ...existing code...
+    }
   }
 })();

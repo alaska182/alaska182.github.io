@@ -37,6 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
     if (nav) nav.addEventListener('click', (e) => { if (e.target.tagName === 'A') toggleMenu(false); });
   }
+
+  // Function to toggle mobile menu
+  function toggleMenu() {
+    const nav = document.querySelector('.nav');
+    nav.classList.toggle('menu-open');
+  }
+
+  // Event listener for hamburger menu
+  document.querySelector('.hamburger').addEventListener('click', toggleMenu);
 });
 
 // NOTE: lightbox functionality removed from this file to avoid duplicate overlays.
