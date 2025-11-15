@@ -488,15 +488,36 @@ h1, h2, h3, h4, h5, h6,
   .show-meta .h1{ margin-top:0; }
 }
 
-/* Mobile (<800px): locandina sotto (via order), centrata */
+/* Mobile (<800px): assicurati che la locandina sia sempre visibile e appaia sopra la sinossi */
 @media (max-width: 800px) {
   .show-header {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     align-items: center;
     text-align: center;
     width: 100%;
+  }
+
+  /* Forza la locandina prima della sinossi (anche se il DOM è invertito) */
+  .show-header .poster {
+    order: -1 !important;
+    display: block !important;
+    visibility: visible !important;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  }
+
+  .show-header .poster img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
   }
 
   .show-header .show-meta {
@@ -504,26 +525,17 @@ h1, h2, h3, h4, h5, h6,
     width: 100%;
   }
 
-  .show-header .poster {
-    order: 1;
-    display: block !important;
-    visibility: visible !important;
-    width: 100%;
-    max-width: 420px;
-    margin: 0;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  /* Galleria: una colonna e limiti per le anteprime su schermi piccoli */
+  .gallery,
+  .poster-gallery {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
   }
-
-  .show-header .poster img {
+  .gallery img,
+  .poster-gallery img {
+    max-height: 48vh;
     width: 100%;
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-    display: block;
+    object-fit: cover;
   }
 }
 
