@@ -356,14 +356,27 @@ h1, h2, h3, h4, h5, h6,
     align-items: center;
     text-align: center;
   }
+
   .show-header .poster {
-    order: -1;            /* rende la locandina visivamente prima */
+    order: -1;                 /* locandina prima della sinossi */
+    display: block !important; /* forza visibilità */
+    visibility: visible !important;
     width: 100%;
-    max-width: 480px;
+    max-width: 420px;         /* limita larghezza su mobile */
     margin: 0 0 12px;
   }
+
+  .show-header .poster img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
   .show-header .show-meta {
     order: 0;
+    width: 100%;
   }
 }
 
