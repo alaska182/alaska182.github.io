@@ -5,8 +5,8 @@
   } else init();
 
   function init(){
-    // Seleziona tutte le immagini potenzialmente in gallerie
-    const thumbs = Array.from(document.querySelectorAll('.poster-gallery img, .gallery img'));
+    // Seleziona tutte le immagini potenzialmente in gallerie (inclusa la locandina)
+    const thumbs = Array.from(document.querySelectorAll('.poster img, .poster-gallery img, .gallery img'));
     if (!thumbs.length) return;
 
     // Crea overlay lightbox se non esiste (usa classi già presenti nel CSS)
@@ -27,7 +27,6 @@
     }
 
     const imgEl = overlay.querySelector('.lb-image');
-    const captionEl = overlay.querySelector('.lb-caption');
     const btnPrev = overlay.querySelector('.lb-prev');
     const btnNext = overlay.querySelector('.lb-next');
     const btnClose = overlay.querySelector('.lb-close');
@@ -90,7 +89,6 @@
       imgEl.src = item.full;
       imgEl.alt = item.alt;
       // caption suppressed (do not show description)
-      // captionEl.textContent = '';
       // Gestione visibilità pulsanti (se pochi elementi)
       btnPrev.style.display = items.length > 1 ? '' : 'none';
       btnNext.style.display = items.length > 1 ? '' : 'none';
