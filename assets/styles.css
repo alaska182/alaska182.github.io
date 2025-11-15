@@ -247,14 +247,13 @@ body:not(.home){ background:#000; color:#fff; }
 
 /* Footer: estetica migliorata */
 .footer{
-  /* leggera sfumatura e maggiore padding */
   background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
-  border-top:1px solid #e7e7e7;
-  padding:36px 16px;
+  border-top:1px solid #e0e0e0;
+  padding:48px 16px 32px;
   color:var(--muted);
-  font-size:15px;
-  line-height:1.45;
-  box-shadow: 0 -1px 0 rgba(0,0,0,0.02) inset;
+  font-size:14px;
+  line-height:1.6;
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.03);
 }
 
 /* Footer bianco con tre blocchi: layout più bilanciato */
@@ -262,48 +261,159 @@ body:not(.home){ background:#000; color:#fff; }
   background: linear-gradient(180deg, #fff 0%, #fafafa 100%); 
   color:var(--ink);
 }
+
 .footer-grid--three{
   display:grid;
-  grid-template-columns: 1fr minmax(120px, 240px) 1fr; /* logo centrale più compatto */
-  gap:28px;
+  grid-template-columns: 1fr minmax(140px, 180px) 1fr;
+  gap:32px;
   align-items:start;
-  justify-items:stretch;
+  justify-items:start;
   max-width:var(--max);
-  margin:0 auto;
-  padding-inline:8px;
+  margin:0 auto 24px;
+  padding:0 8px;
 }
 
-/* Sezioni interne */
-.footer-grid--three > section{ padding:6px 8px; }
-.footer-contacts{ text-align:right; display:flex; flex-direction:column; gap:6px; justify-content:flex-start; }
+/* Sezioni interne: titoli e testo */
+.footer-grid--three > section{ 
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.footer-grid--three h3{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  font-weight:700;
+  color:var(--ink);
+  margin:0;
+}
+
+.footer-contacts{ 
+  text-align:left; 
+  display:flex; 
+  flex-direction:column; 
+  gap:10px;
+}
+
+.footer-contacts p{
+  margin:0;
+  font-size:14px;
+  line-height:1.65;
+}
+
+.footer-contacts a{
+  color:var(--brand);
+  text-decoration:none;
+  transition:opacity .2s ease;
+}
+
+.footer-contacts a:hover{
+  opacity:0.75;
+  text-decoration:underline;
+}
 
 /* Partner logos: proporzioni coerenti e spaziatura */
-.footer .partners{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:flex-start; }
-.footer .partners a{ display:inline-flex; align-items:center; justify-content:center; padding:6px; background:transparent; border-radius:8px; }
-.footer .partners img{ height:clamp(40px,5vw,72px); width:auto; display:block; object-fit:contain; filter:none; }
-
-/* Brand centrale: evidenziato ma non invadente */
-.footer .footer-brand{ display:flex; align-items:center; justify-content:center; padding:6px; }
-.footer .footer-brand img{ width:clamp(100px,12vw,140px); height:auto; display:block; opacity:0.98; }
-
-/* Piccola nota/credits sotto */
-.footer .credits-line{
-  grid-column: 1 / -1;
-  margin-top:18px;
-  font-size:13px;
-  color:#7a7a7a;
-  text-align:center;
+.footer .partners{ 
+  display:flex; 
+  gap:12px; 
+  flex-wrap:wrap; 
+  align-items:center; 
+  justify-content:flex-start;
+  margin:6px 0 0;
 }
 
-/* Mobile: impila e centra tutto */
+.footer .partners a{ 
+  display:inline-flex; 
+  align-items:center; 
+  justify-content:center; 
+  padding:4px;
+  border-radius:6px;
+  transition:opacity .2s ease;
+}
+
+.footer .partners a:hover{
+  opacity:0.8;
+}
+
+.footer .partners img{ 
+  height:clamp(44px, 5vw, 64px); 
+  width:auto; 
+  display:block; 
+  object-fit:contain;
+}
+
+/* Brand centrale: evidenziato ma discreto */
+.footer .footer-brand{ 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  flex-direction:column;
+  padding:8px;
+  gap:8px;
+}
+
+.footer .footer-brand a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity .2s ease;
+}
+
+.footer .footer-brand a:hover{
+  opacity:0.85;
+}
+
+.footer .footer-brand img{ 
+  width:clamp(90px, 10vw, 120px); 
+  height:auto; 
+  display:block; 
+  opacity:0.95;
+}
+
+/* Riga inferiore: credits/copyright */
+.footer-bottom{
+  border-top:1px solid #e0e0e0;
+  padding-top:20px;
+  text-align:center;
+  font-size:12px;
+  color:#999;
+}
+
+/* Mobile: impila e semplifica */
 @media (max-width:800px){
-  .footer{ padding:28px 12px; }
-  .footer-grid--three{ grid-template-columns: 1fr; gap:16px; padding-inline:0; }
-  .footer-grid--three > section{ text-align:left; }
-  .footer-contacts{ text-align:left; align-items:flex-start; }
-  .footer .partners{ justify-content:flex-start; }
-  .footer .footer-brand{ order: -1; } /* marchio sopra su mobile */
-  .footer .credits-line{ margin-top:12px; font-size:13px; }
+  .footer{ 
+    padding:36px 16px 28px;
+  }
+
+  .footer-grid--three{ 
+    grid-template-columns: 1fr; 
+    gap:24px; 
+    padding:0;
+  }
+
+  .footer-grid--three > section{ 
+    text-align:left;
+  }
+
+  .footer-contacts{ 
+    text-align:left; 
+    align-items:flex-start; 
+  }
+
+  .footer .partners{ 
+    justify-content:flex-start;
+  }
+
+  .footer .footer-brand{ 
+    order: -1;
+    margin-bottom:8px;
+  }
+
+  .footer-bottom{
+    margin-top:16px;
+  }
 }
 
 /* =====================
