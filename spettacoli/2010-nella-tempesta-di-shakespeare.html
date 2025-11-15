@@ -123,7 +123,10 @@
     <section class="container section">
       <div class="show-header">
         <figure class="poster" aria-hidden="false">
-          <img src="../assets/spettacoli/tempesta-poster.jpg" alt="Locandina — Nella tempesta di Shakespeare">
+          <img src="../assets/spettacoli/tempesta-poster.jpg"
+               data-full="../assets/spettacoli/tempesta-poster.jpg"
+               alt="Locandina — Nella tempesta di Shakespeare"
+               tabindex="0">
         </figure>
         <div class="show-meta">
           <h1 class="h1">NELLA TEMPESTA DI SHAKESPEARE</h1>
@@ -163,11 +166,6 @@ Ci siamo rivolti alla Tempesta di Shakespeare trovando in essa un intreccio di t
 
         <h2>Galleria</h2>
         <div class="gallery" aria-label="Galleria fotografica">
-          <!-- Aggiunta: locandina come prima foto della galleria -->
-          <img src="../assets/spettacoli/tempesta-poster.jpg"
-               data-full="../assets/spettacoli/tempesta-poster.jpg"
-               alt="Locandina — Nella tempesta di Shakespeare"
-               tabindex="0">
           <img src="../assets/spettacoli/tempesta-01.JPG" data-full="../assets/spettacoli/tempesta-01.JPG" alt="Nella tempesta di Shakespeare — foto 1" tabindex="0">
           <img src="../assets/spettacoli/tempesta-02.JPG" data-full="../assets/spettacoli/tempesta-02.JPG" alt="Nella tempesta di Shakespeare — foto 2" tabindex="0">
           <img src="../assets/spettacoli/tempesta-03.JPG" data-full="../assets/spettacoli/tempesta-03.JPG" alt="Nella tempesta di Shakespeare — foto 3" tabindex="0">
@@ -244,7 +242,8 @@ Ci siamo rivolti alla Tempesta di Shakespeare trovando in essa un intreccio di t
       else init();
 
       function init(){
-        const thumbs = Array.from(document.querySelectorAll('.gallery img'));
+        // includi anche la locandina (.poster img)
+        const thumbs = Array.from(document.querySelectorAll('.gallery img, .poster img'));
         if (!thumbs.length) return;
 
         // crea overlay se non esiste
