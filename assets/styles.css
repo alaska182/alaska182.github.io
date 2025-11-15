@@ -245,6 +245,67 @@ body:not(.home){ background:#000; color:#fff; }
   .footer-contacts{ text-align:left; }
 }
 
+/* Footer: estetica migliorata */
+.footer{
+  /* leggera sfumatura e maggiore padding */
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+  border-top:1px solid #e7e7e7;
+  padding:36px 16px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.45;
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.02) inset;
+}
+
+/* Footer bianco con tre blocchi: layout più bilanciato */
+.footer--light{ 
+  background: linear-gradient(180deg, #fff 0%, #fafafa 100%); 
+  color:var(--ink);
+}
+.footer-grid--three{
+  display:grid;
+  grid-template-columns: 1fr minmax(120px, 240px) 1fr; /* logo centrale più compatto */
+  gap:28px;
+  align-items:start;
+  justify-items:stretch;
+  max-width:var(--max);
+  margin:0 auto;
+  padding-inline:8px;
+}
+
+/* Sezioni interne */
+.footer-grid--three > section{ padding:6px 8px; }
+.footer-contacts{ text-align:right; display:flex; flex-direction:column; gap:6px; justify-content:flex-start; }
+
+/* Partner logos: proporzioni coerenti e spaziatura */
+.footer .partners{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:flex-start; }
+.footer .partners a{ display:inline-flex; align-items:center; justify-content:center; padding:6px; background:transparent; border-radius:8px; }
+.footer .partners img{ height:clamp(40px,5vw,72px); width:auto; display:block; object-fit:contain; filter:none; }
+
+/* Brand centrale: evidenziato ma non invadente */
+.footer .footer-brand{ display:flex; align-items:center; justify-content:center; padding:6px; }
+.footer .footer-brand img{ width:clamp(100px,12vw,140px); height:auto; display:block; opacity:0.98; }
+
+/* Piccola nota/credits sotto */
+.footer .credits-line{
+  grid-column: 1 / -1;
+  margin-top:18px;
+  font-size:13px;
+  color:#7a7a7a;
+  text-align:center;
+}
+
+/* Mobile: impila e centra tutto */
+@media (max-width:800px){
+  .footer{ padding:28px 12px; }
+  .footer-grid--three{ grid-template-columns: 1fr; gap:16px; padding-inline:0; }
+  .footer-grid--three > section{ text-align:left; }
+  .footer-contacts{ text-align:left; align-items:flex-start; }
+  .footer .partners{ justify-content:flex-start; }
+  .footer .footer-brand{ order: -1; } /* marchio sopra su mobile */
+  .footer .credits-line{ margin-top:12px; font-size:13px; }
+}
+
 /* =====================
    FONT BASE GENEVA
    ===================== */
