@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.body.appendChild(overlay);
     imgEl = overlay.querySelector('.lb-image');
-    // captionEl = overlay.querySelector('.lb-caption'); // caption removed
     prevBtn = overlay.querySelector('.lb-prev');
     nextBtn = overlay.querySelector('.lb-next');
     closeBtn = overlay.querySelector('.lb-close');
@@ -66,6 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowRight') showNext();
   }
 
+  function fitImage(){
+    if (!imgEl) return;
+    const margin = window.innerWidth < 560 ? 16 : 48;
+    imgEl.style.maxWidth = (window.innerWidth - margin) + 'px';
+    imgEl.style.maxHeight = (window.innerHeight - margin) + 'px';
+    imgEl.style.objectFit = 'contain';
+  }
+
   function openLightbox(list, idx){
     images = list;
     currentIndex = idx;
@@ -73,10 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const alt = images[idx].alt || '';
     imgEl.src = src;
     imgEl.alt = alt;
-    // captionEl.textContent = alt; // caption suppressed
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden','false');
     document.body.classList.add('no-scroll');
+    fitImage();
+    window.addEventListener('resize', fitImage);
   }
 
   function closeLightbox(){
@@ -85,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     imgEl.src = '';
     currentIndex = -1;
     document.body.classList.remove('no-scroll');
+    window.removeEventListener('resize', fitImage);
   }
 
   function showPrev(){

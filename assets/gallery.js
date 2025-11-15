@@ -32,6 +32,14 @@
     const btnNext = overlay.querySelector('.lb-next');
     const btnClose = overlay.querySelector('.lb-close');
 
+    function fitImage(){
+      if (!imgEl) return;
+      const margin = window.innerWidth < 560 ? 16 : 48;
+      imgEl.style.maxWidth = (window.innerWidth - margin) + 'px';
+      imgEl.style.maxHeight = (window.innerHeight - margin) + 'px';
+      imgEl.style.objectFit = 'contain';
+    }
+
     // Prepara array di sorgenti (usa data-full se presente, altrimenti src)
     const items = thumbs.map(t => ({
       thumb: t,
@@ -65,6 +73,8 @@
       document.body.style.overflow = 'hidden';
       // focus sul close per accessibilità
       btnClose.focus();
+      fitImage();
+      window.addEventListener('resize', fitImage);
       window.addEventListener('keydown', onKey);
     }
 
@@ -72,13 +82,15 @@
       overlay.classList.remove('is-open');
       document.body.style.overflow = '';
       window.removeEventListener('keydown', onKey);
+      window.removeEventListener('resize', fitImage);
     }
 
     function show(idx){
       const item = items[idx];
       imgEl.src = item.full;
       imgEl.alt = item.alt;
-      captionEl.textContent = item.alt || '';
+      // caption suppressed (do not show description)
+      // captionEl.textContent = '';
       // Gestione visibilità pulsanti (se pochi elementi)
       btnPrev.style.display = items.length > 1 ? '' : 'none';
       btnNext.style.display = items.length > 1 ? '' : 'none';
@@ -93,10 +105,14 @@
       if (e.target === overlay) close();
     });
 
+    // Aggiorna dimensioni immagine al resize se il lightbox è aperto
+    window.addEventListener('resize', () => { if (overlay && overlay.classList.contains('is-open')) fitImage(); });
+
     function onKey(e){
       if (e.key === 'Escape') close();
       if (e.key === 'ArrowLeft') btnPrev.click();
       if (e.key === 'ArrowRight') btnNext.click();
     }
+
   }
 })();
