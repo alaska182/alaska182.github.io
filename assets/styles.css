@@ -395,12 +395,18 @@ h1, h2, h3, h4, h5, h6,
 
 /* Desktop: mostra la locandina a sinistra del titolo */
 @media (min-width:760px){
-  .show-header{ grid-template-columns: 220px 1fr; gap:24px; }
-  .poster{ margin:0; max-width:none; }
+  .show-header{ 
+    display:flex;
+    flex-direction: row-reverse;
+    gap:24px; 
+    align-items:start;
+  }
+  .poster{ margin:0; max-width:300px; flex-shrink:0; }
+  .show-meta{ flex:1; }
   .show-meta .h1{ margin-top:0; }
 }
 
-/* Mobile (<800px): locandina sopra, visibile e centrata */
+/* Mobile (<800px): locandina sotto (via order), centrata */
 @media (max-width: 800px) {
   .show-header {
     display: flex;
@@ -411,13 +417,18 @@ h1, h2, h3, h4, h5, h6,
     width: 100%;
   }
 
+  .show-header .show-meta {
+    order: 0;
+    width: 100%;
+  }
+
   .show-header .poster {
-    order: -1;
+    order: 1;
     display: block !important;
     visibility: visible !important;
     width: 100%;
     max-width: 420px;
-    margin: 0 0 12px;
+    margin: 0;
     border: 1px solid var(--line);
     border-radius: 8px;
     overflow: hidden;
@@ -431,11 +442,6 @@ h1, h2, h3, h4, h5, h6,
     object-fit: contain;
     border-radius: 8px;
     display: block;
-  }
-
-  .show-header .show-meta {
-    order: 0;
-    width: 100%;
   }
 }
 
