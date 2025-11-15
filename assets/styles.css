@@ -247,172 +247,144 @@ body:not(.home){ background:#000; color:#fff; }
 
 /* Footer: estetica migliorata */
 .footer{
-  background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
-  border-top:1px solid #e0e0e0;
-  padding:48px 16px 32px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.6;
-  box-shadow: 0 -1px 3px rgba(0,0,0,0.03);
+  background: #fafafa;
+  border-top: 1px solid #e0e0e0;
+  padding: 56px 16px 36px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-/* Footer bianco con tre blocchi: layout più bilanciato */
 .footer--light{ 
-  background: linear-gradient(180deg, #fff 0%, #fafafa 100%); 
-  color:var(--ink);
+  background: #fff;
+  color: var(--ink);
 }
 
 .footer-grid--three{
-  display:grid;
-  grid-template-columns: 1fr minmax(140px, 180px) 1fr;
-  gap:32px;
-  align-items:start;
-  justify-items:start;
-  max-width:var(--max);
-  margin:0 auto 24px;
-  padding:0 8px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 40px;
+  align-items: start;
+  max-width: var(--max);
+  margin: 0 auto 32px;
 }
 
-/* Sezioni interne: titoli e testo */
-.footer-grid--three > section{ 
-  padding:0;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+/* Sezioni: titoli e contenuto */
+.footer-grid--three > section { 
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .footer-grid--three h3{
-  font-size:14px;
-  text-transform:uppercase;
-  letter-spacing:0.05em;
-  font-weight:700;
-  color:var(--ink);
-  margin:0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
 }
 
-.footer-contacts{ 
-  text-align:left; 
-  display:flex; 
-  flex-direction:column; 
-  gap:10px;
+.footer-contacts { 
+  text-align: left;
 }
 
-.footer-contacts p{
-  margin:0;
-  font-size:14px;
-  line-height:1.65;
+.footer-contacts p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-.footer-contacts a{
-  color:var(--brand);
-  text-decoration:none;
-  transition:opacity .2s ease;
+.footer-contacts a {
+  color: var(--brand);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(158, 43, 58, 0.3);
+  transition: all .2s ease;
 }
 
-.footer-contacts a:hover{
-  opacity:0.75;
-  text-decoration:underline;
+.footer-contacts a:hover {
+  border-color: var(--brand);
+  opacity: 0.85;
 }
 
-/* Partner logos: proporzioni coerenti e spaziatura */
-.footer .partners{ 
-  display:flex; 
-  gap:12px; 
-  flex-wrap:wrap; 
-  align-items:center; 
-  justify-content:flex-start;
-  margin:6px 0 0;
+/* Partner: loghi ben spaced */
+.footer .partners {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
-.footer .partners a{ 
-  display:inline-flex; 
-  align-items:center; 
-  justify-content:center; 
-  padding:4px;
-  border-radius:6px;
-  transition:opacity .2s ease;
+.footer .partners a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  transition: opacity .2s ease;
+  border: none;
 }
 
-.footer .partners a:hover{
-  opacity:0.8;
+.footer .partners a:hover {
+  opacity: 1;
 }
 
-.footer .partners img{ 
-  height:clamp(44px, 5vw, 64px); 
-  width:auto; 
-  display:block; 
-  object-fit:contain;
+.footer .partners img {
+  height: clamp(48px, 6vw, 72px);
+  width: auto;
+  object-fit: contain;
 }
 
-/* Brand centrale: evidenziato ma discreto */
-.footer .footer-brand{ 
-  display:flex; 
-  align-items:center; 
-  justify-content:center; 
-  flex-direction:column;
-  padding:8px;
-  gap:8px;
+/* Brand centrale */
+.footer .footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
-.footer .footer-brand a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:opacity .2s ease;
+.footer .footer-brand a {
+  display: inline-flex;
+  opacity: 0.92;
+  transition: opacity .2s ease;
+  border: none;
 }
 
-.footer .footer-brand a:hover{
-  opacity:0.85;
+.footer .footer-brand a:hover {
+  opacity: 1;
 }
 
-.footer .footer-brand img{ 
-  width:clamp(90px, 10vw, 120px); 
-  height:auto; 
-  display:block; 
-  opacity:0.95;
+.footer .footer-brand img {
+  width: clamp(100px, 11vw, 130px);
+  height: auto;
 }
 
-/* Riga inferiore: credits/copyright */
-.footer-bottom{
-  border-top:1px solid #e0e0e0;
-  padding-top:20px;
-  text-align:center;
-  font-size:12px;
-  color:#999;
-}
-
-/* Mobile: impila e semplifica */
-@media (max-width:800px){
-  .footer{ 
-    padding:36px 16px 28px;
+/* Mobile */
+@media (max-width: 800px){
+  .footer {
+    padding: 40px 16px 28px;
   }
 
-  .footer-grid--three{ 
-    grid-template-columns: 1fr; 
-    gap:24px; 
-    padding:0;
+  .footer-grid--three {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 24px;
   }
 
-  .footer-grid--three > section{ 
-    text-align:left;
+  .footer-grid--three > section {
+    text-align: left;
   }
 
-  .footer-contacts{ 
-    text-align:left; 
-    align-items:flex-start; 
-  }
-
-  .footer .partners{ 
-    justify-content:flex-start;
-  }
-
-  .footer .footer-brand{ 
+  .footer .footer-brand {
     order: -1;
-    margin-bottom:8px;
+    margin-bottom: 8px;
   }
 
-  .footer-bottom{
-    margin-top:16px;
+  .footer-contacts {
+    text-align: left;
+  }
+
+  .footer .partners {
+    justify-content: flex-start;
   }
 }
 
