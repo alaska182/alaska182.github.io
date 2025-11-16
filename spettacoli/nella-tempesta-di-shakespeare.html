@@ -65,24 +65,45 @@
 
     /* Locandina spettacolo */
     .show-header{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:16px;
-      align-items:start;
-      margin-bottom:12px;
+      display:flex;
+      flex-direction: column;
+      gap:24px;
+      align-items:flex-start;
+      margin-bottom:24px;
     }
     .poster{
-      grid-column:1 / 2;
-      width:100%; max-width:300px;
+      width:100%; max-width:420px;
       border:1px solid var(--line); border-radius:var(--r);
-      overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.1);
+      overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.1);
+      cursor:pointer;
     }
     .poster img{
       display:block; width:100%; height:auto;
       object-fit:cover; object-position:center;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .poster img:hover,
+    .poster img:focus-visible{
+      transform: scale(1.02);
+      opacity: 0.95;
     }
     .show-meta{
-      grid-column:2 / -1;
+      flex:1; width:100%;
+    }
+    @media (min-width:900px){
+      .show-header{
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
+      }
+      .poster{
+        flex-shrink: 0;
+        width: 420px;
+        max-width: 420px;
+      }
+      .show-meta{
+        flex: 1;
+      }
     }
   </style>
 </head>
