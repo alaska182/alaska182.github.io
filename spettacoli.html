@@ -46,7 +46,7 @@
       font-size:clamp(17px, 1.1vw + .2rem, 19px); line-height:1.75;
     }
     .show-list li{
-      display:grid; grid-template-columns: clamp(7ch, 12ch, 14ch) 1fr;
+      display:grid; grid-template-columns: minmax(14ch, 16ch) 1fr;
       gap:18px; align-items:baseline; padding-block:.8rem;
     }
     .show-list .year{
@@ -61,7 +61,7 @@
     .show-list .show-link:hover,
     .show-list .show-link:focus-visible{ opacity:.8; }
     @media (max-width:560px){
-      .show-list li{ grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr; gap:14px; }
+      .show-list li{ grid-template-columns: minmax(10ch, 12ch) 1fr; gap:14px; }
     }
 
     /* ===== Mobile: niente header visibile, solo hamburger ===== */
