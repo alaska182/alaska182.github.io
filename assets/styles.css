@@ -134,9 +134,9 @@ body.home{ height: calc(var(--vh, 1vh) * 100); overflow:hidden; }
   font-weight: 500;
   height: 48px;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   max-width: 100%;
-  padding: 0 30px;
+  padding: 0 25px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -145,7 +145,6 @@ body.home{ height: calc(var(--vh, 1vh) * 100); overflow:hidden; }
   touch-action: manipulation;
   margin: 2rem 0;
   letter-spacing: 0.3px;
-  overflow: hidden; /* Ensure the logo stays within button bounds */
 }
 
 .button-56:after {
@@ -177,14 +176,9 @@ body.home{ height: calc(var(--vh, 1vh) * 100); overflow:hidden; }
 }
 
 .button-56 .paypal-logo {
-  width: 100px; /* Reduced from 120px for better proportions */
-  height: 30px; /* Set fixed height for consistent sizing */
-  object-fit: contain; /* Ensure the logo maintains its aspect ratio */
+  width: 120px;
+  height: auto;
   display: block;
-  margin: 0 auto; /* Center the logo horizontally */
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%); /* Perfect vertical centering */
 }
 
 @media (min-width: 768px) {
