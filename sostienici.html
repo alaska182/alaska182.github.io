@@ -186,6 +186,15 @@
   <!-- SCRIPT comportamento header/hamburger -->
   <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Make PayPal button open in a new window
+    const paypalLink = document.querySelector('a[href*="paypal.com"]');
+    if (paypalLink) {
+      paypalLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(this.href, 'paypal', 'width=600,height=600,menubar=no,status=no,location=no,toolbar=no');
+      });
+    }
+
     const header = document.getElementById('page-header');
     const hero = document.querySelector('.hero--internal');
     const btn = document.getElementById('hamburger');
