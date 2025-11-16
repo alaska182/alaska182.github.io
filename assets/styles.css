@@ -119,6 +119,74 @@ body.home{ height: calc(var(--vh, 1vh) * 100); overflow:hidden; }
 /* utilità */
 .btn{ display:inline-block; background:var(--brand); color:#fff; padding:10px 14px; border-radius:10px; font-weight:700 }
 
+/* PayPal Button */
+.button-56 {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Square", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 2rem 0;
+  letter-spacing: 0.3px;
+}
+
+.button-56:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.button-56:hover:after {
+  transform: translate(0, 0);
+}
+
+.button-56:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.button-56:hover {
+  outline: 0;
+}
+
+.button-56 .paypal-logo {
+  width: 120px;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .button-56 {
+    padding: 0 40px;
+  }
+}
+
 /* responsive rifiniture */
 @media (max-width: 720px){
   .nav{ justify-content:center }

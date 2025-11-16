@@ -124,83 +124,14 @@
       <div class="prose">
         <h2>Dona ora online</h2>
         <p>Supporta l'associazione con PayPal o carta.<br>Donazione immediata e sicura.</p>
-        <style>
-          @import url('https://fonts.cdnfonts.com/css/paypal-sans-big');
-          
-          .button-56 {
-            align-items: center;
-            background-color: #fee6e3;
-            border: 2px solid #111;
-            border-radius: 8px;
-            box-sizing: border-box;
-            color: #111;
-            cursor: pointer;
-            display: inline-flex;
-            font-family: 'PayPal Sans Big', 'PayPal Sans', 'Helvetica Neue', Arial, sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            height: 48px;
-            justify-content: center;
-            line-height: 24px;
-            max-width: 100%;
-            padding: 0 25px;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            margin: 2rem 0;
-            letter-spacing: 0.3px;
-          }
-          
-          .button-56:after {
-            background-color: #111;
-            border-radius: 8px;
-            content: "";
-            display: block;
-            height: 48px;
-            left: 0;
-            width: 100%;
-            position: absolute;
-            top: -2px;
-            transform: translate(8px, 8px);
-            transition: transform .2s ease-out;
-            z-index: -1;
-          }
-          
-          .button-56:hover:after {
-            transform: translate(0, 0);
-          }
-          
-          .button-56:active {
-            background-color: #ffdeda;
-            outline: 0;
-          }
-          
-          .button-56:hover {
-            outline: 0;
-          }
-          
-          .button-56 .paypal-icon {
-            margin-right: 8px;
-            width: 20px;
-            height: 24px;
-          }
-          
-          @media (min-width: 768px) {
-            .button-56 {
-              padding: 0 40px;
-            }
-          }
-        </style>
+        <!-- PayPal button styles are in assets/styles.css -->
         <div class="donation-button">
           <a href="https://www.paypal.com/paypalme/nontantoprecisi" 
              target="_blank" 
              rel="noopener noreferrer" 
-             class="button-56">
-            <span>Dona con</span>
-            <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" style="height: 20px; margin-left: 8px;">
+             class="button-56"
+             aria-label="Dona con PayPal">
+            <img src="assets/paypal_logo.png" alt="PayPal" class="paypal-logo">
           </a>
         </div>
       </div>
