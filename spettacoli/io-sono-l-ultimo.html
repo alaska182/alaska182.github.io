@@ -1,1 +1,207 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — IO SONO L'ULTIMO</title>
+  <meta name="description" content="Scheda spettacolo: Io Sono l'Ultimo">
+  <link rel="icon" href="../favicon.png">
+  <link rel="stylesheet" href="../assets/styles.css">
 
+  <style>
+    /* Header trasparente sopra l’hero, colori brand */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; transition:color .3s ease; }
+    .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .header.scrolled .nav a{ color:var(--brand) !important; }
+
+    /* Hero interno dedicato allo spettacolo */
+    .hero--internal{
+      position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
+      background:url('../assets/spettacoli/ultimo-hero.JPG') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height: calc(var(--vh, 1vh) * 100); }
+
+    /* Mobile: evita background-attachment:fixed */
+    @media (max-width: 1024px){
+      .hero--internal{ background-attachment:scroll; }
+    }
+
+    /* Tema chiaro per le schede spettacolo */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Solo hamburger su mobile, header invisibile */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0; height:0;
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important; box-shadow:none !important;
+      }
+    }
+
+    /* Galleria immagini semplice */
+    .gallery{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+    .gallery img{ display:block; width:100%; height:auto; border-radius:var(--r); border:1px solid var(--line); }
+    @media (min-width:900px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
+
+    /* Tabella crediti */
+    .credits{ width:100%; border-collapse:collapse; margin:12px 0 0; }
+    .credits th, .credits td{ padding:10px 12px; border:1px solid var(--line); vertical-align:top; }
+    .credits th{ width:28ch; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:var(--brand); }
+
+    /* Callout scheda tecnica */
+    .tech{ border:1px solid var(--line); border-radius:var(--r); padding:16px; background:#fafafa; }
+    .back-link{ display:inline-block; margin-top:12px; }
+
+    /* Locandina spettacolo */
+    .show-header{
+      display:flex;
+      flex-direction: column;
+      gap:24px;
+      align-items:flex-start;
+      margin-bottom:24px;
+    }
+    .poster{
+      width:100%; max-width:420px;
+      border:1px solid var(--line); border-radius:var(--r);
+      overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.1);
+      cursor:pointer;
+    }
+    .poster img{
+      display:block; width:100%; height:auto;
+      object-fit:cover; object-position:center;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .poster img:hover,
+    .poster img:focus-visible{
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    .show-meta{
+      flex:1; width:100%;
+    }
+    @media (min-width:900px){
+      .show-header{
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
+      }
+      .poster{
+        flex-shrink: 0;
+        width: 420px;
+        max-width: 420px;
+      }
+      .show-meta{
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + NAV + HAMBURGER -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="../chi-siamo.html">CHI SIAMO</a>
+      <a href="../spettacoli.html" aria-current="page">SPETTACOLI</a>
+      <a href="../progetti.html">PROGETTI</a>
+      <a href="../sostienici.html">SOSTIENICI</a>
+      <a href="../parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="../trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- Contenuto -->
+  <main>
+    <section class="container section">
+      <div class="show-header">
+        <figure class="poster">
+          <img src="../assets/spettacoli/ultimo-poster.jpg"
+               data-full="../assets/spettacoli/ultimo-poster.jpg"
+               alt="Locandina — Carne"
+               tabindex="0">
+        </figure>
+        <div class="show-meta">
+          <h1 class="h1">IO SONO L'ULTIMO</h1>
+          <p class="muted">27 febbraio 2013</p>
+          <p class="muted"><em>Teatro degli Animosi, Marradi (Firenze)</em></p>
+          <p class="muted">1 marzo 2013</p>
+          <p class="muted"><em>Teatro Centrale Preneste (Roma)</em></p>
+        </div>
+      </div>
+      <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>È uno spettacolo sulla memoria. Costruire autonomamente il passato che ci ha visti assenti con un atto concreto, attuale, contemporaneo del pensiero. Rintracciamo in questa necessità della cultura umana il valore delle testimonianze, della loro capacità di destare l'animo alla trasversalità dello spazio e del tempo rinnovando la nostra presenza. Abbiamo avvertito la memoria sorgere dalle parole ascoltate quasi per caso in incontri inaspettati e improvvisi, nelle variazioni di luce che disegnano le diverse prospettive del giorno, nelle strade e sui muri di case antiche e in parte non più, o forse non ancora, frequentate. Figure di uomini e donne, le loro voci, ci hanno raggiunto come oracoli di messaggeri divini a suggerire le linee del paesaggio e la sua visione. In cammino lasciando che a guidarci fosse solo il richiamo delle cose e il loro linguaggio, abbiamo imparato a tradurre in nuovi ricordi le notizie del passato che ci raggiungeva.</em></p>
+        <p><em>È uno spettacolo sui Partigiani e quindi sulla poesia. Abbiamo pensato all'agire di uomini e donne che in un certo momento della loro vita si sono dovuti confrontare con la necessità di preservare letteralmente il futuro alla vita. Persone che hanno avvertito l'ineluttabilità della scelta di salvare la terra, quella dei loro campi, i fiumi, i tramonti sui tetti delle loro case e dei loro paesi o le chiese delle loro riunioni, le voci e i canti della loro gente, la possibilità di crescere insieme e liberi. Li abbiamo cercati, pian piano avvicinati e forse infine incontrati nella concretezza dei nostri corpi lentamente e di nuovo educati a sentire il peso e la leggerezza, il vuoto e la pienezza, portati a vibrare o a tremare, pronti a cadere e a sollevarsi, ritornati a provare il timore e la forza, il coraggio e la debolezza, l'incertezza del successo, la sicurezza della convinzione.</p></em>
+        <p><em>Abbiamo percorso una grande vicenda umana attraverso piccole tracce di vita affidate a poche parole narrate, a poveri oggetti cui il tempo ha dato ricchezza, a qualche figura sbiadita scrivendo così un passato sconosciuto col nostro comune sentire. Abbiamo incontrato la poesia di chi ha amato e odiato quei luoghi, di chi è stato abbracciato e scacciato da quei luoghi. Abbiamo incontrato Dino Campana, partigiano prima dei partigiani. Abbiamo parteggiato per lui, per la sua infinita r-esistenza.</p></em>
+        <p><em>È uno spettacolo sullo spazio e i luoghi. Osservare le cose nella relazione che tra esse si genera, cogliere gli oggetti non singolarmente ma come prodotto del loro reciproco influenzarsi e informarsi, equivale a trasformare lo spazio in un luogo. Tutto si anima agli occhi e il tempo assume il trascorrere di vive vicende. Abbiamo lasciato che gli elementi del paesaggio ci interrogassero nelle loro forme, attraverso l'architettura delle case, le linee delle strade, nel modo in cui gli oggetti posavano suggerendo allo sguardo i gesti del loro uso. Siamo stati a Marradi, a Sant’Anna di Stazzema, Gattatico, luoghi degli eccidi nazi-fascisti, ma anche della poesia struggente di Dino Campana che lenisce, senza suturare, le ferite della violenza.</em></p>
+        <p><em>Cercare risposte ha significato costruire una trama di relazioni umane fatta di speranze, di desideri interrotti, di vittorie non godute, di sconfitte dolorose ma superate, di forti entusiasmi, di umana fiducia.</em></p>
+        <p><em>È uno spettacolo sulla contemporaneità. Ci è parso di ritrovare nei temi che abbiamo affrontato una forte relazione con la nostra attualità, se non nella vicenda narrata sicuramente nella necessità di riaffermare i fondamenti democratici della nostra socialità in un momento in cui ci sembrano smarriti. Avvertiamo la necessità di costruire un territorio comune di confronto e scambio di esperienze, di solidarietà e vicinanza, di espressione della diversità umana.</em></p>
+        <p><em>Come si costruisce la scena. Il nostro progetto è del tutto inedito risulta quindi più agevole riportare il processo di costruzione della scena piuttosto che descrivere analiticamente quanto in scena si vede. Lavoriamo in teatro a dare corpo alle visioni che abbiamo raccolto durante la nostra ricerca. Sperimentiamo la possibilità di dare scena allo spazio dei vicoli, dei cortili, del paesaggio dei villaggi e dei piccoli paesi che abbiamo visitato e frequentato cercando le tracce che hanno composto la nostra storia. Siamo attratti dalla enorme risorsa dell'attore che in una poliedrica partitura di spazio e tempo può proporre luoghi, momenti, corpi diversi. Cerchiamo una composizione di gesti e segmentazioni del corpo in grado di dare viva presenza all'azione. In una serie di fotogrammi discontinui la scena vive inizialmente nell'apparizione di figure come frammenti apparentemente diversi ma che gradualmente troveranno continuità nella costruzione di un'unica vicenda.</em></p>
+        
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/ultimo-01.JPG" data-full="../assets/spettacoli/ultimo-01.JPG" alt="ultimo — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/ultimo-02.JPG" data-full="../assets/spettacoli/ultimo-02.JPG" alt="ultimo — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/ultimo-03.JPG" data-full="../assets/spettacoli/ultimo-03.JPG" alt="ultimo — foto 3" tabindex="0">
+          <img src="../assets/spettacoli/ultimo-04.jpg" data-full="../assets/spettacoli/ultimo-04.jpg" alt="ultimo — foto 4" tabindex="0">
+          <img src="../assets/spettacoli/ultimo-05.jpg" data-full="../assets/spettacoli/ultimo-05.jpg" alt="ultimo — foto 5" tabindex="0">
+          <img src="../assets/spettacoli/ultimo-06.jpg" data-full="../assets/spettacoli/ultimo-06.jpg" alt="ultimo — foto 6" tabindex="0">
+          <img src="../assets/spettacoli/ultimo-07.jpg" data-full="../assets/spettacoli/ultimo-07.jpg" alt="ultimo — foto 7" tabindex="0">
+        </div>
+
+        <a class="back-link" href="../spettacoli.html" aria-label="Torna all'elenco spettacoli">← Torna a SPETTACOLI</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+      <section>
+        <h3>PARTNER</h3>
+        <div class="partners">
+          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
+            <img src="../logopartner.png" alt="Partner Shelter City Rome">
+          </a>
+        </div>
+      </section>
+
+      <div class="footer-brand">
+        <a href="../index.html" aria-label="Torna alla home">
+          <img src="../logo.png" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Script esterni: logica header + galleria/lightbox -->
+  <script src="../assets/site.js"></script>
+  <script src="../assets/gallery.js"></script>
+ </body>
+</html>
