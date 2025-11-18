@@ -1,1 +1,198 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — PAESAGGI DELLA MEMORIA</title>
+  <meta name="description" content="Scheda spettacolo: Paesaggi della Memoria">
+  <link rel="icon" href="../favicon.png">
+  <link rel="stylesheet" href="../assets/styles.css">
 
+  <style>
+    /* Header trasparente sopra l’hero, colori brand */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; transition:color .3s ease; }
+    .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .header.scrolled .nav a{ color:var(--brand) !important; }
+
+    /* Hero interno dedicato allo spettacolo */
+    .hero--internal{
+      position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
+      background:url('../assets/spettacoli/paesaggi-hero.jpg') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height: calc(var(--vh, 1vh) * 100); }
+
+    /* Mobile: evita background-attachment:fixed */
+    @media (max-width: 1024px){
+      .hero--internal{ background-attachment:scroll; }
+    }
+
+    /* Tema chiaro per le schede spettacolo */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Solo hamburger su mobile, header invisibile */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0; height:0;
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important; box-shadow:none !important;
+      }
+    }
+
+    /* Galleria immagini semplice */
+    .gallery{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+    .gallery img{ display:block; width:100%; height:auto; border-radius:var(--r); border:1px solid var(--line); }
+    @media (min-width:900px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
+
+    /* Tabella crediti */
+    .credits{ width:100%; border-collapse:collapse; margin:12px 0 0; }
+    .credits th, .credits td{ padding:10px 12px; border:1px solid var(--line); vertical-align:top; }
+    .credits th{ width:28ch; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:var(--brand); }
+
+    /* Callout scheda tecnica */
+    .tech{ border:1px solid var(--line); border-radius:var(--r); padding:16px; background:#fafafa; }
+    .back-link{ display:inline-block; margin-top:12px; }
+
+    /* Locandina spettacolo */
+    .show-header{
+      display:flex;
+      flex-direction: column;
+      gap:24px;
+      align-items:flex-start;
+      margin-bottom:24px;
+    }
+    .poster{
+      width:100%; max-width:420px;
+      border:1px solid var(--line); border-radius:var(--r);
+      overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.1);
+      cursor:pointer;
+    }
+    .poster img{
+      display:block; width:100%; height:auto;
+      object-fit:cover; object-position:center;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .poster img:hover,
+    .poster img:focus-visible{
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    .show-meta{
+      flex:1; width:100%;
+    }
+    @media (min-width:900px){
+      .show-header{
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
+      }
+      .poster{
+        flex-shrink: 0;
+        width: 420px;
+        max-width: 420px;
+      }
+      .show-meta{
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + NAV + HAMBURGER -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="../chi-siamo.html">CHI SIAMO</a>
+      <a href="../spettacoli.html" aria-current="page">SPETTACOLI</a>
+      <a href="../progetti.html">PROGETTI</a>
+      <a href="../sostienici.html">SOSTIENICI</a>
+      <a href="../parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="../trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- Contenuto -->
+  <main>
+    <section class="container section">
+      <div class="show-header">
+          <div class="show-meta">
+          <h1 class="h1">PAESAGGI DELLA MEMORIA</h1>
+          <p class="muted">9 maggio 2015</p>
+          <p class="muted"><em>Ex Mattatoio (Roma)</em></p>
+        </div>
+      </div>
+      <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>Il tema del paesaggio e della memoria lo abbiamo incontrato nel nostro percorso di studio e ricerca teatrale quando abbiamo colto il profondo intreccio di questi due elementi nella determinazione delle nostre vite e dei processi umani.</em></p>
+        <p><em>Il paesaggio che, cercando e imparando a guardare, ci è venuto incontro prendendoci, non è certo quello della contemplazione o distrazione turistica ma l’unico possibile, quello della nostra presenza, quello che ci portiamo dietro tutti i giorni senza doverlo ricordare, che ci mette al mondo trasformandolo, il paesaggio di cui noi che non ci accorgiamo siamo parte, quello che costruiamo quando non sappiamo di farlo, quello che noi stessi siamo senza sapere ancora di  esserlo. </p></em>
+        <p><em>Ecco perché pensiamo che la memoria di una vicenda non sia solo di chi l’ha vissuta direttamente ma anche di chi sa coglierla negli elementi contemporanei, attuali, presenti nella quotidianità della nostra vita spesso assuefatta e pertanto distratta, dimentica delle relazioni che incarnano il nostro vissuto.</p></em>
+        <p><em>La forza della memoria, la necessità e la sua efficacia non sta nel vagheggiamento o nel riduttivo ricordo del passato attraverso le sue tracce e i suoi documenti. Al contrario è in quella relazione corporea tra noi e le cose che disegna il paesaggio delle nostre esistenze, colte negli spazi e nei tempi del loro trascorrere e in questi inevitabilmente e per sempre segnate e presenti.</em></p>
+        <p><em>Così per noi i giorni della memoria sono  quelli che portano alla scoperta del paesaggio in questo abbraccio vitale che non distingue più il luogo da chi lo vive o lo ha vissuto, l’abitante dall’abitato,  l’osservatore da ciò che osserva. Mentre visitando siamo a nostra volta visitati, da narratori  narrati, eccoci presi nel ciclo della trasformazione di quello che ci circonda e di quello che siamo.</em></p>
+        <p><em>Il paesaggio ci appare!  Non contenitore di corpi ma proprio il corpo, colto, sospeso, nella complessità della sua manifestazione.</em></p>
+        <p><em>Il Progetto si è collocato nel periodo della Settantesima Festa della Liberazione dal fascismo e nazismo.</em></p>
+        
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/paesaggi-01.JPG" data-full="../assets/spettacoli/paesaggi-01.JPG" alt="paesaggi — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/paesaggi-02.JPG" data-full="../assets/spettacoli/paesaggi-02.JPG" alt="paesaggi — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/paesaggi-03.JPG" data-full="../assets/spettacoli/paesaggi-03.JPG" alt="paesaggi — foto 3" tabindex="0">
+          <img src="../assets/spettacoli/paesaggi-04.JPG" data-full="../assets/spettacoli/paesaggi-04.JPG" alt="paesaggi — foto 4" tabindex="0">
+          <img src="../assets/spettacoli/paesaggi-05.jpg" data-full="../assets/spettacoli/paesaggi-05.jpg" alt="paesaggi — foto 5" tabindex="0">
+          <img src="../assets/spettacoli/paesaggi-06.JPG" data-full="../assets/spettacoli/paesaggi-06.JPG" alt="paesaggi — foto 6" tabindex="0">
+        </div>
+
+        <a class="back-link" href="../spettacoli.html" aria-label="Torna all'elenco spettacoli">← Torna a SPETTACOLI</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+      <section>
+        <h3>PARTNER</h3>
+        <div class="partners">
+          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
+            <img src="../logopartner.png" alt="Partner Shelter City Rome">
+          </a>
+        </div>
+      </section>
+
+      <div class="footer-brand">
+        <a href="../index.html" aria-label="Torna alla home">
+          <img src="../logo.png" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Script esterni: logica header + galleria/lightbox -->
+  <script src="../assets/site.js"></script>
+  <script src="../assets/gallery.js"></script>
+ </body>
+</html>
