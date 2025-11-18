@@ -1,1 +1,200 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — MASSACRO</title>
+  <meta name="description" content="Scheda spettacolo: Massacro">
+  <link rel="icon" href="../favicon.png">
+  <link rel="stylesheet" href="../assets/styles.css">
 
+  <style>
+    /* Header trasparente sopra l’hero, colori brand */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; transition:color .3s ease; }
+    .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .header.scrolled .nav a{ color:var(--brand) !important; }
+
+    /* Hero interno dedicato allo spettacolo */
+    .hero--internal{
+      position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
+      background:url('../assets/spettacoli/massacro-hero.jpg') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height: calc(var(--vh, 1vh) * 100); }
+
+    /* Mobile: evita background-attachment:fixed */
+    @media (max-width: 1024px){
+      .hero--internal{ background-attachment:scroll; }
+    }
+
+    /* Tema chiaro per le schede spettacolo */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Solo hamburger su mobile, header invisibile */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0; height:0;
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important; box-shadow:none !important;
+      }
+    }
+
+    /* Galleria immagini semplice */
+    .gallery{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+    .gallery img{ display:block; width:100%; height:auto; border-radius:var(--r); border:1px solid var(--line); }
+    @media (min-width:900px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
+
+    /* Tabella crediti */
+    .credits{ width:100%; border-collapse:collapse; margin:12px 0 0; }
+    .credits th, .credits td{ padding:10px 12px; border:1px solid var(--line); vertical-align:top; }
+    .credits th{ width:28ch; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:var(--brand); }
+
+    /* Callout scheda tecnica */
+    .tech{ border:1px solid var(--line); border-radius:var(--r); padding:16px; background:#fafafa; }
+    .back-link{ display:inline-block; margin-top:12px; }
+
+    /* Locandina spettacolo */
+    .show-header{
+      display:flex;
+      flex-direction: column;
+      gap:24px;
+      align-items:flex-start;
+      margin-bottom:24px;
+    }
+    .poster{
+      width:100%; max-width:420px;
+      border:1px solid var(--line); border-radius:var(--r);
+      overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.1);
+      cursor:pointer;
+    }
+    .poster img{
+      display:block; width:100%; height:auto;
+      object-fit:cover; object-position:center;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .poster img:hover,
+    .poster img:focus-visible{
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    .show-meta{
+      flex:1; width:100%;
+    }
+    @media (min-width:900px){
+      .show-header{
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
+      }
+      .poster{
+        flex-shrink: 0;
+        width: 420px;
+        max-width: 420px;
+      }
+      .show-meta{
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + NAV + HAMBURGER -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="../chi-siamo.html">CHI SIAMO</a>
+      <a href="../spettacoli.html" aria-current="page">SPETTACOLI</a>
+      <a href="../progetti.html">PROGETTI</a>
+      <a href="../sostienici.html">SOSTIENICI</a>
+      <a href="../parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="../trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- Contenuto -->
+  <main>
+    <section class="container section">
+      <div class="show-header">
+        <figure class="poster">
+          <img src="../assets/spettacoli/massacro-poster.png"
+               data-full="../assets/spettacoli/massacro-poster.png"
+               alt="Locandina — Massacro"
+               tabindex="0">
+        </figure>
+          <div class="show-meta">
+          <h1 class="h1">MASSACRO</h1>
+          <h1 class="h1">Teatro senza difese</h1>
+          <p class="muted">14 gennaio 2017</p>
+          <p class="muted"><em>Galleria Nazionale d’Arte Moderna e Contemporanea (Roma)</em></p>
+        </div>
+      </div>
+      <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>Alla visione non uno spettacolo ma uno studio di ricerca in diretta dove il teatro viene evocato, interrogato, sperimentato nei suoi elementi essenziali. Una proposta per cosi dire senza rete, senza protezioni e difese perché retta esclusivamente dall’azione degli attori che danno al lavoro fisico la costruzione di spazio – tempo – corpo comune.</em></p>
+        
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/massacro-01.jpg" data-full="../assets/spettacoli/massacro-01.jpg" alt="massacro — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/massacro-02.jpg" data-full="../assets/spettacoli/massacro-02.jpg" alt="massacro — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/massacro-03.jpg" data-full="../assets/spettacoli/massacro-03.jpg" alt="massacro — foto 3" tabindex="0">
+          <img src="../assets/spettacoli/massacro-04.jpg" data-full="../assets/spettacoli/massacro-04.jpg" alt="massacro — foto 4" tabindex="0">
+          <img src="../assets/spettacoli/massacro-05.jpg" data-full="../assets/spettacoli/massacro-05.jpg" alt="massacro — foto 5" tabindex="0">
+          <img src="../assets/spettacoli/massacro-06.jpg" data-full="../assets/spettacoli/massacro-06.jpg" alt="massacro — foto 6" tabindex="0">
+          <img src="../assets/spettacoli/massacro-07.jpg" data-full="../assets/spettacoli/massacro-07.jpg" alt="massacro — foto 7" tabindex="0">
+        </div>
+
+        <a class="back-link" href="../spettacoli.html" aria-label="Torna all'elenco spettacoli">← Torna a SPETTACOLI</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+      <section>
+        <h3>PARTNER</h3>
+        <div class="partners">
+          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
+            <img src="../logopartner.png" alt="Partner Shelter City Rome">
+          </a>
+        </div>
+      </section>
+
+      <div class="footer-brand">
+        <a href="../index.html" aria-label="Torna alla home">
+          <img src="../logo.png" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Script esterni: logica header + galleria/lightbox -->
+  <script src="../assets/site.js"></script>
+  <script src="../assets/gallery.js"></script>
+ </body>
+</html>
