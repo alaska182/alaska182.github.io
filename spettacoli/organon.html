@@ -55,31 +55,54 @@
       margin-bottom:24px;
     }
 
-    .poster{
-      display:flex;
-      flex-direction:row;
-      flex-wrap:wrap;
-      gap:16px;
-      width:100%;
+    .poster {
+      display: flex;
+      overflow-x: auto;
+      gap: 16px;
+      padding: 16px 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--brand) rgba(0,0,0,0.1);
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .poster img{
-      flex:0 0 auto;
-      width:180px;
-      height:auto;
-      object-fit:contain;
-      border-radius:var(--r);
-      border:1px solid var(--line);
-      box-shadow:0 6px 18px rgba(0,0,0,.08);
-      background:#fff;
-      padding:8px;
-      transition:transform .2s ease, opacity .2s ease;
+    .poster::-webkit-scrollbar {
+      height: 6px;
     }
 
-    .poster img:hover,
-    .poster img:focus-visible{
-      transform:scale(1.02);
-      opacity:.95;
+    .poster::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+      border-radius: 3px;
+    }
+
+    .poster::-webkit-scrollbar-thumb {
+      background-color: var(--brand);
+      border-radius: 3px;
+    }
+
+    .poster a {
+      flex: 0 0 auto;
+      display: block;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .poster img {
+      width: 180px;
+      height: auto;
+      object-fit: contain;
+      border-radius: var(--r);
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      background: #fff;
+      padding: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .poster a:hover img,
+    .poster a:focus-visible img {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     .show-meta{ flex:1; width:100%; }
@@ -117,11 +140,21 @@
     <section class="container section">
       <div class="show-header">
         <div class="poster">
-          <img src="../assets/spettacoli/organon-poster.jpg" data-full="../assets/spettacoli/organon-poster.jpg" alt="Locandina — Organon" tabindex="0">
-          <img src="../assets/spettacoli/organon-poster-02.jpg" data-full="../assets/spettacoli/organon-poster-02.jpg" alt="Locandina — Organon" tabindex="0">
-          <img src="../assets/spettacoli/organon-poster-03.jpg" data-full="../assets/spettacoli/organon-poster-03.jpg" alt="Locandina — Organon" tabindex="0">
-          <img src="../assets/spettacoli/organon-poster-04.jpg" data-full="../assets/spettacoli/organon-poster-04.jpg" alt="Locandina — Organon" tabindex="0">
-          <img src="../assets/spettacoli/organon-poster-05.jpg" data-full="../assets/spettacoli/organon-poster-05.jpg" alt="Locandina — Organon" tabindex="0">
+          <a href="../assets/spettacoli/organon-poster.jpg" data-fslightbox="posters">
+            <img src="../assets/spettacoli/organon-poster.jpg" alt="Locandina — Organon 1">
+          </a>
+          <a href="../assets/spettacoli/organon-poster-02.jpg" data-fslightbox="posters">
+            <img src="../assets/spettacoli/organon-poster-02.jpg" alt="Locandina — Organon 2">
+          </a>
+          <a href="../assets/spettacoli/organon-poster-03.jpg" data-fslightbox="posters">
+            <img src="../assets/spettacoli/organon-poster-03.jpg" alt="Locandina — Organon 3">
+          </a>
+          <a href="../assets/spettacoli/organon-poster-04.jpg" data-fslightbox="posters">
+            <img src="../assets/spettacoli/organon-poster-04.jpg" alt="Locandina — Organon 4">
+          </a>
+          <a href="../assets/spettacoli/organon-poster-05.jpg" data-fslightbox="posters">
+            <img src="../assets/spettacoli/organon-poster-05.jpg" alt="Locandina — Organon 5">
+          </a>
         </div>
         <div class="show-meta">
           <h1 class="h1">ORGANON:</h1>
@@ -182,6 +215,7 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js"></script>
   <script src="../assets/site.js"></script>
   <script src="../assets/gallery.js"></script>
 </body>
