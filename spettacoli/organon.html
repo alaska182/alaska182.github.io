@@ -4,11 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>nontantoprecisi — ORGANON</title>
-  <meta name="description" content="Scheda spettacolo: Carne">
+  <meta name="description" content="Scheda spettacolo: Organon">
   <link rel="icon" href="../favicon.png">
   <link rel="stylesheet" href="../assets/styles.css">
 
   <style>
+    /* Header trasparente sopra l’hero, colori brand */
     .header.header--dark{
       position:fixed; top:0; left:0; right:0; z-index:30;
       background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
@@ -18,19 +19,24 @@
     .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
     .header.scrolled .nav a{ color:var(--brand) !important; }
 
+    /* Hero interno dedicato allo spettacolo */
     .hero--internal{
       position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
       background:url('../assets/spettacoli/organon-hero.jpg') center 40% / cover no-repeat fixed;
     }
     .hero--internal .hero-inner{ min-height: calc(var(--vh, 1vh) * 100); }
+
+    /* Mobile: evita background-attachment:fixed */
     @media (max-width: 1024px){
       .hero--internal{ background-attachment:scroll; }
     }
 
+    /* Tema chiaro per le schede spettacolo */
     body:not(.home){ background:#fff !important; color:#111 !important; }
     .muted{ color:#111 !important; }
     .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
 
+    /* Solo hamburger su mobile, header invisibile */
     @media (max-width:800px){
       .header.header--dark{
         background:transparent !important;
@@ -43,81 +49,66 @@
       }
     }
 
+    /* Galleria immagini semplice */
     .gallery{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
     .gallery img{ display:block; width:100%; height:auto; border-radius:var(--r); border:1px solid var(--line); }
     @media (min-width:900px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
 
+    /* Tabella crediti */
+    .credits{ width:100%; border-collapse:collapse; margin:12px 0 0; }
+    .credits th, .credits td{ padding:10px 12px; border:1px solid var(--line); vertical-align:top; }
+    .credits th{ width:28ch; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:var(--brand); }
+
+    /* Callout scheda tecnica */
+    .tech{ border:1px solid var(--line); border-radius:var(--r); padding:16px; background:#fafafa; }
+    .back-link{ display:inline-block; margin-top:12px; }
+
+    /* Locandina spettacolo */
     .show-header{
       display:flex;
-      flex-direction:row;
+      flex-direction: column;
+      gap:24px;
       align-items:flex-start;
-      gap:32px;
       margin-bottom:24px;
     }
-
-    .poster {
-      display: flex;
-      overflow-x: auto;
-      gap: 16px;
-      padding: 16px 0;
-      scrollbar-width: thin;
-      scrollbar-color: var(--brand) rgba(0,0,0,0.1);
-      width: 100%;
-      -webkit-overflow-scrolling: touch;
+    .poster{
+      width:100%; max-width:420px;
+      border:1px solid var(--line); border-radius:var(--r);
+      overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.1);
+      cursor:pointer;
     }
-
-    .poster::-webkit-scrollbar {
-      height: 6px;
+    .poster img{
+      display:block; width:100%; height:auto;
+      object-fit:cover; object-position:center;
+      transition: transform .2s ease, opacity .2s ease;
     }
-
-    .poster::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.05);
-      border-radius: 3px;
-    }
-
-    .poster::-webkit-scrollbar-thumb {
-      background-color: var(--brand);
-      border-radius: 3px;
-    }
-
-    .poster a {
-      flex: 0 0 auto;
-      display: block;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-
-    .poster img {
-      width: 180px;
-      height: auto;
-      object-fit: contain;
-      border-radius: var(--r);
-      border: 1px solid var(--line);
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-      background: #fff;
-      padding: 8px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .poster a:hover img,
-    .poster a:focus-visible img {
+    .poster img:hover,
+    .poster img:focus-visible{
       transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      opacity: 0.95;
     }
-
-    .show-meta{ flex:1; width:100%; }
-
-    @media (max-width:900px){
+    .show-meta{
+      flex:1; width:100%;
+    }
+    @media (min-width:900px){
       .show-header{
-        flex-direction:column;
-        gap:20px;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
       }
-      .poster{ justify-content:center; }
-      .show-meta{ text-align:left; }
+      .poster{
+        flex-shrink: 0;
+        width: 420px;
+        max-width: 420px;
+      }
+      .show-meta{
+        flex: 1;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Header + NAV + HAMBURGER -->
   <header class="header header--dark" id="page-header">
     <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -132,30 +123,21 @@
     </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero hero--internal">
     <div class="hero-inner"></div>
   </section>
 
+  <!-- Contenuto -->
   <main>
     <section class="container section">
       <div class="show-header">
-        <div class="poster">
-          <a href="../assets/spettacoli/organon-poster.jpg" data-fslightbox="posters">
-            <img src="../assets/spettacoli/organon-poster.jpg" alt="Locandina — Organon 1">
-          </a>
-          <a href="../assets/spettacoli/organon-poster-02.jpg" data-fslightbox="posters">
-            <img src="../assets/spettacoli/organon-poster-02.jpg" alt="Locandina — Organon 2">
-          </a>
-          <a href="../assets/spettacoli/organon-poster-03.png" data-fslightbox="posters">
-            <img src="../assets/spettacoli/organon-poster-03.png" alt="Locandina — Organon 3">
-          </a>
-          <a href="../assets/spettacoli/organon-poster-04.png" data-fslightbox="posters">
-            <img src="../assets/spettacoli/organon-poster-04.png" alt="Locandina — Organon 4">
-          </a>
-          <a href="../assets/spettacoli/organon-poster-05.jpg" data-fslightbox="posters">
-            <img src="../assets/spettacoli/organon-poster-05.jpg" alt="Locandina — Organon 5">
-          </a>
-        </div>
+        <figure class="poster">
+          <img src="../assets/spettacoli/organon-poster.jpg"
+               data-full="../assets/spettacoli/organon-poster.jpg"
+               alt="Locandina — Carne"
+               tabindex="0">
+        </figure>
         <div class="show-meta">
           <h1 class="h1">ORGANON:</h1>
           <h1 class="h1">Narrazione organica di città</h1>
@@ -167,11 +149,24 @@
           <p class="muted"><em>Teatro il Cantiere (Roma)</em></p>
         </div>
       </div>
-
       <div class="prose">
         <h2>Sinossi</h2>
-        <p><em>Abbiamo lavorato alla narrazione in scena. Questa per noi si gioca non solo nella voce ma anche e sopratutto attraverso l’edificazione del corpo del narratore...</em></p>
-
+        <p><em>Abbiamo lavorato alla narrazione in scena. Questa per noi si gioca non solo nella voce ma anche e sopratutto attraverso l’edificazione del corpo del narratore. Sulla scena, oltre alle parole, tutti gli altri elementi fisici si articolano tra loro dando vita al racconto come carne alla figura del narratore. Dall’alchimia di questi elementi fondamentali l’azione fisica sorge a dare spazio, tempo e corpo alla vicenda narrata e al suo testimone.</em></p>
+        <p><em>Lo spettacolo lo abbiamo immaginato come racconto di un evento da diversi punti di vista. A seconda del narratore che di volta in volta agisce la scena muta la sua prospettiva. L’intreccio suggerisce una girandola di interpretazioni possibili che si offrono alla lettura del pubblico sollecitandolo a differenti soluzioni di senso.</p></em>
+        <p><em>Il Lavoro dell’attore si esprime in un esercizio di combinazione ogni volta diverso dove gli elementi scenici, in una serie di accostamenti, giocano diverse composizioni dello spazio, differenti durate e partiture di tempo, proprie segmentazioni e variazioni del gesto nella manifestazione del corpo e emozione della presenza.</p></em>
+        <p><em>Carne, il titolo, per dire la carne delle cose, per dire quanto appare di più crudamente reale e che per noi consiste non nella gravità del suo peso bensì nell’umana relazione col cosmo che ciascuno, ancor prima della nascita, vive. È a partire da qui che la realtà si costruisce, il mondo prende e dà corpo, che ogni storia è possibile. Storie che noi vorremmo comunque fatte di vicinanza, di accoglienza, di cura reciproca delle nostre membra.</em></p>
+        <p><em>E allora allungo la mano, la tendo, ancora di più, non finisce più.</em></p>
+        <p><em>Non finisce più perché incontro il mondo.</em></p>
+        <p><em>Dove finisce un corpo, dove finisce il mio corpo?</em></p>
+        <p><em>Vedo. Vedo perché mi guardi. Vedosonomondo.</em></p>
+        <p><em>Mi spoglio provo a farlo. Mispogliospogliandoti.</em></p>
+        <p><em>La Carne! La carne c’è perché mi guardi.</em></p>
+        <p><em>Dove finisce un corpo? Cosa vedo, cosa vedi?</em></p>
+        <p><em>Niente altro che una mela, solo una mela:</em></p>
+        <p><em>l’istituzione della visione licenzia corpi e vedute e anche la natura non è indifferente.</em></p>
+        <p><em>Ed anche i nomi, le cose:</em></p>
+        <p><em>ti dico e non ci sei più, perduta nell’im-possibile nome.</em></p>
+        
         <div class="gallery" aria-label="Galleria fotografica">
           <img src="../assets/spettacoli/organon-01.jpg" data-full="../assets/spettacoli/organon-01.jpg" alt="organon — foto 1" tabindex="0">
           <img src="../assets/spettacoli/organon-02.jpg" data-full="../assets/spettacoli/organon-02.jpg" alt="organon — foto 2" tabindex="0">
@@ -187,19 +182,20 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer footer--light">
     <div class="container footer-grid footer-grid--three">
       <section>
         <h3>PARTNER</h3>
         <div class="partners">
-          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank">
+          <a href="https://sheltercity.org/shelter-cities/rome/" target="_blank" rel="noopener noreferrer" aria-label="Visita Shelter City Rome">
             <img src="../logopartner.png" alt="Partner Shelter City Rome">
           </a>
         </div>
       </section>
 
       <div class="footer-brand">
-        <a href="../index.html">
+        <a href="../index.html" aria-label="Torna alla home">
           <img src="../logo.png" alt="Nontantoprecisi">
         </a>
       </div>
@@ -215,8 +211,8 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js"></script>
+  <!-- Script esterni: logica header + galleria/lightbox -->
   <script src="../assets/site.js"></script>
   <script src="../assets/gallery.js"></script>
-</body>
+ </body>
 </html>
