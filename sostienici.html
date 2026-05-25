@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — sostienici</title>
+  <meta name="description" content="Produzioni, laboratori, rassegne.">
+  <link rel="icon" href="favicon.webp">
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="view-transition" content="same-origin"/>
+
+  <style>
+    /* --- HEADER INTERNE (comune a tutte le schede) --- */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; }
+
+    /* Header bianco dopo hero (desktop) */
+    @media (min-width:801px){
+      .header.header--dark.scrolled{
+        background:#fff; border-bottom:1px solid var(--line);
+        box-shadow:0 2px 6px rgba(0,0,0,.08);
+      }
+      .header.header--dark.scrolled .nav a{ color:var(--brand) !important; }
+    }
+
+    /* MOBILE: solo hamburger flottante, nessuna barra */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border:0 !important;
+        box-shadow:none !important;
+        height:0; padding:0;
+      }
+      .hamburger{ display:block; }
+      body.is-mobile .header.header--dark.scrolled{
+        background:transparent !important;
+        box-shadow:none !important;
+        border:0 !important;
+      }
+    }
+
+    /* Hero interno a pieno schermo — immagine specifica della pagina */
+    .hero--internal{
+      position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
+      background:url('assets/sostienici-hero.webp') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height:100vh; }
+
+    /* Testo nero su sfondo bianco per le schede */
+    body:not(.home){
+      background:#fff !important;
+      color:#111 !important;
+    }
+    .muted{ color:#111 !important; }
+    .prose a{
+      color:var(--brand);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    /* Footer chiaro */
+    .footer.footer--light{
+      background:#fff;
+      color:#111;
+    }
+    .footer.footer--light .muted{ color:#111 !important; }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER + HAMBURGER -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="chi-siamo.html">CHI SIAMO</a>
+      <a href="spettacoli.html">SPETTACOLI</a>
+      <a href="progetti.html">PROGETTI</a>
+      <a href="sostienici.html">SOSTIENICI</a>
+      <a href="parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- CONTENUTO -->
+  <main>
+    <section class="container section">
+      <h1 class="h1">sostienici</h1>
+      <div class="prose">
+        <p class="lead">Sostieni le attività culturali e sociali della nostra associazione.<br>Ogni contributo ci permette di realizzare progetti con e per la comunità.</p>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="prose">
+        <h2>Perché donare</h2>
+        <p>Le donazioni a favore di un'associazione ETS sono detraibili o deducibili dalla tua dichiarazione dei redditi. Oltre a supportare i nostri progetti, puoi beneficiare di vantaggi fiscali previsti dalla legge.</p>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="prose">
+        <h2>Dona con bonifico</h2>
+        <div class="donation-method">
+          <p>IBAN: <strong>IT76P0501803200000017143405</strong><br>
+          Intestato a: <strong>"Nontantoprecisi"</strong><br>
+          Causale: <strong>"Donazione liberale – Nome Cognome"</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="prose">
+        <h2>Dona ora online</h2>
+        <p>Supporta l'associazione con PayPal o carta.<br>Donazione immediata e sicura.</p>
+        <!-- PayPal button styles are in assets/styles.css -->
+        <div class="donation-button">
+          <a href="https://www.paypal.com/paypalme/nontantoprecisi" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="button-56"
+             aria-label="Dona con PayPal">
+            <img src="assets/paypal_logo.png" alt="PayPal" class="paypal-logo">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="prose">
+        <h2>Il tuo 5×1000</h2>
+        <div class="cinquexmille">
+          <p class="lead">Destinare il 5×1000 non comporta alcun costo per te.<br>Una semplice firma sostiene le attività dell'associazione.</p>
+          
+          <h3>Istruzioni:</h3>
+          <ol>
+            <li>Firma nel riquadro "SOSTEGNO DEL VOLONTARIATO E DELLE ORGANIZZAZIONI NON LUCRATIVE DI UTILITÀ SOCIALE” del tuo 730, MODELLO DEI REDDITI O CU</li>
+            <li>Inserisci il codice fiscale: <strong>96453050583</strong></li>
+            <li>Indica "<strong>Associazione nontantoprecisi ETS</strong>"</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+            <section>
+        <h3>PRIVACY &amp; POLICY</h3>
+        <p class="muted"><a href="privacy.html">Leggi l'informativa</a></p>
+      </section>
+
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Torna alla home">
+          <img src="logo.webp" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- SCRIPT comportamento header/hamburger -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Make PayPal button open in a new window
+    const paypalLink = document.querySelector('a[href*="paypal.com"]');
+    if (paypalLink) {
+      paypalLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(this.href, 'paypal', 'width=600,height=600,menubar=no,status=no,location=no,toolbar=no');
+      });
+    }
+
+    const header = document.getElementById('page-header');
+    const hero = document.querySelector('.hero--internal');
+    const btn = document.getElementById('hamburger');
+    const nav = document.getElementById('primary-nav');
+    const BP = 800;
+
+    function isMobile(){ return window.innerWidth <= BP; }
+
+    function syncScrolled(){
+      if (!header || !hero) return;
+      const heroHeight = hero.offsetHeight || 0;
+
+      if (isMobile()){
+        document.body.classList.add('is-mobile');
+        header.classList.remove('scrolled');
+        return;
+      }
+
+      document.body.classList.remove('is-mobile');
+      if (window.scrollY > heroHeight - 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+
+    syncScrolled();
+    window.addEventListener('scroll', syncScrolled, {passive:true});
+    window.addEventListener('resize', syncScrolled);
+
+    if (btn){
+      function toggleMenu(force){
+        const willOpen = typeof force === 'boolean' ? force : !document.body.classList.contains('menu-open');
+        document.body.classList.toggle('menu-open', willOpen);
+        btn.setAttribute('aria-expanded', String(willOpen));
+      }
+      btn.addEventListener('click', () => toggleMenu());
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+      if (nav) nav.addEventListener('click', e => { if (e.target.tagName === 'A') toggleMenu(false); });
+    }
+  });
+  </script>
+</body>
+</html>

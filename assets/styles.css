@@ -1,0 +1,871 @@
+/* =========================================================
+   FOGLIO DI STILE PRINCIPALE — nontantoprecisi
+   Questo file si trova in: assets/styles.css
+   Viene caricato da tutte le pagine del sito.
+   ========================================================= */
+
+:root{
+  /* Colore rosso del brand — usato per link, titoli, accenti */
+  --brand:#9E2B3A;
+  --ink:#111; --bg:#fff; --muted:#666; --line:#e5e7eb;
+  --max:1000px; --r:14px;
+}
+
+/* === FONT SQUARE ===
+   I file .otf si trovano in: assets/fonts/
+   Tre varianti: Light (300), Regular (400), Bold (700) */
+@font-face{ font-family:"Square"; src:url("fonts/Square-Light.otf") format("opentype"); font-weight:300; font-style:normal; font-display:swap; }
+@font-face{ font-family:"Square"; src:url("fonts/Square-Regular.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face{ font-family:"Square"; src:url("fonts/Square-Bold.otf") format("opentype"); font-weight:700; font-style:normal; font-display:swap; }
+
+/* base */
+*{box-sizing:border-box}
+html,body{ margin:0; height:100%; font:16px/1.5 "Square",system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif; color:var(--ink); background:var(--bg); }
+a{color:var(--ink); text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* header (pagine interne: sticky bianco) */
+.header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; border-bottom:1px solid var(--line);
+  background:#fff; position:sticky; top:0; z-index:20;
+}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700}
+.brand img{width:36px; height:36px; border-radius:8px}
+
+/* NAV */
+.nav{
+  display:flex; gap:clamp(18px, 2.4vw, 32px); flex-wrap:wrap; align-items:center; justify-content:center;
+}
+.nav a{
+  color:var(--brand);
+  text-transform:uppercase;
+  font-family:"Square", sans-serif;
+  font-weight:700;
+  font-size:clamp(14px, 1.6vw + .25rem, 20px);
+  letter-spacing:0.08em;
+  line-height:1.4;
+  text-decoration:none;
+  text-underline-offset:6px;
+  text-decoration-thickness:2px;
+  transition:color .2s ease, text-decoration .2s ease;
+  /* --- per animazione sottolineatura --- */
+  position:relative;
+  display:inline-block;
+  padding-bottom:2px;
+}
+/* Sottolineatura animata: cresce da sinistra con hover/focus */
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  bottom:-4px;
+  height:2px;
+  width:100%;
+  background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .28s ease;
+}
+.nav a:hover::after,
+.nav a:focus-visible::after{
+  transform:scaleX(1);
+}
+.nav a:hover{ text-decoration:none; } /* evita doppia sottolineatura */
+
+/* layout generico (pagine interne) */
+.container{max-width:var(--max); margin:0 auto; padding:20px 16px}
+.h1{font-size:clamp(26px, 3vw, 34px); margin:12px 0}
+.muted{color:var(--muted)}
+.footer{border-top:1px solid var(--line); padding:24px 16px; color:var(--muted); font-size:14px}
+
+/* --- HOME overrides --- */
+body.home{ min-height: calc(var(--vh, 1vh) * 100); overflow-x:hidden; overflow-y:auto; }
+.home .header{
+  position:fixed; top:0; left:0; right:0; z-index:30;
+  background:transparent; border-bottom:0;
+  justify-content:center; gap:clamp(8px, 1.2vw, 16px);
+  padding-inline: clamp(10px, 3vw, 24px);
+}
+
+/* HERO home */
+.hero{
+  position:relative;
+  min-height: calc(var(--vh, 1vh) * 100);
+  isolation:isolate; overflow:hidden;
+  background: url('hero.webp') center 40% / cover no-repeat;
+}
+.hero::before{ content:none !important }
+.hero-inner{
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:clamp(18px, 3vh, 28px);
+  padding-top:clamp(6vh, 8vh, 10vh);
+}
+.hero .logo-extended{
+  width:min(78%, 760px); height:auto; display:block; margin:0 auto;
+  filter: drop-shadow(0 10px 40px rgba(0,0,0,.55));
+}
+
+/* sezioni semplici (pagine interne) */
+.section{padding:48px 0; border-top:1px solid var(--line)}
+.grid{display:grid; gap:18px}
+@media (min-width:800px){ .grid{grid-template-columns:repeat(3,1fr)} }
+
+.card{border:1px solid var(--line); border-radius:var(--r); padding:18px; background:#fff}
+.card h2{margin:.2em 0 .4em; font-size:22px}
+
+/* footer blocchi (pagine interne) */
+.footer-grid{display:grid; gap:16px}
+@media (min-width:800px){ .footer-grid{grid-template-columns:2fr 1fr} }
+.partners{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.partner{
+  width:96px; height:48px; border:1px dashed var(--line); border-radius:10px;
+  background:#fafafa; display:flex; align-items:center; justify-content:center;
+  font-size:12px; color:#999
+}
+
+/* utilità */
+.btn{ display:inline-block; background:var(--brand); color:#fff; padding:10px 14px; border-radius:10px; font-weight:700 }
+
+/* PayPal Button */
+.button-56 {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Square", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 2rem 0;
+  letter-spacing: 0.3px;
+}
+
+.button-56:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.button-56:hover:after {
+  transform: translate(0, 0);
+}
+
+.button-56:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.button-56:hover {
+  outline: 0;
+}
+
+.button-56 .paypal-logo {
+  width: 120px;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .button-56 {
+    padding: 0 40px;
+  }
+}
+
+/* responsive rifiniture */
+@media (max-width: 720px){
+  .nav{ justify-content:center }
+  .home .header{ padding-top:8px; padding-bottom:8px }
+  .hero .logo-extended{ width:min(88%, 560px) }
+}
+
+/* schermi larghi */
+@media (min-width: 1200px) {
+  .nav { gap: 40px; }
+  .nav a { font-size: 22px; letter-spacing: 0.1em; text-underline-offset: 7px; }
+}
+
+/* ====== HAMBURGER + DRAWER MOBILE ====== */
+.hamburger{
+  display:none; position:fixed; top:16px; right:20px; z-index:40; width:38px; height:28px;
+  background:none; border:none; cursor:pointer; -webkit-tap-highlight-color: transparent;
+}
+.hamburger span{ display:block; height:4px; width:100%; margin:6px 0; background:var(--brand); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.hamburger:focus-visible{ outline:2px solid var(--brand); outline-offset:4px; border-radius:6px; }
+.menu-open .hamburger span:nth-child(1){ transform:translateY(10px) rotate(45deg); }
+.menu-open .hamburger span:nth-child(2){ opacity:0; }
+.menu-open .hamburger span:nth-child(3){ transform:translateY(-10px) rotate(-45deg); }
+
+/* Drawer mobile */
+@media (max-width: 800px){
+  .hamburger{ display:block; }
+  .nav{
+    position:fixed; top:0; left:0; height: calc(var(--vh, 1vh) * 100); width:min(78vw, 320px);
+    background:#000; display:flex; flex-direction:column; align-items:flex-start;
+    padding:80px 24px 24px; gap:18px; transform:translateX(-100%); transition:transform .28s ease; z-index:35;
+    box-shadow:8px 0 24px rgba(0,0,0,.4);
+  }
+  .menu-open .nav{ transform:translateX(0); }
+  body.menu-open::before{ content:""; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:30; }
+  .nav a{
+    color:#fff; font-family:"Square", sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(18px, 2.6vw + .4rem, 24px); letter-spacing:.08em; line-height:1.5; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px;
+  }
+  .nav a:hover{ text-decoration:none; }
+  /* sottolineatura coerente nel drawer nero */
+  .nav a::after{ bottom:-6px; background:#fff; }
+  .menu-open{ overflow:hidden; }
+}
+
+/* === OVERRIDE SCHEDE INTERNE (non si applica alla home) === */
+body:not(.home){ background:#000; color:#fff; }
+
+/* Header nero con menu centrato e spaziato */
+.header--dark{
+  position:sticky; top:0; z-index:20; background:#000; border-bottom:1px solid #1a1a1a;
+  display:flex; align-items:center; justify-content:center; padding:12px 16px;
+}
+.header--dark .nav{ display:flex; align-items:center; justify-content:center; gap:clamp(18px, 2.4vw, 32px); flex-wrap:wrap; }
+.header--dark .nav a{ color:#fff; text-transform:uppercase; font-weight:700; letter-spacing:.08em; text-decoration:none; text-underline-offset:6px; text-decoration-thickness:2px; }
+.header--dark .nav a:hover{ text-decoration:none; }
+
+/* Logo fisso in basso a destra, clic per home */
+.fixed-logo{ position:fixed; right:20px; bottom:20px; width:min(28vw, 150px); opacity:.9; z-index:100; }
+.fixed-logo img{ width:100%; height:auto; display:block; }
+
+/* Leggibilità su sfondo nero */
+.section{ border-top:1px solid #1a1a1a; }
+.footer{ border-top:1px solid #1a1a1a; }
+.muted{ color:#c9c9c9; }
+.partner{ background:#0b0b0b; border-color:#2a2a2a; color:#a3a3a3; }
+@media (max-width:800px){
+  .header--dark .nav{ gap:18px; }
+  .fixed-logo{ right:14px; bottom:14px; width:min(36vw, 140px); }
+}
+
+/* ===================== AGGIUNTE ===================== */
+
+/* 1) Header scuro sovrapposto alla foto e link sempre brand */
+.header--overlay{
+  position:fixed; top:0; left:0; right:0; z-index:30;
+  background:transparent; border-bottom:0;
+}
+.header--overlay .nav a{ color:var(--brand) !important; }
+
+/* 2) HERO interno a pieno schermo (pagina chi-siamo) */
+.hero--internal{
+  position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
+  background: url('chi-hero.webp') center 40% / cover no-repeat fixed;
+}
+.hero--internal::before{ content:none; }
+.hero--internal .hero-inner{
+  position:relative; z-index:1; display:flex; align-items:center; justify-content:center; flex-direction:column;
+  gap:16px; padding-top:12vh; padding-inline:16px; min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* 3) Tipografia leggibile per testi lunghi */
+.prose{
+  max-width:68ch; margin:0 auto;
+  font-size:clamp(17px, 1.2vw + .2rem, 19px);
+  line-height:1.75; letter-spacing:.005em;
+}
+.prose p{ margin:0 0 1em; }
+.prose p + p{ margin-top:.4em; }
+.prose h2{ font-size:clamp(22px, 2vw, 26px); margin:1.6em 0 .6em; }
+.prose h3{ font-size:clamp(19px, 1.6vw, 22px); margin:1.2em 0 .4em; }
+.prose ul,.prose ol{ margin:.8em 0 .8em 1.2em; }
+.prose strong{ font-weight:700; }
+.prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+@media (min-width:1100px){
+  .prose.two-col{ column-count:2; column-gap:3rem; }
+  .prose.two-col h2,.prose.two-col h3{ break-inside:avoid; }
+}
+
+/* 4) Footer bianco con tre blocchi e proporzioni dei loghi */
+.footer--light{ background:#fff; color:var(--ink); }
+.footer--light .muted{ color:var(--ink); }
+.footer-grid--three{
+  display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:20px;
+}
+.footer-grid--three > section{ flex:1 1 280px; }
+.footer-contacts{ text-align:right; }
+.footer .partners{ justify-content:flex-start; }
+.footer .partners img{ display:block; height:clamp(52px,6vw,90px); width:auto; margin-top:12px; }
+.footer .footer-brand{ flex:0 0 auto; text-align:center; margin-top:4px; }
+.footer .footer-brand img{ display:block; margin:0 auto; width:clamp(100px,14vw,140px); height:auto; opacity:.95; }
+
+/* Mobile: spaziatura footer */
+@media (max-width:800px){
+  .footer-grid--three{ gap:24px; }
+  .footer-contacts{ text-align:left; }
+}
+
+/* Footer: estetica migliorata */
+.footer{
+  background: #fafafa;
+  border-top: 1px solid #e0e0e0;
+  padding: 56px 16px 36px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer--light{ 
+  background: #fff;
+  color: var(--ink);
+}
+
+.footer-grid--three{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 40px;
+  align-items: start;
+  max-width: var(--max);
+  margin: 0 auto 32px;
+}
+
+/* Sezioni: titoli e contenuto */
+.footer-grid--three > section { 
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-grid--three h3{
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.footer-contacts { 
+  text-align: left;
+}
+
+.footer-contacts p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.footer-contacts a {
+  color: var(--brand);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(158, 43, 58, 0.3);
+  transition: all .2s ease;
+}
+
+.footer-contacts a:hover {
+  border-color: var(--brand);
+  opacity: 0.85;
+}
+
+/* Partner: loghi ben spaced */
+.footer .partners {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.footer .partners a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  transition: opacity .2s ease;
+  border: none;
+}
+
+.footer .partners a:hover {
+  opacity: 1;
+}
+
+.footer .partners img {
+  height: clamp(48px, 6vw, 72px);
+  width: auto;
+  object-fit: contain;
+}
+
+/* Brand centrale */
+.footer .footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer .footer-brand a {
+  display: inline-flex;
+  opacity: 0.92;
+  transition: opacity .2s ease;
+  border: none;
+}
+
+.footer .footer-brand a:hover {
+  opacity: 1;
+}
+
+.footer .footer-brand img {
+  width: clamp(100px, 11vw, 130px);
+  height: auto;
+}
+
+/* Mobile */
+@media (max-width: 800px){
+  .footer {
+    padding: 40px 16px 28px;
+  }
+
+  .footer-grid--three {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 24px;
+  }
+
+  .footer-grid--three > section {
+    text-align: left;
+  }
+
+  .footer .footer-brand {
+    order: -1;
+    margin-bottom: 8px;
+  }
+
+  .footer-contacts {
+    text-align: left;
+  }
+
+  .footer .partners {
+    justify-content: flex-start;
+  }
+}
+
+/* =====================
+   FONT BASE GENEVA
+   ===================== */
+
+/* Corpo testo, paragrafi, link, liste → Geneva */
+body, p, a, li, span, div {
+  font-family: Geneva, system-ui, sans-serif;
+}
+
+/* Titoli, header, bottoni e navigazione → Square */
+h1, h2, h3, h4, h5, h6,
+.nav a,
+.brand,
+.btn {
+  font-family: "Square", system-ui, sans-serif;
+}
+
+/* ===== Lista spettacoli (senza grassetto, senza sottolineatura) ===== */
+.show-list{
+  --year-col-width: clamp(7ch, 12ch, 14ch);
+  list-style:none;
+  margin:1.6rem 0 0;
+  padding:0;
+  font-size:clamp(17px, 1.1vw + .2rem, 19px);
+  line-height:1.75;
+}
+.show-list li{
+  display:grid;
+  grid-template-columns: clamp(7ch, 12ch, 14ch) 1fr;
+  gap:18px;
+  display:flex;
+  align-items:baseline;
+  gap:18px;
+  padding-block:.8rem;
+}
+.show-list .year{
+  color:inherit;
+  flex:0 0 var(--year-col-width);
+  text-align:right;
+  white-space:nowrap;
+  letter-spacing:.01em;
+}
+.show-list .show-link{
+  min-width:0;
+  color:var(--brand);
+  text-decoration:none;
+  font-weight:400;
+  transition:opacity .2s ease;
+}
+.show-list .show-link:hover,
+.show-list .show-link:focus-visible{
+  opacity:.7;
+}
+@media (max-width:560px){
+  .show-list{
+    --year-col-width: clamp(6ch, 9ch, 10ch);
+  }
+  .show-list li{
+    grid-template-columns: clamp(6ch, 9ch, 10ch) 1fr;
+    gap:14px;
+  }
+}
+
+/* Poster affiancata al titolo nelle schede spettacolo */
+.show-header{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:16px;
+  align-items:start;
+  margin-bottom:12px;
+}
+.poster{ 
+  width:100%; 
+  max-width:480px; 
+  margin:0 auto;
+  display:block !important;
+  visibility:visible !important;
+}
+.poster img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:8px;
+  border:1px solid var(--line);
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+/* Desktop: mostra la locandina a sinistra del titolo */
+@media (min-width:760px){
+  .show-header{ 
+    display:flex;
+    flex-direction: row-reverse;
+    gap:24px; 
+    align-items:start;
+  }
+  .poster{ margin:0; max-width:300px; flex-shrink:0; }
+  .show-meta{ flex:1; }
+  .show-meta .h1{ margin-top:0; }
+}
+
+/* Mobile (<800px): locandina sotto (via order), centrata */
+@media (max-width: 800px) {
+  .show-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .show-header .show-meta {
+    order: 0;
+    width: 100%;
+  }
+
+  .show-header .poster {
+    order: 1;
+    display: block !important;
+    visibility: visible !important;
+    width: 100%;
+    max-width: 420px;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+
+  .show-header .poster img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+  }
+}
+
+/* LIGHTBOX / MODAL per consultare le immagini alla dimensione originale */
+.lb-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:120;
+  padding:20px;
+}
+.lb-overlay.is-open{ display:flex; }
+
+.lb-panel{
+  position:relative;
+  max-width:100vw;
+  max-height: calc(var(--vh, 1vh) * 100);
+  padding:20px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+.lb-image{
+  width:auto;
+  height:auto;
+  max-width: calc(100vw - 48px);
+  max-height: calc(var(--vh, 1vh) * 100 - 48px);
+  object-fit: contain;
+  border-radius:8px;
+  background:#000;
+}
+
+/* Riduci padding e margini su schermi piccoli; nascondi frecce se poco spazio */
+@media (max-width:560px){
+  .lb-panel{ padding:8px; }
+  .lb-image{
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - 16px);
+    border-radius:6px;
+  }
+  .lb-prev, .lb-next { display:none; } /* rely on swipe/keyboard on mobile */
+}
+
+/* Controli avanti/indietro/chiudi */
+.lb-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#fff;
+  width:44px; height:44px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+.lb-btn:focus{ outline:2px solid #fff; outline-offset:3px; }
+.lb-prev{ left:12px; }
+.lb-next{ right:12px; }
+.lb-close{
+  position:absolute; right:12px; top:12px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#fff; width:36px; height:36px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+
+/* Mobile: bottoni più vicini e ridimensionati */
+@media (max-width:560px){
+  .lb-btn{ width:40px; height:40px; }
+  .lb-close{ width:36px; height:36px; }
+  .lb-caption{ font-size:13px; padding-inline:6px; }
+}
+
+/* Galleria / thumbnails: mostra tutte le immagini (es. "tempesta") */
+.poster-gallery,
+.gallery {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap:12px;
+  align-items:center;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+/* singola poster (miniatura) */
+.poster-gallery img,
+.gallery img {
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid var(--line);
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  cursor:pointer; /* rende cliccabile la miniatura */
+  transition:transform .18s ease, opacity .18s ease;
+}
+.poster-gallery img:hover,
+.gallery img:hover{ transform:translateY(-4px); opacity:.95; }
+
+/* Su schermi molto piccoli mostra una sola colonna effettiva (immagine sopra sinossi già gestita) */
+@media (max-width: 420px) {
+  .poster-gallery,
+  .gallery { grid-template-columns: 1fr; }
+}
+
+
+.footer{
+  background:#fafafa;
+  border-top:1px solid #e6e6e6;
+  padding:60px 16px 36px;
+  margin-top:40px;
+}
+
+.footer-grid--three{
+  max-width:var(--max);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:40px;
+  align-items:start;
+}
+
+.footer-grid--three h3{
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+  color:#333;
+}
+
+.footer .partners img{
+  height:64px;
+  width:auto;
+  opacity:.9;
+  transition:opacity .2s ease, transform .2s ease;
+}
+
+.footer .partners img:hover{
+  opacity:1;
+  transform:translateY(-3px);
+}
+
+.footer .footer-brand img{
+  width:120px;
+  height:auto;
+}
+
+.footer-contacts{
+  text-align:right;
+  line-height:1.7;
+}
+
+.footer-contacts a{
+  color:var(--brand);
+  text-decoration:none;
+  border-bottom:1px solid rgba(158,43,58,.25);
+}
+
+.footer-contacts a:hover{
+  border-color:var(--brand);
+}
+
+/* mobile */
+@media (max-width:800px){
+  .footer-grid--three{
+    grid-template-columns:1fr;
+    gap:28px;
+    text-align:left;
+  }
+
+  .footer .footer-brand{
+    order:-1;
+    text-align:center;
+  }
+
+  .footer-contacts{
+    text-align:left;
+  }
+}
+
+/* ===================== 
+   BOTTOM-UP TILT PAGE TRANSITIONS (APP STYLE)
+   ===================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* A dark background makes the 3D depth pop when the old page falls back */
+::view-transition {
+  background-color: #111;
+}
+
+/* Keep the header glued to the top of the screen */
+.header {
+  view-transition-name: site-header;
+}
+
+/* Apply the timing and easing */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 1.2s;
+  /* A smooth "snap" curve that slows down elegantly at the end */
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+/* The old page shrinks back and gets darker */
+::view-transition-old(root) {
+  animation-name: scale-back-down;
+  z-index: 1;
+}
+
+/* The new page flies up from the bottom while tilting */
+::view-transition-new(root) {
+  animation-name: tilt-in-up;
+  z-index: 2;
+}
+
+/* Make sure the header doesn't get caught in the 3D rotation */
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation-duration: 1.2s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===================== 
+   THE KEYFRAMES
+   ===================== */
+
+/* New page starts way down (100vh), tilted backward (-12deg), and snaps up into place */
+@keyframes tilt-in-up {
+  0% { 
+    transform: perspective(1200px) translateY(100vh) rotateX(-12deg); 
+    opacity: 0;
+    box-shadow: 0 -30px 60px rgba(0,0,0,0.5);
+    transform-origin: top center;
+  }
+  100% { 
+    transform: perspective(1200px) translateY(0) rotateX(0deg); 
+    opacity: 1;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    transform-origin: top center;
+  }
+}
+
+/* Old page pushes back into the background, scaling down and fading into shadow */
+@keyframes scale-back-down {
+  0% { 
+    transform: scale(1) translateY(0); 
+    opacity: 1;
+    filter: brightness(1);
+  }
+  100% { 
+    transform: scale(0.9) translateY(-5vh); 
+    opacity: 0.5;
+    filter: brightness(0.3); /* Creates the illusion of depth */
+  }
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — spettacoli</title>
+  <meta name="description" content="Produzioni, laboratori, rassegne.">
+  <link rel="icon" href="favicon.webp">
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="view-transition" content="same-origin"/>
+
+  <style>
+    /* Header trasparente sovrapposto all’hero; colori brand */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; transition:color .3s ease; }
+    .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .header.scrolled .nav a{ color:var(--brand) !important; }
+
+    /* Hero responsive: copre il viewport e si ridimensiona */
+    .hero--internal{
+      position:relative; min-height:100dvh; isolation:isolate; overflow:hidden;
+      background:url('assets/spettacoli-hero.webp') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height:100dvh; }
+
+    /* Ottimizzazione mobile: evita background-attachment:fixed */
+    @media (max-width: 1024px){
+      .hero--internal{ background-attachment:scroll; }
+    }
+
+    /* Forzatura tema chiaro nelle pagine interne */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Footer chiaro */
+    .footer.footer--light{ background:#fff; color:#111; }
+    .footer.footer--light .muted{ color:#111 !important; }
+
+    /* ===== Lista spettacoli (titoli senza sottolineatura) ===== */
+    .show-list{
+      list-style:none; margin:1.6rem 0 0; padding:0;
+      font-size:clamp(17px, 1.1vw + .2rem, 19px); line-height:1.75;
+    }
+    .show-list li{
+      display:grid; grid-template-columns: minmax(14ch, 16ch) 1fr;
+      gap:18px; align-items:baseline; padding-block:.8rem;
+    }
+    .show-list .year{
+      color:inherit; text-align:right; white-space:nowrap; letter-spacing:.01em;
+    }
+    .show-list .show-link{
+      color:var(--brand);
+      text-decoration:none;           /* rimozione sottolineatura */
+      font-weight:400;
+      transition:opacity .2s ease;
+    }
+    .show-list .show-link:hover,
+    .show-list .show-link:focus-visible{ opacity:.8; }
+    @media (max-width:560px){
+      .show-list li{ grid-template-columns: minmax(10ch, 12ch) 1fr; gap:14px; }
+    }
+
+    /* ===== Mobile: niente header visibile, solo hamburger ===== */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0;
+        height:0;                 /* elimina la banda in alto */
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important;
+        box-shadow:none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + NAV + HAMBURGER (stesse classi della home) -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="chi-siamo.html">CHI SIAMO</a>
+      <a href="spettacoli.html" aria-current="page">SPETTACOLI</a>
+      <a href="progetti.html">PROGETTI</a>
+      <a href="sostienici.html">SOSTIENICI</a>
+      <a href="parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- Contenuto -->
+  <main>
+    <section class="container section">
+      <h1 class="h1">spettacoli</h1>
+
+      <div class="prose">
+        <ul class="show-list" aria-label="Elenco degli spettacoli">
+          <li><span class="year">2025</span><a class="show-link" href="spettacoli/citta-instabile.html">CITTÀ INSTABILE – PRESAGIO E PREFIGURAZIONE DI UN LUOGO</a></li>
+          <li><span class="year">2024</span><a class="show-link" href="spettacoli/qfwfq.html">QFWFQ – PER FARLA FINITA CON LO SPETTACOLO</a></li>
+          <li><span class="year">2022 / 2023</span><a class="show-link" href="spettacoli/eneidi.html">ENEIDI</a></li>
+          <li><span class="year">2021</span><a class="show-link" href="spettacoli/movimento-per-un-canto.html">MOVIMENTO PER UN CANTO</a></li>
+          <li><span class="year">2019</span><a class="show-link" href="spettacoli/l-inseparabile.html">L’INSEPARABILE</a></li>
+          <li><span class="year">2019</span><a class="show-link" href="spettacoli/cammino.html">CAMMINO – NESSUNO È UNO</a></li>
+          <li><span class="year">2018 / 2019</span><a class="show-link" href="spettacoli/nonsense.html">NONSENSE – STATI RIVOLUZIONARI TRANSITORI</a></li>
+          <li><span class="year">2018</span><a class="show-link" href="spettacoli/percorsi-di-fuga.html">PERCORSI DI FUGA</a></li>
+          <li><span class="year">2016</span><a class="show-link" href="spettacoli/l-immateriale-opera.html">L’IMMATERIALE OPERA</a></li>
+          <li><span class="year">2014</span><a class="show-link" href="spettacoli/organon.html">ORGANON – NARRAZIONE ORGANICA DI CITTÀ – L’AQUILA</a></li>
+          <li><span class="year">2013</span><a class="show-link" href="spettacoli/io-sono-l-ultimo.html">IO SONO L’ULTIMO</a></li>
+          <li><span class="year">2012</span><a class="show-link" href="spettacoli/carne.html">CARNE – PRIMO EPISODIO: EPIFANIA OVVERO DEL VEDERE</a></li>
+          <li><span class="year">2009 / 2010 / 2011</span><a class="show-link" href="spettacoli/nella-tempesta.html">NELLA TEMPESTA DI SHAKESPEARE</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+            <section>
+        <h3>PRIVACY &amp; POLICY</h3>
+        <p class="muted"><a href="privacy.html">Leggi l'informativa</a></p>
+      </section>
+
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Torna alla home">
+          <img src="logo.webp" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Script: header on scroll + hamburger toggle -->
+  <script>
+    const header = document.getElementById('page-header');
+    const hero = document.querySelector('.hero--internal');
+    const btn = document.getElementById('hamburger');
+    const nav = document.getElementById('primary-nav');
+
+    function syncScrolled(){
+      const heroHeight = hero.offsetHeight || 0;
+      if (window.scrollY > heroHeight - 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+    syncScrolled();
+    window.addEventListener('scroll', syncScrolled, { passive: true });
+    window.addEventListener('resize', syncScrolled);
+
+    function toggleMenu(force){
+      const willOpen = typeof force === 'boolean' ? force : !document.body.classList.contains('menu-open');
+      document.body.classList.toggle('menu-open', willOpen);
+      btn.setAttribute('aria-expanded', String(willOpen));
+    }
+    btn.addEventListener('click', () => toggleMenu());
+
+    // Chiude il menu su ESC e dopo il click su un link
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') toggleMenu(false);
+    });
+  </script>
+</body>
+</html>

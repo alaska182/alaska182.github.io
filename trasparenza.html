@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — trasparenza</title>
+  <meta name="description" content="Produzioni, laboratori, rassegne.">
+  <link rel="icon" href="favicon.webp">
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="view-transition" content="same-origin"/>
+
+  <style>
+    /* --- HEADER INTERNE (comune a tutte le schede) --- */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; }
+
+    /* Header bianco dopo hero (desktop) */
+    @media (min-width:801px){
+      .header.header--dark.scrolled{
+        background:#fff; border-bottom:1px solid var(--line);
+        box-shadow:0 2px 6px rgba(0,0,0,.08);
+      }
+      .header.header--dark.scrolled .nav a{ color:var(--brand) !important; }
+    }
+
+    /* MOBILE: solo hamburger flottante, nessuna barra */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border:0 !important;
+        box-shadow:none !important;
+        height:0; padding:0;
+      }
+      .hamburger{ display:block; }
+      body.is-mobile .header.header--dark.scrolled{
+        background:transparent !important;
+        box-shadow:none !important;
+        border:0 !important;
+      }
+    }
+
+    /* Hero interno a pieno schermo */
+    .hero--internal{
+      position:relative; min-height:100vh; isolation:isolate; overflow:hidden;
+      background:url('assets/trasparenza-hero.webp') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height:100vh; }
+
+    /* Testo nero su sfondo bianco per le schede */
+    body:not(.home){
+      background:#fff !important;
+      color:#111 !important;
+    }
+    .muted{ color:#111 !important; }
+    .prose a{
+      color:var(--brand);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    /* Footer chiaro */
+    .footer.footer--light{
+      background:#fff;
+      color:#111;
+    }
+    .footer.footer--light .muted{ color:#111 !important; }
+
+    /* ── Stili specifici sezione trasparenza ── */
+    .trasparenza-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+    }
+    .trasparenza-section h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .trasparenza-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .95rem;
+      margin-bottom: 1rem;
+    }
+    .trasparenza-table th {
+      text-align: left;
+      font-weight: 600;
+      padding: 6px 12px 6px 0;
+      border-bottom: 2px solid #111;
+      white-space: nowrap;
+    }
+    .trasparenza-table td {
+      padding: 8px 12px 8px 0;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+    }
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--brand);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-size: .9rem;
+    }
+    .doc-link::before {
+      content: "↓";
+      font-size: .85rem;
+    }
+    .dichiarazione {
+      background: #f7f7f7;
+      border-left: 3px solid #ccc;
+      padding: .8rem 1rem;
+      font-size: .9rem;
+      color: #555;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER + HAMBURGER -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="chi-siamo.html">CHI SIAMO</a>
+      <a href="spettacoli.html">SPETTACOLI</a>
+      <a href="progetti.html">PROGETTI</a>
+      <a href="sostienici.html">SOSTIENICI</a>
+      <a href="parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- CONTENUTO -->
+  <main>
+    <section class="container section">
+      <h1 class="h1">trasparenza</h1>
+      <div class="prose">
+        <p>Associazione nontantoprecisi ETS, iscritta al Registro Unico Nazionale del Terzo Settore (RUNTS) con numero 143502, si impegna a garantire la massima trasparenza nella propria gestione, nel rispetto del D.Lgs. 117/2017 (Codice del Terzo Settore) e della Legge 104/2024.
+        In questa sezione trovi i documenti e le informazioni che siamo tenuti a pubblicare per legge, nonché ulteriori informazioni che riteniamo utili per chi vuole conoscerci meglio.</p>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           1. CHI SIAMO E GOVERNANCE
+      ══════════════════════════════════════ -->
+      <div class="trasparenza-section">
+        <h2>Chi siamo e governance</h2>
+        <div class="prose">
+          <p>
+            <strong>Denominazione:</strong> Associazione nontantoprecisi ETS<br>
+            <strong>Codice fiscale:</strong> 96453050583<br>
+            <strong>Sede legale:</strong> Via Castelguidone 4, 00159 Roma (RM)<br>
+            <strong>Iscrizione RUNTS:</strong> n. 143502 —
+            <a href="https://servizi.lavoro.gov.it/runts/it-it/Ricerca-enti/Ente" target="_blank" rel="noopener">
+              consulta la scheda pubblica sul RUNTS
+            </a>
+          </p>
+        </div>
+
+              <h2 style="margin-top:1.8rem;">Documenti costitutivi</h2>
+        <p>
+          <a class="doc-link" href="assets/trasparenza/atto-costitutivo.pdf" target="_blank">Atto costitutivo</a><br><br>
+          <a class="doc-link" href="assets/trasparenza/statuto.pdf" target="_blank" rel="noopener">Statuto</a>
+        </p>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           2. BILANCI E RENDICONTI
+      ══════════════════════════════════════ -->
+      <div class="trasparenza-section">
+        <h2>Bilanci e rendiconti</h2>
+        <table class="trasparenza-table">
+          <thead>
+            <tr>
+              <th>Anno</th>
+              <th>Documento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2024</td>
+              <td><a class="doc-link" href="assets/trasparenza/bilancio-2024.pdf" target="_blank">Bilancio 2024</a></td>
+            </tr>
+            <tr>
+              <td>2023 - 2022</td>
+              <td><a class="doc-link" href="assets/trasparenza/bilanci-2022-23.pdf" target="_blank" rel="noopener">Bilanci 2023 - 2022</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+            <section>
+        <h3>PRIVACY &amp; POLICY</h3>
+        <p class="muted"><a href="privacy.html">Leggi l'informativa</a></p>
+      </section>
+
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Torna alla home">
+          <img src="logo.webp" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- SCRIPT comportamento header/hamburger -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('page-header');
+    const hero = document.querySelector('.hero--internal');
+    const btn = document.getElementById('hamburger');
+    const nav = document.getElementById('primary-nav');
+    const BP = 800;
+
+    function isMobile(){ return window.innerWidth <= BP; }
+
+    function syncScrolled(){
+      if (!header || !hero) return;
+      const heroHeight = hero.offsetHeight || 0;
+
+      if (isMobile()){
+        document.body.classList.add('is-mobile');
+        header.classList.remove('scrolled');
+        return;
+      }
+
+      document.body.classList.remove('is-mobile');
+      if (window.scrollY > heroHeight - 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+
+    syncScrolled();
+    window.addEventListener('scroll', syncScrolled, {passive:true});
+    window.addEventListener('resize', syncScrolled);
+
+    if (btn){
+      function toggleMenu(force){
+        const willOpen = typeof force === 'boolean' ? force : !document.body.classList.contains('menu-open');
+        document.body.classList.toggle('menu-open', willOpen);
+        btn.setAttribute('aria-expanded', String(willOpen));
+      }
+      btn.addEventListener('click', () => toggleMenu());
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+      if (nav) nav.addEventListener('click', e => { if (e.target.tagName === 'A') toggleMenu(false); });
+    }
+  });
+  </script>
+</body>
+</html>

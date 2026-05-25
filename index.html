@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi</title>
+  <meta name="description" content="Produzioni, laboratori, rassegne.">
+
+  <!-- Icona del sito (in radice del progetto) -->
+  <link rel="icon" href="favicon.webp">
+
+  <!-- Foglio di stile principale — si trova in assets/styles.css -->
+  <link rel="stylesheet" href="assets/styles.css">
+
+  <meta name="view-transition" content="same-origin"/>
+</head>
+
+<body class="home">
+
+  <!-- =====================
+       HEADER + NAVIGAZIONE
+       Il menu compare in alto su desktop.
+       Su mobile si apre cliccando il pulsante hamburger (le 3 righe).
+       Per aggiungere una voce al menu: copia un <a> e cambia href e testo.
+       ===================== -->
+  <header id="page-header" class="header header--overlay">
+
+    <!-- Pulsante hamburger — visibile solo su mobile -->
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Voci del menu principale -->
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="chi-siamo.html">CHI SIAMO</a>
+      <a href="spettacoli.html">SPETTACOLI</a>
+      <a href="progetti.html">PROGETTI</a>
+      <a href="sostienici.html">SOSTIENICI</a>
+      <a href="parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- =====================
+       HERO — schermata iniziale
+       L'immagine di sfondo si trova in: assets/hero.webp
+       Per cambiarla: sostituire il file assets/hero.webp con la nuova immagine
+       (stesso nome, formato .webp).
+       Il logo al centro si trova in: logo-esteso.webp (radice del progetto)
+       ===================== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="logo-extended" src="logo-esteso.webp" alt="Logo esteso">
+    </div>
+  </section>
+
+  <!-- Script principale: gestisce menu mobile e altezza viewport -->
+  <script src="assets/site.js"></script>
+
+</body>
+</html>

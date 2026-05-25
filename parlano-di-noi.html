@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — parlano di noi</title>
+  <meta name="description" content="Produzioni, laboratori, rassegne.">
+  <link rel="icon" href="favicon.webp">
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="view-transition" content="same-origin"/>
+
+  <style>
+
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
+    }
+
+    .header--dark .nav a{ color:var(--brand) !important; }
+
+    @media (min-width:801px){
+      .header.header--dark.scrolled{
+        background:#fff;
+        border-bottom:1px solid var(--line);
+        box-shadow:0 2px 6px rgba(0,0,0,.08);
+      }
+    }
+
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border:0 !important;
+        box-shadow:none !important;
+        height:0;
+        padding:0;
+      }
+      .hamburger{ display:block; }
+    }
+
+    .hero--internal{
+      position:relative;
+      min-height:100vh;
+      isolation:isolate;
+      overflow:hidden;
+      background:url('assets/parlano-di-noi-hero.webp') center 40% / cover no-repeat fixed;
+    }
+
+    .hero--internal .hero-inner{ min-height:100vh; }
+
+    body:not(.home){
+      background:#fff !important;
+      color:#111 !important;
+    }
+
+    .muted{ color:#111 !important; }
+
+    .prose a{
+      color:var(--brand);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    .footer.footer--light{
+      background:#fff;
+      color:#111;
+    }
+
+    /* ===== SEZIONE RASSEGNA STAMPA ===== */
+
+    .press-section{
+      margin-top:3rem;
+    }
+
+    .press-list{
+      list-style:none;
+      margin:2rem 0 0;
+      padding:0;
+      border-top:1px solid var(--line, rgba(0,0,0,.12));
+    }
+
+    .press-item{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:32px;
+  align-items:center;
+  padding:1.6rem 0;
+  border-bottom:1px solid var(--line, rgba(0,0,0,.12));
+}
+
+.press-logo-frame{
+  width:100%;
+  height:220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+  box-sizing:border-box;
+}
+
+.press-logo{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:200px;
+  object-fit:contain;
+}
+
+.press-logo-frame.is-wide .press-logo{
+  max-width:100%;
+  max-height:180px;
+}
+
+.press-logo-frame.is-square .press-logo{
+  max-width:100%;
+  max-height:180px;
+}
+    .press-content{
+      min-width:0;
+    }
+
+    .press-articles{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .press-title{
+      margin:0;
+      font-size:clamp(18px, 1vw + .55rem, 23px);
+      line-height:1.35;
+      font-weight:400;
+    }
+
+    .press-title a{
+      color:var(--brand);
+      text-decoration:none;
+      transition:opacity .2s ease;
+    }
+
+    .press-title a:hover{
+      opacity:.8;
+    }
+
+    .press-author{
+  display:block;
+  font-size:.95rem;
+  margin-top:4px;
+}
+
+    @media (max-width:760px){
+
+      .press-item{
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+
+      .press-logo-frame{
+        max-width:220px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="header header--dark" id="page-header">
+
+<button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+<span></span><span></span><span></span>
+</button>
+
+<nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+<a href="chi-siamo.html">CHI SIAMO</a>
+<a href="spettacoli.html">SPETTACOLI</a>
+<a href="progetti.html">PROGETTI</a>
+<a href="sostienici.html">SOSTIENICI</a>
+<a href="parlano-di-noi.html">PARLANO DI NOI</a>
+<a href="trasparenza.html">TRASPARENZA</a>
+</nav>
+
+</header>
+
+<section class="hero hero--internal">
+<div class="hero-inner"></div>
+</section>
+
+<main>
+
+<section class="container section">
+
+<h1 class="h1">parlano di noi</h1>
+
+<section class="press-section">
+
+<ul class="press-list">
+
+
+<!-- esempio con UN solo articolo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-wide">
+<img class="press-logo" src="assets/loghi/traiano.webp" alt="traiano">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://traianolivemuseum.com/group_page.php?group=9" target="_blank">
+Dissezione Traiano
+</a>
+<span class="press-author">di Corrado Chiatti e Mattia Pellegrini</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+
+
+<!-- esempio con DUE articoli sotto lo stesso logo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-square">
+<img class="press-logo" src="assets/loghi/ilmanifesto.webp" alt="il manifesto">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://ilmanifesto.it/il-teatro-e-un-luogo-di-critica-ai-processi-di-soggettivazione" target="_blank">
+Il teatro è un luogo di critica ai processi di soggettivazione
+</a>
+<span class="press-author">di Lucrezia Ercolani</span>
+</p>
+
+<p class="press-title">
+<a href="https://ilmanifesto.it/archivio/2003194723" target="_blank">
+Abbiamo gioiosamente occupato il giornale per sostenere la sua sopravvivenza
+</a>
+<span class="press-author">dei TEATRANTI DEL SANTA MARIA DELLA PIETÀ</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+
+
+<!-- esempio con UN solo articolo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-wide">
+<img class="press-logo" src="assets/loghi/rootsroutes.webp" alt="rootsroutes">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://www.roots-routes.org/dove-inizia-un-corpo-lincontro-dei-nontantoprecisi-con-i-mercati-di-traiano-di-maria-francesca-guida-e-i-nontantoprecisi/" target="_blank">
+Dove inizia un corpo?
+</a>
+<span class="press-author">di Maria Francesca Guida</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+
+
+<!-- esempio con UN solo articolo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-wide">
+<img class="press-logo" src="assets/loghi/dinamo.webp" alt="dinamo">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://www.dinamopress.it/news/una-cosmografia-dellumano/" target="_blank">
+Una cosmografia dell'umano
+</a>
+<span class="press-author">di Daniele Poccia</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+<!-- esempio con DUE articoli sotto lo stesso logo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-square">
+<img class="press-logo" src="assets/loghi/atlante.webp" alt="atlante">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://www.atlanteditoriale.com/1646/" target="_blank">
+Quando ogni gesto diventa atto
+</a>
+<span class="press-author">di Taha El Ouaer </span>
+</p>
+
+<p class="press-title">
+<a href="https://www.atlanteditoriale.com/il-teatro-come-kairos-della-cura-basaglia-e-la-sua-eredita/" target="_blank">
+Il teatro come kairos della cura: Basaglia e la sua eredità
+</a>
+<span class="press-author">di De Luca Condino</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+
+<!-- esempio con UN solo articolo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-wide">
+<img class="press-logo" src="assets/loghi/jacobin.webp" alt="jacobin">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://jacobinitalia.it/danza-lunatica-allaquila/" target="_blank">
+Danza lunatica all’Aquila
+</a>
+<span class="press-author">di Daniele Poccia</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+
+<!-- esempio con UN solo articolo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-wide">
+<img class="press-logo" src="assets/loghi/operaviva.webp" alt="operaviva">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://operavivamagazine.org/quando-volete/" target="_blank">
+Quando volete
+</a>
+<span class="press-author">di Marcello Fagiani</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+
+
+<!-- esempio con DUE articoli sotto lo stesso logo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-square">
+<img class="press-logo" src="assets/loghi/eccom.webp" alt="eccom">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://www.youtube.com/watch?v=LAUYo1UwDS4" target="_blank">
+Dove inizia un corpo? - prima parte
+</a>
+
+</p>
+
+<p class="press-title">
+<a href="https://www.youtube.com/watch?v=FgPAFYdPvx8" target="_blank">
+Dove inizia un corpo? - seconda parte
+</a>
+</p>
+
+</div>
+
+</div>
+
+</li>
+
+<!-- esempio con UN solo articolo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-wide">
+<img class="press-logo" src="assets/loghi/wordpress.webp" alt="agitazioni">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://agitazioni.wordpress.com/2020/03/13/la-plebe-di-un-corpo-conversazione-con-marcello-fagiani-dei-nontantoprecisi/" target="_blank">
+La plebe di un corpo
+</a>
+<span class="press-author">di Corrado Chiatti e Mattia Pellegrini</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+
+<!-- esempio con UN solo articolo -->
+
+<li class="press-item">
+
+<div class="press-logo-frame is-wide">
+<img class="press-logo" src="assets/loghi/terzapagina.webp" alt="terzapagina">
+</div>
+
+<div class="press-content">
+
+<div class="press-articles">
+
+<p class="press-title">
+<a href="https://www.terzapaginamagazine.com/eneidi-la-profezia-il-24-novembre-2023-alle-h-2100-centrale-preneste/cinema-e-teatro/" target="_blank">
+ENEIDI. LA PROFEZIA
+</a>
+<span class="press-author">di Alessandro Scarnecchia</span>
+</p>
+
+</div>
+
+</div>
+
+</li>
+<!-- duplica da qui per aggiungere altri -->
+
+</ul>
+
+</section>
+
+</section>
+
+</main>
+
+
+<footer class="footer footer--light">
+
+<div class="container footer-grid footer-grid--three">
+
+      <section>
+        <h3>PRIVACY &amp; POLICY</h3>
+        <p class="muted"><a href="privacy.html">Leggi l'informativa</a></p>
+      </section>
+
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Torna alla home">
+          <img src="logo.webp" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+<section class="footer-contacts">
+
+<h3>CONTATTI</h3>
+
+<p class="muted">
+Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+Sede : Via Castelguidone 4, 00159 Roma (RM)
+</p>
+
+</section>
+
+</div>
+
+</footer>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+const header = document.getElementById('page-header');
+const hero = document.querySelector('.hero--internal');
+const btn = document.getElementById('hamburger');
+const nav = document.getElementById('primary-nav');
+
+function syncScrolled(){
+
+const heroHeight = hero.offsetHeight || 0;
+
+if (window.scrollY > heroHeight - 60)
+header.classList.add('scrolled');
+else
+header.classList.remove('scrolled');
+
+}
+
+syncScrolled();
+
+window.addEventListener('scroll', syncScrolled, {passive:true});
+window.addEventListener('resize', syncScrolled);
+
+function toggleMenu(force){
+
+const willOpen = typeof force === 'boolean'
+? force
+: !document.body.classList.contains('menu-open');
+
+document.body.classList.toggle('menu-open', willOpen);
+
+btn.setAttribute('aria-expanded', String(willOpen));
+
+}
+
+btn.addEventListener('click', () => toggleMenu());
+
+document.addEventListener('keydown', e=>{
+if(e.key==='Escape') toggleMenu(false);
+});
+
+if(nav)
+nav.addEventListener('click', e=>{
+if(e.target.tagName==='A') toggleMenu(false);
+});
+
+});
+
+</script>
+
+</body>
+</html>

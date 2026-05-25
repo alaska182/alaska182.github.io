@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — CAMMINO</title>
+  <meta name="description" content="Scheda spettacolo: CAMMINO">
+  <link rel="icon" href="../favicon.webp">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <meta name="view-transition" content="same-origin"/>
+
+  <style>
+    /* Header trasparente sopra l’hero, colori brand */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; transition:color .3s ease; }
+    .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .header.scrolled .nav a{ color:var(--brand) !important; }
+
+    /* Hero interno dedicato allo spettacolo */
+    .hero--internal{
+      position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
+      background:url('../assets/spettacoli/cammino/cammino-hero.webp') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height: calc(var(--vh, 1vh) * 100); }
+
+    /* Mobile: evita background-attachment:fixed */
+    @media (max-width: 1024px){
+      .hero--internal{ background-attachment:scroll; }
+    }
+
+    /* Tema chiaro per le schede spettacolo */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Solo hamburger su mobile, header invisibile */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0; height:0;
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important; box-shadow:none !important;
+      }
+    }
+
+    /* Galleria immagini semplice */
+    .gallery{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+    .gallery img{ display:block; width:100%; height:auto; border-radius:var(--r); border:1px solid var(--line); }
+    @media (min-width:900px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
+
+    /* Tabella crediti */
+    .credits{ width:100%; border-collapse:collapse; margin:12px 0 0; }
+    .credits th, .credits td{ padding:10px 12px; border:1px solid var(--line); vertical-align:top; }
+    .credits th{ width:28ch; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:var(--brand); }
+
+    /* Callout scheda tecnica */
+    .tech{ border:1px solid var(--line); border-radius:var(--r); padding:16px; background:#fafafa; }
+    .back-link{ display:inline-block; margin-top:12px; }
+
+    /* Locandina spettacolo */
+    .show-header{
+      display:flex;
+      flex-direction: column;
+      gap:24px;
+      align-items:flex-start;
+      margin-bottom:24px;
+    }
+    .poster{
+      width:100%; max-width:420px;
+      border:1px solid var(--line); border-radius:var(--r);
+      overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.1);
+      cursor:pointer;
+    }
+    .poster img{
+      display:block; width:100%; height:auto;
+      object-fit:cover; object-position:center;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .poster img:hover,
+    .poster img:focus-visible{
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    .show-meta{
+      flex:1; width:100%;
+    }
+    @media (min-width:900px){
+      .show-header{
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
+      }
+      .poster{
+        flex-shrink: 0;
+        width: 420px;
+        max-width: 420px;
+      }
+      .show-meta{
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + NAV + HAMBURGER -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="../chi-siamo.html">CHI SIAMO</a>
+      <a href="../spettacoli.html" aria-current="page">SPETTACOLI</a>
+      <a href="../progetti.html">PROGETTI</a>
+      <a href="../sostienici.html">SOSTIENICI</a>
+      <a href="../parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="../trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- Contenuto -->
+  <main>
+    <section class="container section">
+      <div class="show-header">
+        <figure class="poster">
+          <img src="../assets/spettacoli/cammino/cammino-poster.webp"
+               data-full="../assets/spettacoli/cammino/cammino-poster.webp"
+               alt="Locandina — CAMMINO"
+               tabindex="0">
+        </figure>
+        <div class="show-meta">
+          <h1 class="h1">CAMMINO</h1>
+          <h1 class="h1">Nessuno è uno</h1>
+          <p class="muted">7 giugno 2019</p>
+          <p class="muted"><em>Nuovo Cinema Palazzo (Roma)</em></p>
+        </div>
+      </div>
+      <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>Il movimento è sempre una trasformazione del proprio stato corporeo, cambiamento della relazione col mondo che manifesta la concreta materia del nostro vivere. Fuori dalla determinazione meccanica del tempo e dello spazio, noi e le cose che ci stanno intorno e dentro siamo presi nel gioco inarrestabile che, come in un caleidoscopio, disegna la natura comune delle nostre vite col precario equilibrio tra quello che è stabile e quello che non lo è, tra ciò che è mutevole e ciò che permane, tra esitare e quindi restare o darsi nell’azione e allora andare, partire.</em></p>
+        <p><em>Il movimento ci coglie tra l’immagine nostra nel mondo e il riflesso del mondo in ciascuno di noi. Nulla è nascosto o occultabile, ogni cosa traspare e appare al giorno della nostra esistenza, nello specchio di occhi innumerevoli che moltiplica e dà alla visione. Figure tra un arrivo e una partenza, non siamo mai per la prima volta. Presenti nel farsi e disfarsi continuo delle forme che il tempo possiede, diamo al corpo il cammino che solleva dal passo che è stato per posare su quello che ancora non è.</p></em>
+        <p><em>Nessuno è uguale, mutare le distanze e le prossimità, volgere lo sguardo a piani di profondità differente, incrociare linee con linee, angoli e direzioni, affiancare e confrontare, nell’uno manifesta l’altro, nell’antico il nuovo, nell’immobilità apparente la trasformazione. Nessuno è uno. Lontano da quanto sembrava appartenerci e che ora ci fa stranieri, quello che non si conosce avvicina, ci fa numerosi e diversi. Scambiare terra con terra, parola con parola è la ragione per andare. Una persona in cammino è una moltitudine in movimento.</p></em>
+        
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/cammino/cammino-01.webp" data-full="../assets/spettacoli/cammino/cammino-01.webp" alt="cammino — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/cammino/cammino-02.webp" data-full="../assets/spettacoli/cammino/cammino-02.webp" alt="cammino — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/cammino/cammino-03.webp" data-full="../assets/spettacoli/cammino/cammino-03.webp" alt="cammino — foto 3" tabindex="0">
+          <img src="../assets/spettacoli/cammino/cammino-04.webp" data-full="../assets/spettacoli/cammino/cammino-04.webp" alt="cammino — foto 4" tabindex="0">
+          <img src="../assets/spettacoli/cammino/cammino-05.webp" data-full="../assets/spettacoli/cammino/cammino-05.webp" alt="cammino — foto 5" tabindex="0">
+          <img src="../assets/spettacoli/cammino/cammino-06.webp" data-full="../assets/spettacoli/cammino/cammino-06.webp" alt="cammino — foto 6" tabindex="0">
+        </div>
+
+        <p class="muted" style="margin-top:8px; font-size:.85em;">Crediti foto: XXXX</p>
+
+        <a class="back-link" href="../spettacoli.html" aria-label="Torna all'elenco spettacoli">← Torna a SPETTACOLI</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+            <section>
+        <h3>PRIVACY &amp; POLICY</h3>
+        <p class="muted"><a href="../privacy.html">Leggi l'informativa</a></p>
+      </section>
+
+      <div class="footer-brand">
+        <a href="../index.html" aria-label="Torna alla home">
+          <img src="../logo.webp" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Script esterni: logica header + galleria/lightbox -->
+  <script src="../assets/site.js"></script>
+  <script src="../assets/gallery.js"></script>
+ </body>
+</html>
+

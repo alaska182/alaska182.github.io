@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — progetti</title>
+  <meta name="description" content="Produzioni, laboratori, rassegne.">
+  <link rel="icon" href="favicon.webp">
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="view-transition" content="same-origin"/>
+
+  <style>
+    /* Header trasparente sovrapposto all’hero; colori brand */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; transition:color .3s ease; }
+    .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .header.scrolled .nav a{ color:var(--brand) !important; }
+
+    /* Hero responsive: copre il viewport e si ridimensiona */
+    .hero--internal{
+      position:relative; min-height:100dvh; isolation:isolate; overflow:hidden;
+      background:url('assets/progetti-hero.webp') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height:100dvh; }
+
+    /* Ottimizzazione mobile: evita background-attachment:fixed */
+    @media (max-width: 1024px){
+      .hero--internal{ background-attachment:scroll; }
+    }
+
+    /* Forzatura tema chiaro nelle pagine interne */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Footer chiaro */
+    .footer.footer--light{ background:#fff; color:#111; }
+    .footer.footer--light .muted{ color:#111 !important; }
+
+    /* ===== Lista progetti (titoli senza sottolineatura) ===== */
+    .show-list{
+      list-style:none; margin:1.6rem 0 0; padding:0;
+      font-size:clamp(17px, 1.1vw + .2rem, 19px); line-height:1.75;
+    }
+    .show-list li{
+      display:grid; grid-template-columns: minmax(14ch, 16ch) 1fr;
+      gap:18px; align-items:baseline; padding-block:.8rem;
+    }
+    .show-list .year{
+      color:inherit; text-align:right; white-space:nowrap; letter-spacing:.01em;
+    }
+    .show-list .show-link{
+      color:var(--brand);
+      text-decoration:none;           /* rimozione sottolineatura */
+      font-weight:400;
+      transition:opacity .2s ease;
+    }
+    .show-list .show-link:hover,
+    .show-list .show-link:focus-visible{ opacity:.8; }
+    @media (max-width:560px){
+      .show-list li{ grid-template-columns: minmax(10ch, 12ch) 1fr; gap:14px; }
+    }
+
+    /* ===== Mobile: niente header visibile, solo hamburger ===== */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0;
+        height:0;                 /* elimina la banda in alto */
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important;
+        box-shadow:none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + NAV + HAMBURGER (stesse classi della home) -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="chi-siamo.html">CHI SIAMO</a>
+      <a href="spettacoli.html" aria-current="page">SPETTACOLI</a>
+      <a href="progetti.html">PROGETTI</a>
+      <a href="sostienici.html">SOSTIENICI</a>
+      <a href="parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO — immagine di sfondo in: assets/progetti-hero.webp -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- LISTA PROGETTI
+       Per aggiungere un progetto: copia un <li> e modifica anno, link e nome.
+       Il file HTML del progetto va messo nella cartella: progetti/
+       Le voci commentate (con <!-- ... -->) hanno la pagina ancora vuota:
+       decommentale quando il contenuto è pronto. -->
+  <main>
+    <section class="container section">
+      <h1 class="h1">progetti</h1>
+
+      <div class="prose">
+        <ul class="show-list" aria-label="Elenco dei progetti">
+          <!-- CASEMATTE: pagina mancante, aggiungere progetti/case-matte.html -->
+          <!-- <li><span class="year">2026</span><a class="show-link" href="progetti/case-matte.html">CASEMATTE</a></li> -->
+          <!-- Pagine vuote — aggiungere contenuto e poi decommentare -->
+          <!-- <li><span class="year">2025</span><a class="show-link" href="progetti/conatus.html">CONATUS</a></li> -->
+          <!-- <li><span class="year">2025</span><a class="show-link" href="progetti/carotaggi.html">CAROTAGGI</a></li> -->
+          <!-- <li><span class="year">2025</span><a class="show-link" href="progetti/abitare-il-centro.html">ABITARE IL CENTRO ACCECATO DELLA LUCE</a></li> -->
+          <!-- <li><span class="year">2024</span><a class="show-link" href="progetti/asciano-e-chiusure.html">ASCIANO E CHIUSURE</a></li> -->
+          <li><span class="year">2024</span><a class="show-link" href="progetti/mscivi.html">MUSEO CIVICO DELLE CIVILTA'</a></li>
+          <!-- Pagine vuote — aggiungere contenuto e poi decommentare -->
+          <!-- <li><span class="year">2022</span><a class="show-link" href="progetti/valle-san-martino.html">VALLE SAN MARTINO</a></li> -->
+          <li><span class="year">2022</span><a class="show-link" href="progetti/orti-sonanti.html">ORTI SONANTI</a></li>
+          <!-- <li><span class="year">2022</span><a class="show-link" href="progetti/cafausica.html">CAUFASICA - BECOMING FIREFLIES</a></li> --> <!-- pagina vuota -->
+          <li><span class="year">2022</span><a class="show-link" href="progetti/la-luna-in-terra.html">LA LUNA IN TERRA</a></li>
+          <li><span class="year">2022</span><a class="show-link" href="progetti/dris-essere-fiume.html">DRIS - ESSERE FIUME</a></li>
+          <!-- <li><span class="year">2021</span><a class="show-link" href="progetti/dare-a-vedere.html">DARE A VEDERE</a></li> --> <!-- pagina vuota -->
+          <li><span class="year">2020</span><a class="show-link" href="progetti/corpo-a-corpo.html">CORPO A CORPO</a></li>
+          <li><span class="year">2020</span><a class="show-link" href="progetti/dissezione-traiano.html">DISSEZIONE TRAIANO</a></li>
+          <li><span class="year">2019</span><a class="show-link" href="progetti/la-scena-presente.html">LA SCENA PRESENTE</a></li>
+          <li><span class="year">2017</span><a class="show-link" href="progetti/massacro.html">MASSACRO – TEATRO SENZA DIFESE</a></li>
+          <li><span class="year">2015</span><a class="show-link" href="progetti/paesaggi-della-memoria.html">PAESAGGI DELLA MEMORIA</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+            <section>
+        <h3>PRIVACY &amp; POLICY</h3>
+        <p class="muted"><a href="privacy.html">Leggi l'informativa</a></p>
+      </section>
+
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Torna alla home">
+          <img src="logo.webp" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Script: header on scroll + hamburger toggle -->
+  <script>
+    const header = document.getElementById('page-header');
+    const hero = document.querySelector('.hero--internal');
+    const btn = document.getElementById('hamburger');
+    const nav = document.getElementById('primary-nav');
+
+    function syncScrolled(){
+      const heroHeight = hero.offsetHeight || 0;
+      if (window.scrollY > heroHeight - 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+    syncScrolled();
+    window.addEventListener('scroll', syncScrolled, { passive: true });
+    window.addEventListener('resize', syncScrolled);
+
+    function toggleMenu(force){
+      const willOpen = typeof force === 'boolean' ? force : !document.body.classList.contains('menu-open');
+      document.body.classList.toggle('menu-open', willOpen);
+      btn.setAttribute('aria-expanded', String(willOpen));
+    }
+    btn.addEventListener('click', () => toggleMenu());
+
+    // Chiude il menu su ESC e dopo il click su un link
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') toggleMenu(false);
+    });
+  </script>
+</body>
+</html>

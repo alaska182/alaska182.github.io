@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — NONSENSE</title>
+  <meta name="description" content="Scheda spettacolo: NONSENSE">
+  <link rel="icon" href="../favicon.webp">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <meta name="view-transition" content="same-origin"/>
+
+  <style>
+    /* Header trasparente sopra l’hero, colori brand */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; transition:color .3s ease; }
+    .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .header.scrolled .nav a{ color:var(--brand) !important; }
+
+    /* Hero interno dedicato allo spettacolo */
+    .hero--internal{
+      position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
+      background:url('../assets/spettacoli/nonsense/nonsense-hero.webp') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height: calc(var(--vh, 1vh) * 100); }
+
+    /* Mobile: evita background-attachment:fixed */
+    @media (max-width: 1024px){
+      .hero--internal{ background-attachment:scroll; }
+    }
+
+    /* Tema chiaro per le schede spettacolo */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Solo hamburger su mobile, header invisibile */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0; height:0;
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important; box-shadow:none !important;
+      }
+    }
+
+    /* Galleria immagini semplice */
+    .gallery{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+    .gallery img{ display:block; width:100%; height:auto; border-radius:var(--r); border:1px solid var(--line); }
+    @media (min-width:900px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
+
+    /* Tabella crediti */
+    .credits{ width:100%; border-collapse:collapse; margin:12px 0 0; }
+    .credits th, .credits td{ padding:10px 12px; border:1px solid var(--line); vertical-align:top; }
+    .credits th{ width:28ch; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:var(--brand); }
+
+    /* Callout scheda tecnica */
+    .tech{ border:1px solid var(--line); border-radius:var(--r); padding:16px; background:#fafafa; }
+    .back-link{ display:inline-block; margin-top:12px; }
+
+    /* Locandina spettacolo */
+    .show-header{
+      display:flex;
+      flex-direction: column;
+      gap:24px;
+      align-items:flex-start;
+      margin-bottom:24px;
+    }
+    .poster{
+      width:100%; max-width:420px;
+      border:1px solid var(--line); border-radius:var(--r);
+      overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.1);
+      cursor:pointer;
+    }
+    .poster img{
+      display:block; width:100%; height:auto;
+      object-fit:cover; object-position:center;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .poster img:hover,
+    .poster img:focus-visible{
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    .show-meta{
+      flex:1; width:100%;
+    }
+    @media (min-width:900px){
+      .show-header{
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
+      }
+      .poster{
+        flex-shrink: 0;
+        width: 420px;
+        max-width: 420px;
+      }
+      .show-meta{
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + NAV + HAMBURGER -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="../chi-siamo.html">CHI SIAMO</a>
+      <a href="../spettacoli.html" aria-current="page">SPETTACOLI</a>
+      <a href="../progetti.html">PROGETTI</a>
+      <a href="../sostienici.html">SOSTIENICI</a>
+      <a href="../parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="../trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- Contenuto -->
+  <main>
+    <section class="container section">
+      <div class="show-header">
+        <figure class="poster">
+          <img src="../assets/spettacoli/nonsense/nonsense-poster.webp"
+               data-full="../assets/spettacoli/nonsense/nonsense-poster.webp"
+               alt="Locandina — NONSENSE"
+               tabindex="0">
+        </figure>
+          <div class="show-meta">
+          <h1 class="h1">NONSENSE</h1>
+          <h1 class="h1">Stati Rivoluzionari Transitori</h1>
+          <p class="muted">30 maggio - 23 novembre 2018</p>
+          <p class="muted"><em>Nuovo Cinema Palazzo (Roma)</em></p>
+          <p class="muted">15 luglio 2018</p>
+          <p class="muted"><em>Forte dei Borgia, Nepi (Viterbo)</em></p>
+          <p class="muted">1 febbraio 2019</p>
+          <p class="muted"><em>MACRO ASILO (Roma)</em></p>
+        </div>
+      </div>
+
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/nonsense/nonsense-poster-02.webp" data-full="../assets/spettacoli/nonsense/nonsense-poster-02.webp" alt="nonsense — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/nonsense/nonsense-poster-03.webp" data-full="../assets/spettacoli/nonsense/nonsense-poster-03.webp" alt="nonsense — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/nonsense/nonsense-poster-04.webp" data-full="../assets/spettacoli/nonsense/nonsense-poster-04.webp" alt="nonsense — foto 3" tabindex="0">
+        </div>
+      
+      <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>Cos’altro può accadere che non sia già accaduto, cos’altro che non stia accadendo ora e che ci lasci già vecchi nel pensiero di quel che vorremmo. Cos’altro si può fare che non sia stato già fatto e visto, cos’altro si può dire che non sia già detto e ascoltato. Cosa può esistere al di là di quanto sfugge senza soluzione in questa continuità prima dopo, fuori dentro che ci incarna al mondo e che non possediamo? Affidati al solo senso della ragione seguiamo i suoi percorsi lasciando che ci guidi senza condizioni, insensibili, fermi sulla soglia del desiderio che apre a nuovi spazi, altri movimenti, possibili mondi. Quasi vinti, corrotti dalla consuetudine non parliamo che in parole già dette, atti già compiuti, non ci muoviamo che in luoghi già visti, tempi già trascorsi scomparendo a noi stessi e così al mondo. Mossi dall’abitudine le cose ci scivolano addosso vestendoci con abiti che non sono nostri, come intorno a noi dove anime assenti tracciano i contorni di un paesaggio anonimo. Nonsense non sta per discorso senza senso, non vuol dire comportamento gratuito senza capo né coda. Al contrario è una sfida al consueto, alla dittatura del senso che elegge esclusivamente la logica della ragione trascurando le innumerevoli altre ragioni del corpo. Lavoriamo sulla scena contro noi stessi, contro quello che ci sembra motivato dall’abitudine, dalle soluzioni facili dell’ovvio, dai comportamenti di quotidiana inconsapevolezza, oltre quanto pensavamo già di possedere e di poter essere. Con fatica fisica senza rinunciare al rischio dell’errore, troviamo nell’azione collettiva del gruppo la nostra possibilità di agire, la risposta corporea alla volontà di presenza, la necessità di proporsi e l’immediatezza della scelta. Così quanto accade non è frutto di prescrizione, non è esecuzione di un progetto, non è lo svolgimento di un compito. Al contrario è manifesto, appartiene alla natura del tempo, alla materia dello spazio, alla reciprocità dei corpi vivi. Attraversa il pensiero come un umore senza ragione, risiede nella facoltà di vedere beffando le immagini o di sentire il rumore delle parole, è rivoluzionario perché senza compromessi, non si compiace e non fa sconti, chiede l’uso continuo della vita perché è transitorio, appare e già è oltre, vuole cura perché nasce nel lavoro. Venite, se pensate di conoscerci non ci vedrete.</em></p>
+        
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/nonsense/nonsense-01.webp" data-full="../assets/spettacoli/nonsense/nonsense-01.webp" alt="nonsense — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/nonsense/nonsense-02.webp" data-full="../assets/spettacoli/nonsense/nonsense-02.webp" alt="nonsense — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/nonsense/nonsense-03.webp" data-full="../assets/spettacoli/nonsense/nonsense-03.webp" alt="nonsense — foto 3" tabindex="0">
+          <img src="../assets/spettacoli/nonsense/nonsense-04.webp" data-full="../assets/spettacoli/nonsense/nonsense-04.webp" alt="nonsense — foto 4" tabindex="0">
+        </div>
+
+        <p class="muted" style="margin-top:8px; font-size:.85em;">Crediti foto: XXXX</p>
+
+        <a class="back-link" href="../spettacoli.html" aria-label="Torna all'elenco spettacoli">← Torna a SPETTACOLI</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+            <section>
+        <h3>PRIVACY &amp; POLICY</h3>
+        <p class="muted"><a href="../privacy.html">Leggi l'informativa</a></p>
+      </section>
+
+      <div class="footer-brand">
+        <a href="../index.html" aria-label="Torna alla home">
+          <img src="../logo.webp" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Script esterni: logica header + galleria/lightbox -->
+  <script src="../assets/site.js"></script>
+  <script src="../assets/gallery.js"></script>
+ </body>
+</html>
+

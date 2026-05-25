@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nontantoprecisi — ENEIDI</title>
+  <meta name="description" content="Scheda spettacolo: Eneidi">
+  <link rel="icon" href="../favicon.webp">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <meta name="view-transition" content="same-origin"/>
+
+  <style>
+    /* Header trasparente sopra l’hero, colori brand */
+    .header.header--dark{
+      position:fixed; top:0; left:0; right:0; z-index:30;
+      background:transparent; border-bottom:0; justify-content:center; padding:12px 16px;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .header--dark .nav a{ color:var(--brand) !important; transition:color .3s ease; }
+    .header.scrolled{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .header.scrolled .nav a{ color:var(--brand) !important; }
+
+    /* Hero interno dedicato allo spettacolo */
+    .hero--internal{
+      position:relative; min-height: calc(var(--vh, 1vh) * 100); isolation:isolate; overflow:hidden;
+      background:url('../assets/spettacoli/eneidi/eneidi-hero.webp') center 40% / cover no-repeat fixed;
+    }
+    .hero--internal .hero-inner{ min-height: calc(var(--vh, 1vh) * 100); }
+
+    /* Mobile: evita background-attachment:fixed */
+    @media (max-width: 1024px){
+      .hero--internal{ background-attachment:scroll; }
+    }
+
+    /* Tema chiaro per le schede spettacolo */
+    body:not(.home){ background:#fff !important; color:#111 !important; }
+    .muted{ color:#111 !important; }
+    .prose a{ color:var(--brand); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Solo hamburger su mobile, header invisibile */
+    @media (max-width:800px){
+      .header.header--dark{
+        background:transparent !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        padding:0; height:0;
+      }
+      .header.header--dark.scrolled{
+        background:transparent !important; box-shadow:none !important;
+      }
+    }
+
+    /* Galleria immagini semplice */
+    .gallery{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+    .gallery img{ display:block; width:100%; height:auto; border-radius:var(--r); border:1px solid var(--line); }
+    @media (min-width:900px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
+
+    /* Tabella crediti */
+    .credits{ width:100%; border-collapse:collapse; margin:12px 0 0; }
+    .credits th, .credits td{ padding:10px 12px; border:1px solid var(--line); vertical-align:top; }
+    .credits th{ width:28ch; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:var(--brand); }
+
+    /* Callout scheda tecnica */
+    .tech{ border:1px solid var(--line); border-radius:var(--r); padding:16px; background:#fafafa; }
+    .back-link{ display:inline-block; margin-top:12px; }
+
+    /* Locandina spettacolo */
+    .show-header{
+      display:flex;
+      flex-direction: column;
+      gap:24px;
+      align-items:flex-start;
+      margin-bottom:24px;
+    }
+    .poster{
+      width:100%; max-width:420px;
+      border:1px solid var(--line); border-radius:var(--r);
+      overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.1);
+      cursor:pointer;
+    }
+    .poster img{
+      display:block; width:100%; height:auto;
+      object-fit:cover; object-position:center;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .poster img:hover,
+    .poster img:focus-visible{
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    .show-meta{
+      flex:1; width:100%;
+    }
+    @media (min-width:900px){
+      .show-header{
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
+      }
+      .poster{
+        flex-shrink: 0;
+        width: 420px;
+        max-width: 420px;
+      }
+      .show-meta{
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + NAV + HAMBURGER -->
+  <header class="header header--dark" id="page-header">
+    <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Navigazione principale">
+      <a href="../chi-siamo.html">CHI SIAMO</a>
+      <a href="../spettacoli.html" aria-current="page">SPETTACOLI</a>
+      <a href="../progetti.html">PROGETTI</a>
+      <a href="../sostienici.html">SOSTIENICI</a>
+      <a href="../parlano-di-noi.html">PARLANO DI NOI</a>
+      <a href="../trasparenza.html">TRASPARENZA</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero--internal">
+    <div class="hero-inner"></div>
+  </section>
+
+  <!-- Contenuto -->
+  <main>
+    <section class="container section">
+      <div class="show-header">
+        <figure class="poster">
+          <img src="../assets/spettacoli/eneidi/eneidi-poster.webp"
+               data-full="../assets/spettacoli/eneidi/eneidi-poster.webp"
+               alt="Locandina — ENEIDI"
+               tabindex="0">
+        </figure>
+        <div class="show-meta">
+          <h1 class="h1">ENEIDI:</h1>
+          <h1 class="h1">Prologo</h1>
+          <p class="muted">21 dicembre 2022</p>
+          <p class="muted"><em>postO (Roma)</em></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+        <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>La scena di Eneidi è aperta dall’azione fisica degli attori: un lavoro di composizione di spazi, tempi e corpi che dà vita ad un dialogo visuale che compone figure e suscita immagini in grado di evocare vicende, di narrare storie.
+Eneidi è anche la rotta di un percorso verso luoghi e persone, un cammino che migra, per aprire strade non ancora tracciate lungo le quali incontrarsi e costruire nuova comunità: un corpo collettivo capace di superare categorie e discriminazioni. Il lavoro di scena mutuerà dall’Eneide la forma nomadica, articolandosi come percorso ad episodi, tanto in teatro che come intervento site specific.
+L’Eneide è la forma espressiva di un movimento: la trasformazione dei corpi, le contrazioni muscolari e gli orizzonti riflessi. Non la meta ma il viaggio, il procedere; gli approdi temporanei, le impronte lasciate e le tracce, gli indizi necessari a suggerire il cammino.
+Enea oggi ci parla. La storia di ognuno è quella di Enea. Ognuno è Enea.
+Enea si muove a ritroso, per fondare una città già fondata, però muove dall'abbandono di un'altra città. Scacciato dai lidi e dalle mura che lo avevano ospitato, raccoglie i suoi e si muove, prende il vento, e trasforma la sua stanzialità in un provvisorio nomadismo. Certo Enea vuole una meta, una fondazione, porre fine ai suoi infiniti sconfinamenti. Ma la fondazione è la stasi e la stasi è un’illusione.
+Lavorare sulla stasi, sull’immobilità significa mostrare l’inevitabile movimento del corpo e dell’organismo.
+La messa in scena è questa trazione tra l’illusione di potersi fermare e la necessità del movimento. La scena è il tentativo, destinato sempre a fallire ma sempre reiterato, di mostrare il processo senza contenuto.</em></p>
+        
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/eneidi/eneidi-01.webp" data-full="../assets/spettacoli/eneidi/eneidi-01.webp" alt="eneidi — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/eneidi/eneidi-02.webp" data-full="../assets/spettacoli/eneidi/eneidi-02.webp" alt="eneidi — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/eneidi/eneidi-03.webp" data-full="../assets/spettacoli/eneidi/eneidi-03.webp" alt="eneidi — foto 3" tabindex="0">
+        </div>
+
+    <main>
+      <section class="container section">  
+        <div class="show-header">
+        <figure class="poster">
+          <img src="../assets/spettacoli/eneidi/eneidi-poster-02.webp"
+               data-full="../assets/spettacoli/eneidi/eneidi-poster-02.webp"
+               alt="Locandina — ENEIDI"
+               tabindex="0">
+        </figure>
+        <div class="show-meta">
+          <h1 class="h1">ENEIDI:</h1>
+          <h1 class="h1">La stiva</h1>
+          <p class="muted">31 marzo 2023</p>
+          <p class="muted"><em>Möbius (Roma)</em></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+      <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>Enea si muove a ritroso, per fondare una città già fondata, per dare un ethos ad una città già adulta; una città che deve cantare la sua magnificenza e che vuole ancorarsi ad essa. 
+Enea si muove a confermare e a conservare l’esistente. Una sorta di veglia del già dato. Però. Però muove dall’abbandono di un’altra città, scacciato dai lidi e dalle mura che lo avevano ospitato. Raccoglie i suoi e si muove. Parte, si sposta. Si muove, prende il vento e trasforma la sua stanzialità in un provvisorio nomadismo. Certo Enea vuole una meta, vuole porre fine ai suoi infiniti sconfinamenti e noi non siamo qui ad accoglierlo come il campione dell’ethos, piuttosto ci può condurre al movimento, alla variazione continua di confini. 
+Eneidi è la rotta di un percorso verso luoghi e persone, un cammino che migra, per aprire strade non ancora tracciate lungo le quali incontrarsi e costruire nuova comunità: un corpo collettivo capace di superare categorie e discriminazioni. 
+Un gruppo nutrito di attori, tutti parimenti viaggiatori senz’alcuno in testa, si muoverà per le stanze e i corridoi della galleria. Arriveranno, arriveranno dall’esterno, dopo aver mappato strade e cortili. Arriveranno, tutti quanti, insieme e si stiperanno come in una STIVA, tra le cose e le persone, tra gli spettatori e i visitatori, provando a fare un corpo unico. Un gruppo, una selva di gambe, teste, fiati. Corpi che si aggrappano e si sostengono e si allontanano e si ripigliano. Presi, in una STIVA. E si muovono, e viaggiano.</em></p>
+                
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/eneidi/eneidistiva-01.webp" data-full="../assets/spettacoli/eneidi/eneidistiva-01.webp" alt="eneidistiva — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/eneidi/eneidistiva-02.webp" data-full="../assets/spettacoli/eneidi/eneidistiva-02.webp" alt="eneidistiva — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/eneidi/eneidistiva-03.webp" data-full="../assets/spettacoli/eneidi/eneidistiva-03.webp" alt="eneidistiva — foto 3" tabindex="0">
+        </div>
+
+    <main>
+      <section class="container section">  
+        <div class="show-header">
+        <figure class="poster">
+          <img src="../assets/spettacoli/eneidi/eneidi-poster-03.webp"
+               data-full="../assets/spettacoli/eneidi/eneidi-poster-03.webp"
+               alt="Locandina — ENEIDI"
+               tabindex="0">
+        </figure>
+        <div class="show-meta">
+          <h1 class="h1">ENEIDI:</h1>
+          <h1 class="h1">Un approdo</h1>
+          <p class="muted">27 maggio 2023</p>
+          <p class="muted"><em>Ex Asilo Filangieri (Napoli)</em></p>
+        </div>
+      </div>
+    </section>
+  </main>
+        
+        <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>Eneidi è un viaggio che giunge all’Asilo-Ex Asilo Filangieri di Napoli con la terza tappa del suo progetto. È un approdo che può sintetizzarsi proprio attraverso la stessa definizione che il dizionario dà a questo termine: operazione, manovra di toccare la riva; in senso più metaforico, esito positivo di un’azione. Ma anche, come sostantivo puntiforme, località litoranea, anche di fortuna, che consenta di giungere a riva, dove si può approdare. 
+Il nostro è un approdo che apre lo spazio dell’incontro, dove la conoscenza reciproca si svolge attraverso le fasi di un racconto per immagini. L’azione, prettamente fisica, è aperta dal lavoro corporeo degli attori che, in un gioco di prospettive, dà alla scena forte visualità narrativa.  
+Il corpo, l’articolazione dello spazio, lo svolgersi dei tempi disegnano una drammaturgia fisica dove anche la parola è vissuta più nel gesto sonoro che nella sua lettera. Il lavoro comune del gruppo produce una tensione narrativa che, in continuo dialogo corporeo, sollecita lo spettatore non a cercare soluzioni di senso, quanto invece a costruire la propria visione in forma di condivisione e contributo al lavoro. 
+È un movimento di avvicinamento reciproco mai concluso, una ricerca continua di uno spazio comune mai definitivamente edificato, dove il quotidiano non è abitudine al noto, alla consuetudine, ma si svolge nel confronto continuo con l’ineffabile scorrere della vita. 
+È quasi una geografia umana in continua trasformazione, mai uguale a sé stessa, mai facilmente riconoscibile, che emerge dallo studio e sperimentazione continua delle dinamiche e dei processi della relazione.  
+Si intreccia una trama dove il tessuto è il corpo vivo di persone, donne e uomini in costante movimento, confusi nello sfumare continuo tra chi sta e chi arriva, tra chi va e chi rimane. Qui accoglienza e ospitalità si apparentano nel gesto del mostrarsi, del darsi a vedere. Si sta sulla riva, sul margine, come su una soglia comune dove si confondono reciprocamente il luogo e le forme dello scambio, del dare e del prendere, del donare e del ricevere, dove non è più identificabile chi è di qua e chi di là, chi dà e chi prende.  
+Che si giunga in fuga da luoghi di disperazione o di violenza, per scambiare conoscenza, per costruire un cambiamento o soltanto per provare sé stessi, è sempre il movimento che muove, che anima e ci vive, che spinge e guida i corpi verso una comune condizione di profugo divino. 
+Questa è la scena, un approdo, questa terra comune che sorge appena il piede poggia, i volti si mostrano, le mani si tendono. È questo stare accanto e di fronte per avere sempre una nuova possibilità, per fabbricare futuro.</em></p>
+
+    <main>
+      <section class="container section">  
+        <div class="show-header">
+        <figure class="poster">
+          <img src="../assets/spettacoli/eneidi/eneidi-poster-04.webp"
+               data-full="../assets/spettacoli/eneidi/eneidi-poster-04.webp"
+               alt="Locandina — ENEIDI"
+               tabindex="0">
+        </figure>
+        <div class="show-meta">
+          <h1 class="h1">ENEIDI:</h1>          
+          <h1 class="h1">La profezia</h1>
+          <p class="muted">24 novembre 2023</p>
+          <p class="muted"><em>Centrale Preneste Teatro (Roma)</em></p>
+        </div>
+      </div>
+    </section>
+  </main>
+          
+        <div class="prose">
+        <h2>Sinossi</h2>
+        <p><em>Gli Enea continuano a disegnare una geografia umana in perenne trasformazione disegnando una terra comune. La scena che calpestano sorge al loro gesto e mostra la profezia del sacro che ci dice del movimento. L’impossibile da evadere.</em></p>
+        <p><em>Profezia. Pre-dire attraverso i gesti, le posture. Ciò che si dice chiama alla direzione dello sguardo, del cammino che si deve intraprendere, dell'orizzonte che si può
+abitare. Enea è questi corpi, corpi di donne, di uomini, di voci, di silenzi e di cose, che si muovono e che si avvinghiano; transitano da uno spazio ad un oggetto, sono corpi
+che prendono in dote l'occasione della profezia. La scena di nontantoprecisi scaraventa questi Enea nel movimento immobile che articola i corpi. I corpi, questi
+Enea, sono percorsi dal moto indicato da una profezia. Si muovono, articolano le diverse e infinite parti dell'esistenza come un'esondazione. Il corpo tracima e si rende
+indistinguibile da altro. È un movimento di avvicinamento reciproco mai concluso, una ricerca continua di uno spazio comune mai definitivamente fondato, dove il
+quotidiano non è abitudine al noto, alla consuetudine, ma si svolge nel confronto continuo con l’ineffabile scorrere della vita.
+Enea muove e si muove verso una meta ma la meta di nontantoprecisi è il movimento stesso.
+La scena offre alla visione lo sfinimento di un movimento che, profeticamente, muove verso nessuna meta. Per questi e queste Enea infiniti-sfiniti, la profezia indica l'unico movimento possibile: il massimamente stante di ogni corpo. Destino.</em></p>
+        
+        <div class="gallery" aria-label="Galleria fotografica">
+          <img src="../assets/spettacoli/eneidi/eneidiprofezia-01.webp" data-full="../assets/spettacoli/eneidi/eneidiprofezia-01.webp" alt="eneidiprofezia — foto 1" tabindex="0">
+          <img src="../assets/spettacoli/eneidi/eneidiprofezia-02.webp" data-full="../assets/spettacoli/eneidi/eneidiprofezia-02.webp" alt="eneidiprofezia — foto 2" tabindex="0">
+          <img src="../assets/spettacoli/eneidi/eneidiprofezia-03.webp" data-full="../assets/spettacoli/eneidi/eneidiprofezia-03.webp" alt="eneidiprofezia — foto 3" tabindex="0">
+        </div>
+
+        <p class="muted" style="margin-top:8px; font-size:.85em;">Crediti foto: XXXX</p>
+
+        <a class="back-link" href="../spettacoli.html" aria-label="Torna all'elenco spettacoli">← Torna a SPETTACOLI</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--light">
+    <div class="container footer-grid footer-grid--three">
+            <section>
+        <h3>PRIVACY &amp; POLICY</h3>
+        <p class="muted"><a href="../privacy.html">Leggi l'informativa</a></p>
+      </section>
+
+      <div class="footer-brand">
+        <a href="../index.html" aria-label="Torna alla home">
+          <img src="../logo.webp" alt="Nontantoprecisi">
+        </a>
+      </div>
+
+      <section class="footer-contacts">
+        <h3>CONTATTI</h3>
+        <p class="muted">
+          Email : <a href="mailto:nontantoprecisi@gmail.com">nontantoprecisi@gmail.com</a><br>
+          Instagram : <a href="https://instagram.com/nontantoprecisi">@nontantoprecisi</a><br>
+          Sede : Via Castelguidone 4, 00159 Roma (RM)
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Script esterni: logica header + galleria/lightbox -->
+  <script src="../assets/site.js"></script>
+  <script src="../assets/gallery.js"></script>
+ </body>
+</html>
+
